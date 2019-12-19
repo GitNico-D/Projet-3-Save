@@ -40,8 +40,10 @@ class Slide {
         this.start=!this.start;
     }
 
+    // Optimiser slideRightChange et slideLeftChange en 1 méthode unique !
+    
     slideRightChange() {
-        let $allSlides = $(".slide_img") // A mettre dans conctrustor ??
+        let $allSlides = $(".slide_img") 
         let $currentSlide = $(".active_slide");
         let $slidePosition = $(".slide_img").index($currentSlide)
             if ($slidePosition === $allSlides.length - 1) {
