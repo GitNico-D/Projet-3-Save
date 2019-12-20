@@ -4,12 +4,14 @@ class Slide {
         this.color = color;
         this.position = position;
         console.log(this);
-        // this.createSlide();        
-        $("#next_slide").click(this.slideRightChange.bind(this));
+        // this.createSlide(); 
+        $("#next_slide").click(this.sliderChange.bind(this, 1));
+        $("#previous_slide").click(this.sliderChange.bind(this, -1));
+        // $("#next_slide").click(this.slideRightChange.bind(this));
         this.start = false;
-        this.sliderAutoChange();
+        // this.sliderAutoChange();
         $("#play_pause_slider").click(this.sliderAutoChange.bind(this));
-        $("#previous_slide").click(this.slideLeftChange.bind(this));
+        // $("#previous_slide").click(this.slideLeftChange.bind(this));
         $(document).keydown(this.sliderKeyboardChange.bind(this));
     }
     
@@ -42,6 +44,40 @@ class Slide {
 
     // Optimiser slideRightChange et slideLeftChange en 1 méthode unique !
     
+    sliderChange(direction) {
+        let $allSlides = $(".slide_img"); 
+        let $currentSlide = $(".active_slide");
+        let $slidePosition = $(".slide_img").index($currentSlide);
+        if ($slidePosition === $allSlides.length - 1) {
+            console.log("Reset slider plus !")
+            console.log($slidePosition)
+            $($allSlides[$slidePosition]).removeClass("active_slide")
+            console.log($($allSlides[$slidePosition]))
+            $slidePosition = 0;
+            $($allSlides[$slidePosition]).addClass("active_slide")
+            console.log($($allSlides[$slidePosition]))
+            console.log($slidePosition)
+        } 
+        // if ($slidePosition < 0) {
+        //     console.log("Reset Slide moins !")
+        //     $($allSlides[$slidePosition]).removeClass("active_slide")
+        //     $slidePosition = $allSlides.length - 1;
+        //     $($allSlides[$slidePosition]).addClass("active_slide")
+        // } 
+         else {
+            $($allSlides[$slidePosition]).removeClass("active_slide")
+            $slidePosition += direction;
+            $($allSlides[$slidePosition]).addClass("active_slide")
+            if (direction === 1) {
+            console.log("Next Slide !")
+            console.log($slidePosition)
+            console.log($allSlides.length -1)
+            } else {
+                console.log("Previous Slide !")
+            }
+        }
+    }
+
     slideRightChange() {
         let $allSlides = $(".slide_img") 
         let $currentSlide = $(".active_slide");
