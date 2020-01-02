@@ -57,5 +57,6 @@ class Slide {
             console.log(event.keyCode + " => Play/Pause Slider !");
             this.sliderChange();
         }     
+        event.preventDefault();
     }
 }
