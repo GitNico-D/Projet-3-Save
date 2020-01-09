@@ -6,7 +6,7 @@ class Slide {
         $("#next_slide").click(this.sliderChange.bind(this, 1));
         $("#previous_slide").click(this.sliderChange.bind(this, -1));
         this.start = false;
-        this.sliderAutoChange();
+        // this.sliderAutoChange();
         $("#play_pause_slider").click(this.sliderAutoChange.bind(this));
         $(document).keydown(this.sliderKeyboardChange.bind(this));
     }
