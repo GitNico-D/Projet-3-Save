@@ -1,8 +1,8 @@
 class Station {
     constructor(url) {
         let stationName;
+        let stationData;
         $.get(url, function(allStationsData){
-            let stationData;
             for (let i = 0; i < allStationsData.length; i++) {
                 // stationName = allStationsData[i].name;
                 stationData = allStationsData[i];
