@@ -47,6 +47,7 @@ class Slide {
     }
 
     sliderKeyboardChange() {
+        event.stopPropagation();
         if (event.keyCode === 39) {
             console.log(event.keyCode + " => Right Slider Change !");
             this.sliderChange(1);
@@ -54,9 +55,10 @@ class Slide {
             console.log(event.keyCode + " => Left Slider Change !");
             this.sliderChange(-1);
         } if (event.keyCode === 32) {
+            event.preventDefault();
             console.log(event.keyCode + " => Play/Pause Slider !");
             this.sliderChange();
+
         }     
-        event.preventDefault();
     }
 }

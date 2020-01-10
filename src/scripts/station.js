@@ -1,50 +1,41 @@
 class Station {
-    constructor(url) {
-        let stationName;
-        let stationData;
-        $.get(url, function(allStationsData){
-            for (let i = 0; i < allStationsData.length; i++) {
-                // stationName = allStationsData[i].name;
-                stationData = allStationsData[i];
-
-                let stationAddress = allStationsData[i].address;
-                let stationPosition = allStationsData[i].position;
-            }
-            stationName = stationData.name;
-            console.log(stationName)
-            console.log(stationData.name)
-            this.name = $(".text").text(stationName);
-        })
-        console.log(stationData)
-
-        this.stationAddress;
-        this.stationPosition;
-        // this.allStationsData()
-        // this.stationProperty();
+    constructor(url, map) {
+        const self = this;
+        console.log(self)
+        this.map = map;
+        // this.stationMarker = L.icon({iconUrl: `assets/img/leaf-${this.colorStationMarker}.png`});
+        $.get(url)
+            .done (function(allStationsData){
+                for (let i = 0; i < allStationsData.length; i++) {
+                    let stationData = allStationsData[i]; 
+                    let stationLatitude = stationData.position.latitude;
+                    let stationLongitude = stationData.position.longitude;
+                    let colorStationMarker = "";
+                    switch (stationData.status) {
+                        case "OPEN": 
+                            console.log("La station " + stationData.name + " est " + stationData.status)
+                            console.log(stationData.totalStands.availabilities.bikes + " vélos sur " + stationData.totalStands.capacity + " sont disponiles à la location.");
+                            if (stationData.totalStands.availabilities.bikes === 0) {
+                                colorStationMarker = L.icon({iconUrl: `assets/img/leaf-orange.png`});
+                            } else {
+                                colorStationMarker = L.icon({iconUrl: `assets/img/leaf-green.png`});
+                            }
+                        break;
+                        case "CLOSED":
+                            colorStationMarker = L.icon({iconUrl: `assets/img/leaf-red.png`});
+                            console.log("La station " + stationData.name + " est " + stationData.status)
+                            console.log(stationData.totalStands.availabilities.bikes + " vélos sur " + stationData.totalStands.capacity + " sont disponiles à la location.");
+                        break;
+                    }
+                    self.map.generateStationMarker(stationLatitude,stationLongitude,colorStationMarker);
+                    // self.map.on()
+                }
+            })
+            .fail(function(){
+                console.log("Error ! ", error);
+            })
+            
+        
     }
-    // stationProperty() {
-    //     $(".text").append(`<p> ${this.name} </p>`);
-    //     $(".text").append(`<p> ${this.address} </p>`);
-    // }
-
-    // allStationsData() {
-    //     let arrayStationName = [];
-    //     let arrayStationAddress = [];
-    //     let arrayStationPosition = [];
-    //     $.get(url, function(allStationsData){
-    //         for (let i = 0; i < allStationsData.length; i++) {
-    //             let stationName = allStationsData[i].name;
-    //             let stationAddress = allStationsData[i].address;
-    //             let stationPosition = allStationsData[i].position;
-    //             // console.log(stationName)
-    //             arrayStationName.push(stationName);
-    //             arrayStationAddress.push(stationAddress);
-    //             arrayStationPosition.push(stationPosition);
-    //         }
-    //     })
-    //     console.log(arrayStationName)
-    //     console.log(arrayStationAddress)
-    //     console.log(arrayStationPosition)
-    // }
-    
+        
 }
