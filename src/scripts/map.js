@@ -17,9 +17,19 @@ class Map {
             accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
         }).addTo(this.bikeStationMap);
     }
-
-    generateStationMarker(stationLatitude, stationLongitude, stationMarker) {
-        let marker = L.marker([stationLatitude,stationLongitude], {icon: stationMarker}).addTo(this.bikeStationMap);
-        marker.bindPopup("Tu viens de cliquer sur ce marqueur !").openPopup();
+    
+    generateStationMarker(stationData, stationMarker) {
+        let marker = L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).addTo(this.bikeStationMap);
+        marker.on("click", function(event){
+            console.log(stationData.address)
+            $(".text").html(`${stationData.name}<br> Cette station a ${stationData.totalStands.availabilities.bikes} vélos disponibles sur  ${stationData.totalStands.capacity}`);
+            // $(".text").append().text(stationData.address);
+        } );
+        // this.bikeStationMap.on('click', function(event){
+        //     console.log(event.latlng)
+        // })
+        // markerEventClick(marker)
+        // console.log(marker);
     }
+
 }
