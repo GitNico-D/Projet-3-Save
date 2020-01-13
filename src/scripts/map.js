@@ -19,12 +19,14 @@ class Map {
     }
     
     generateStationMarker(stationData, stationMarker) {
-        let marker = L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).addTo(this.bikeStationMap);
-        marker.on("click", function(event){
-            console.log(stationData.address)
-            $(".text").html(`${stationData.name}<br> Cette station a ${stationData.totalStands.availabilities.bikes} vélos disponibles sur  ${stationData.totalStands.capacity}`);
-            // $(".text").append().text(stationData.address);
-        } );
+        // let marker = 
+        // console.log(stationData)
+        return L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).addTo(this.bikeStationMap);
+        // marker.on("click", function(event){
+        //     console.log(stationData.address)
+        //     $(".text").html(`${stationData.name}<br> Cette station a ${stationData.totalStands.availabilities.bikes} vélos disponibles sur  ${stationData.totalStands.capacity}`);
+        //     $(".text").append().text(stationData.address);
+        // } );
         // this.bikeStationMap.on('click', function(event){
         //     console.log(event.latlng)
         // })
@@ -32,4 +34,10 @@ class Map {
         // console.log(marker);
     }
 
+    // addEvent(marker, event) {
+    //     marker.event( function(){
+
+    //         console.log(event.latlng)
+    //     })
+    // }
 }
