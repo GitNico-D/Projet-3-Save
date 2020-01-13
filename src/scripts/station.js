@@ -1,3 +1,5 @@
+// import { marker } from "leaflet";
+
 class Station {
     constructor(map) {
         // console.log(self)
@@ -12,6 +14,7 @@ class Station {
                     let stationLatitude = stationData.position.latitude;
                     let stationLongitude = stationData.position.longitude;
                     let colorStationMarker = "";
+                    // let allMarkersStations = [];
                     switch (stationData.status) {
                         case "OPEN": 
                             // console.log("La station " + stationData.name + " est " + stationData.status)
@@ -28,7 +31,21 @@ class Station {
                             // console.log(stationData.totalStands.availabilities.bikes + " vélos sur " + stationData.totalStands.capacity + " sont disponiles à la location.");
                         break;
                     }                    
-                    self.map.generateStationMarker(stationData,colorStationMarker);
+                    // self.map.generateStationMarker(stationData,colorStationMarker);
+                    let markerStation = self.map.generateStationMarker(stationData,colorStationMarker);
+                    // allMarkersStations.push(markerStation);
+                    console.log(markerStation)
+                    // console.log(allMarkersStations)
+                    markerStation.on("click", function(){
+                        self.showInfosStation(stationData)
+                        // L.popup("Coucou").openPopup(self.map)
+                        // .bindPopup("Coucou")
+                    })
+                    // self.map.bikeStationMap.on("click", marker, self.showInfosStation(stationData))
+                    // self.map.bikeStationMap.on("click", marker, function(){
+                    //     console.log("Marker !")
+                    // })
+
                 }
             })
             .fail(function(){
@@ -36,12 +53,10 @@ class Station {
             })        
     }
     
-    // showInfosStation(stationData) {
-    //     $(".text").text(stationData.name);
-    // }
-
-    // showInfosStation = (stationData) => {
-    //     $(".text").text(stationData.name);
-    // }
+    showInfosStation(stationData) {
+        $(".text").text(stationData.name);
+        // L.popup('Tu as cliqué ici').openOn(self.map)
+        
+    }
             
 }
