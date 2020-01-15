@@ -34,12 +34,24 @@ class Station {
                     // self.map.generateStationMarker(stationData,colorStationMarker);
                     let markerStation = self.map.generateStationMarker(stationData,colorStationMarker);
                     // allMarkersStations.push(markerStation);
-                    console.log(markerStation)
+                    // console.log(markerStation)
+                    // console.log(self.map)
+                    // console.log(self.map.bikeStationMap)
+                    // let bikeStationMap = self.map.bikeStationMap
                     // console.log(allMarkersStations)
-                    markerStation.on("click", function(){
-                        self.showInfosStation(stationData)
+                    // let stationName = $(".text").text(stationData.name)
+                    // var popup = L.popup()
+                        // .setContent()
+                        // .openOn(self.map)
+                    // markerStation.bindPopup(popup).openPopup()
+                    // self.eventClickMarker(markerStation, bikeStationMap)
+                    $("#bike_station_details").hide();
+                    $("#user_form").hide();
+                    markerStation.on("click", function(event){
+                        self.map.bikeStationMap.setView(event.latlng, 20)
+                        self.showInfosStation(stationData, markerStation)
                         // L.popup("Coucou").openPopup(self.map)
-                        // .bindPopup("Coucou")
+                        // markerStation.bindPopup("Coucou").openOn(self.map)
                     })
                     // self.map.bikeStationMap.on("click", marker, self.showInfosStation(stationData))
                     // self.map.bikeStationMap.on("click", marker, function(){
@@ -53,10 +65,25 @@ class Station {
             })        
     }
     
-    showInfosStation(stationData) {
-        $(".text").text(stationData.name);
-        // L.popup('Tu as cliqué ici').openOn(self.map)
-        
-    }
+    showInfosStation(stationData, markerStation) {
+        let stationPopupInfos = L.popup()
+            .setContent(`<p class=stationPopupInfos ><b> Vous êtes sur la station : </b></p>
+                        <p>${stationData.name}</p>
+                        <button id=station_details_informations class=station_details_informations> Informations détaillées >`);
+                                
+        markerStation.bindPopup(stationPopupInfos).openPopup()
+        $("#station_details_informations").click(function(){
+            $("#bike_station_details").show();
+            $(".text").text(`La station ${stationData.name} est ${stationData.status} !`)
+            $(".text").append(`<p> Il reste ${stationData.totalStands.availabilities.bikes} vélos disponibles à la location</p>`);
+            $(".text").append(`<p> Si vous souhaitez effectué une réservation cliquez sur le bouton "Réserver" ci-dessous.</p>`);
+            $(".text").append(`<button id=reservation_button class> Réserver`);
             
+        })
+                $("#reservation_button").click(function(){
+                    $("#user_form").show();
+                    console.log("Clique réservation")
+
+        });        
+    }
 }
