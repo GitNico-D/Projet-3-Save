@@ -90,32 +90,7 @@ button:active, .button:hover
 	top:1px;
 }
 
-// .slide_img:hover .one
-// {
-//     background-color: rgba(31, 31, 31, 0.562);    
-//     cursor: pointer;
-// }
-
-// .background_arrow_right
-// {
-//     position: absolute;    
-//     height: 350px;
-//     width: 5%;
-//     right: 0;    
-// }
-
-// .slide_img:hover .background_arrow_left
-// {
-    
-//     position: absolute;
-//     background-color: rgba(31, 31, 31, 0.562);
-//     height: 350px;
-//     width: 5%;
-//     left: 0;
-//     cursor: pointer;
-// }
-
-
+/*---- DÉBUT SLIDER -----*/
 .active_slide
 {
     display: block!important;    
@@ -159,16 +134,10 @@ button:active, .button:hover
 {
     background-color: rgb(165, 0, 187);
 }
+/*---- FIN SLIDER -----*/
 
-#infos_bike_station
-{
-    display: inline-block;
-    width: 100%;
-    margin-top: 80px;
-    height: 250px;
-    
-}
 
+/*----- DÉBUT MAP -----*/
 #bike_station_map
 {    
     border: 2px solid red;
@@ -180,13 +149,53 @@ button:active, .button:hover
     padding: 10px;
 }
 
-#bike_station_map .text
+.return_to_map_button
+{
+    z-index: 405;
+    position: absolute;
+    padding: 5px 10px;
+    left: 50%;
+    transform: translateX(-50%)
+}
+/*----- FIN  MAP -----*/
+
+/*----- DÉBUT POPUP MARKER ----*/
+
+.popup_infos_station
 {
     text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 1.1em;
+    position: relative;
+}
+
+.popup_infos_station_name
+{
+    text-align: center;
+}
+
+.station_details_informations
+{
+    width: 100%;
+    margin: auto;
+}
+
+.return_to_global_map
+{
+    width: 100%;
+    margin: auto;
+    margin-top: 5px;
+}
+/*----- FIN POPUP MARKER ----*/
+
+/*----- DÉBUT INFOS STATIONS ----*/
+#infos_bike_station
+{
+    display: inline-block;
+    width: 100%;
+    margin-top: 80px;
+    height: 250px;
+    
 }
 
 #bike_station_details
@@ -197,9 +206,10 @@ button:active, .button:hover
     height: 350px;
     width: 25%;
     padding: 10px;
-    // visibility: hidden;
 }
+/*----- FIN INFOS STATIONS ----*/
 
+/*----- DÉBUT BOOKING FORM ----*/
 form
 {
     margin-top: 25px;
@@ -227,3 +237,4 @@ input
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
     line-height: 2em;
 }
+/*----- FIN BOOKING FORM ----*/
