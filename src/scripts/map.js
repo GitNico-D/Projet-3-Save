@@ -34,10 +34,7 @@ class Map {
         // console.log(marker);
     }
 
-    // addEvent(marker, event) {
-    //     marker.event( function(){
-
-    //         console.log(event.latlng)
-    //     })
-    // }
+    resetMapView(){
+        this.bikeStationMap.setView([this.coordinateX, this.coordinateY], this.zoom);
+    }
 }
