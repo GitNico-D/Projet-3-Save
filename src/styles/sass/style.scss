@@ -204,8 +204,20 @@ button:active, .button:hover
     border: 2px solid blue;
     display: inline-block;
     height: 350px;
-    width: 25%;
-    padding: 10px;
+    width: 24%;
+    padding: 20px;
+}
+
+.infos_station_introduction
+{
+    
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.infos_station_description
+{
+    text-align: justify;
 }
 /*----- FIN INFOS STATIONS ----*/
 
