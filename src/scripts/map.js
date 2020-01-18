@@ -24,46 +24,41 @@ class Map {
     }
     
     generateStationMarker(stationData, stationMarker) {
-        return L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).addTo(this.bikeStationMap);
+        let popup = L.popup().setContent(`<p class=popup_infos_station > Vous êtes sur la station : </p>
+                                            <p class=popup_infos_station_name>${stationData.name}</p>
+                                            <button id=station_details_informations class=station_details_informations> Informations détaillées`);
+        
+                            
+        return L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).addTo(this.bikeStationMap).bindPopup(popup);
     }
 
     eventMarkerClick(markerStation, event, stationName, showInfosStation) {
         let map = this.bikeStationMap
-        // console.log(map)
-        // console.log(this.bikeStationMap)
         markerStation.on(event, function(event) {
-            // showInfosStation()
             map.setView(event.latlng, 20)
-            // console.log(markerStation)
-            let stationPopupInfos = L.popup()
-                .setContent(`<p class=popup_infos_station ><b> Vous êtes sur la station : </b></p>
-                            <p class=popup_infos_station_name>${stationName}</p>
-                            <button id=station_details_informations class=station_details_informations> Informations détaillées`)                            
-            markerStation.bindPopup(stationPopupInfos).openPopup()
             $("#station_details_informations").click(function(){
                 console.log("Click info détaillé")
                 showInfosStation()
             });
         });
-        // console.log(markerStation)
-        // this.markerPopup();
     }
 
     closedInfosStation() {
         $("#bike_station_details").hide();
     }
 
-    // markerPopup(stationData, markerStation){
-    //     let stationPopupInfos = L.popup()
-    //         .setContent(`<p class=popup_infos_station ><b> Vous êtes sur la station : </b></p>
-    //                     <p class=popup_infos_station_name>${stationData.name}</p>
-    //                     <button id=station_details_informations class=station_details_informations> Informations détaillées
-    //                     <button id=return_to_global_map class=return_to_global_map> Recentrer la carte`)
-    //     markerStation.bindPopup(stationPopupInfos).openPopup()
-    // }
+    markerCluster(allMarkersStations) {
+        // console.log(allMarkersStations)
+        let map = this.bikeStationMap
+        allMarkersStations = L.markerClusterGroup();
+        // allMarkersStations.addLayer(markerStation);
+        return map.addLayer(allMarkersStations)
+        // this.bikeStationMap.addLayer(allMarkersStations)
+    }
 
     resetMapView(){
         console.log("Click Return to global map button")
         this.bikeStationMap.setView([this.coordinateX, this.coordinateY], this.zoom);
+        $("#bike_station_details").hide();
     }
 }
