@@ -5,6 +5,7 @@ class Station {
         this.map = map;
         $.get("https://api.jcdecaux.com/vls/v3/stations?contract=Lyon&apiKey=02097fba5ab73ba010c3d0375ab4c4aa19dd9f23")
             .done (function(allStationsData){
+                let allMarkersStations = [];
                 for (let i = 0; i < allStationsData.length; i++) {
                     let stationData = allStationsData[i]; 
                     // console.log(stationData)
@@ -29,11 +30,10 @@ class Station {
                     // console.log(self.map)
                     let markerStation = self.map.generateStationMarker(stationData,colorStationMarker);
                     self.map.eventMarkerClick(markerStation, "click", stationData.name, self.showInfosStation.bind(self, stationData, markerStation));
-                    // console.log(markerStation)
-                    // console.log(self);
-
-                    // console.log(self.map)
-                    // console.log(self.map.bikeStationMap)
+                    // console.log(allMarkersStations)
+                    // allMarkersStations.push(markerStation);
+                    self.map.markerCluster(allMarkersStations);
+                    // self.map.markerCluster(markerStation);
                     $("#bike_station_details").hide();
                     $("#user_form_booking").hide();
                     // markerStation.on("click", function(event){
@@ -41,6 +41,7 @@ class Station {
                     //     self.showInfosStation(stationData, markerStation, stationOptionInformationsShow, self.map)
                     // })
                 }
+                // console.log(allMarkersStations)
                     // self.map.bikeStationMap.on('click', function(event){
                     //     console.log("Map click " + event.latlng)
                     // })
