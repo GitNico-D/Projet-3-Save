@@ -12,6 +12,9 @@
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
         crossorigin=""></script>
         <link rel="stylesheet" href="./css/style.css" >
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+        <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
     </head>
     <body>
         <h1 id="title">Location de vélo</h1>
@@ -48,8 +51,8 @@
                 <button id="return_to_map" class="return_to_map_button"> Recentrer la carte </button> 
             </div>
             <div id="bike_station_details">
+                <!-- <div id="popup_marker" class="popup_marker"></div> -->
                 <div id="bike_station_informations">
-                    <div id="popup_marker" class="popup_marker">
                         <p class="infos_station_introduction" >Vous avez sélectionné la station :</p>
                         <p id="infos_station_name" class="infos_station_name"></p>
                         <p id="infos_station_description" class="infos_station_description"></p>
