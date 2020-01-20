@@ -10,7 +10,7 @@ class Map {
         $("#return_to_global_map").click(this.resetMapView.bind(this))
         this.bikeStationMap.on("click", this.closedInfosStation.bind(this))
     }
-
+    
 
     generateMap() {
     console.log(this)
@@ -27,9 +27,8 @@ class Map {
         let popup = L.popup().setContent(`<p class=popup_infos_station > Vous êtes sur la station : </p>
                                             <p class=popup_infos_station_name>${stationData.name}</p>
                                             <button id=station_details_informations class=station_details_informations> Informations détaillées`);
-        
-                            
-        return L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).addTo(this.bikeStationMap).bindPopup(popup);
+        return L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).bindPopup(popup);
+        // return L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).addTo(this.bikeStationMap).bindPopup(popup);
     }
 
     eventMarkerClick(markerStation, event, stationName, showInfosStation) {
@@ -48,12 +47,11 @@ class Map {
     }
 
     markerCluster(allMarkersStations) {
-        // console.log(allMarkersStations)
-        let map = this.bikeStationMap
-        allMarkersStations = L.markerClusterGroup();
-        // allMarkersStations.addLayer(markerStation);
-        return map.addLayer(allMarkersStations)
-        // this.bikeStationMap.addLayer(allMarkersStations)
+        let markersStationCluster = new L.MarkerClusterGroup();
+        for (let i = 0; i < allMarkersStations.length; i++) {
+            markersStationCluster.addLayer(allMarkersStations[i])
+        }
+        this.bikeStationMap.addLayer(markersStationCluster)
     }
 
     resetMapView(){
