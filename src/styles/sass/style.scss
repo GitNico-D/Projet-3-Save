@@ -13,8 +13,12 @@ h1
     color: $darkgray;
 }
 
+
+
+/*---- DÉBUT SLIDER -----*/
 #slider_container
 {
+    height: 350px;
     position: relative;
 }
 
@@ -89,8 +93,6 @@ button:active, .button:hover
     text-decoration: none;
 	top:1px;
 }
-
-/*---- DÉBUT SLIDER -----*/
 .active_slide
 {
     display: block!important;    
@@ -135,7 +137,6 @@ button:active, .button:hover
     background-color: rgb(165, 0, 187);
 }
 /*---- FIN SLIDER -----*/
-
 
 /*----- DÉBUT MAP -----*/
 #bike_station_map
@@ -194,7 +195,7 @@ button:active, .button:hover
     display: inline-block;
     width: 100%;
     margin-top: 80px;
-    height: 250px;
+    height: 600px;
     
 }
 
@@ -222,31 +223,45 @@ button:active, .button:hover
 /*----- FIN INFOS STATIONS ----*/
 
 /*----- DÉBUT BOOKING FORM ----*/
+#user_booking_form
+{
+    display: none;
+}
+
 form
 {
-    margin-top: 25px;
     text-align: center;
-    height: 50px;
-    width: 100%;
 }
 
 label
 {    
     font-size: 1.1em;
     color: $darkgray;
-    display: inline-block;
 }
 
 input
 {
     color: #555;
-    width: 50%;
     text-align: center;
-    display: block;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;   
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
     line-height: 2em;
 }
+
+#reservation_confirm, #reservation_cancel
+{
+    display: none;
+    height: 100px;
+}
 /*----- FIN BOOKING FORM ----*/
+
+/*----- DÉBUT CANVAS -----*/
+#signature_canvas
+{
+    border: 1px solid blue;
+    height: 200px;
+    width: 300px;
+
+}
