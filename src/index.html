@@ -20,7 +20,7 @@
     </head>
     <body>
         <h1 id="title">Location de vélo</h1>
-        <div id="slider_container">
+        <section id="slider_container">
             <div id="slider">
                 <div id="slide_one" class="slide_img blue active_slide">  
                     <span class="text_content_slide">SLIDE 1</span>
@@ -36,45 +36,46 @@
                 </div>
                 <div id="slide_fifth" class="slide_img purple">
                     <span class="text_content_slide">SLIDE 5</span>
-                </div>            
-                <!-- <div id="timer_slider" class="timer_slider">
-                    <div id="cursor_timer_slider" class="cursor_timer_slider">
-                    </div>
-                </div> -->
+                </div>
             </div>
             <div id="slider_buttons">
                 <button id="previous_slide" class="fas fa-angle-double-left fa-lg"></button>
                 <button id="play_pause_slider" class="far fa-play-circle fa-lg"></button>
                 <button id="next_slide" class="fas fa-angle-double-right fa-lg"></button>  
             </div>    
-        </div>
-        <div id="infos_bike_station">
+        </section>
+        <section id="infos_bike_station">
             <div id="bike_station_map" class="map_div">
                 <button id="return_to_map" class="return_to_map_button"> Recentrer la carte </button> 
             </div>
             <div id="bike_station_details">
-                <!-- <div id="popup_marker" class="popup_marker"></div> -->
                 <div id="bike_station_informations">
-                        <p class="infos_station_introduction" >Vous avez sélectionné la station :</p>
-                        <p id="infos_station_name" class="infos_station_name"></p>
-                        <p id="infos_station_description" class="infos_station_description"></p>
-                        <button id="reservation_button" class="reservation_button">Effectuer une réservation</button>
-                        <p id="button_split" class="button_split">OU</p>
-                        <button id="return_to_global_map" class="return_to_global_map"> Retour sur la carte</button>
-                    </div>
+                    <p class="infos_station_introduction" >Vous avez sélectionné la station :</p>
+                    <p id="infos_station_name" class="infos_station_name"></p>
+                    <p id="infos_station_description" class="infos_station_description"></p>
+                    <button id="reservation_button" class="reservation_button">Effectuer une réservation</button>
+                    <p id="button_split" class="button_split">OU</p>
+                    <button id="return_to_global_map" class="return_to_global_map"> Retour sur la carte</button>
                 </div>
-                <div id="user_form_booking">
-                    <form>
-                        <label for="first_name">Prénom : </label><input type="text" id="first_name" name="first_name" required>
-                        <label for="last_name">Nom : </label><input type="text" id="last_name" name="last_name" required>
-                        <input type="submit" value="Réserver !" class="button">
-                    </form>
-                </div>
-            </div>
-        </div> 
+            <div>    
+        </section>
+        <section id="user_booking_form"> 
+            <form>
+                <label for="first_name">Prénom : </label><input type="text" id="first_name" name="first_name" >
+                <label for="last_name">Nom : </label><input type="text" id="last_name" name="last_name" >
+                <input type="submit" value="Réserver !" class="button">
+            </form>
+            <div id="reservation_status">
+                <p id="reservation_status_text"></p>
+                <button id="reservation_confirm">Confirmer</button>
+                <button id="reservation_cancel">Annuler</button>
+            </div>                
+            <canvas id="signature_canvas"></canvas>
+        </section>
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="./scripts/slider.js"></script>
+        <script type="text/javascript" src="./scripts/canvas.js"></script>
         <script type="text/javascript" src="./scripts/booking.js"></script>        
         <script type="text/javascript" src="./scripts/station.js"></script>
         <script type="text/javascript" src="./scripts/map.js"></script>
