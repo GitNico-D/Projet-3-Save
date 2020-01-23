@@ -3,6 +3,7 @@
 $(function(){
     let slideOne = new Slide ();
     let mapOfLyon = new Map ([45.75, 4.85], 11);
+    let signatureCanvas = new Canvas(signature_canvas);
     let bookingBike = new Booking();
     let datasStations = new Station(mapOfLyon, bookingBike);
 });
