@@ -13,11 +13,10 @@ class Station {
                     let colorMarker = stationData.status === "OPEN" ? (stationData.totalStands.availabilities.bikes === 0 ? "orange" :  "green" ) : "red";
                     let colorStationMarker = L.icon({iconUrl: `assets/img/leaf-${colorMarker}.png`});           
                     let markerStation = self.map.generateStationMarker(stationData,colorStationMarker);
-                    self.map.eventMarkerClick(markerStation, "click", stationData.name, self.showInfosStation.bind(self, stationData, markerStation));
-                    // self.booking.displayBooking()
+                    self.map.eventMarkerClick(markerStation, "click", self.showInfosStation.bind(self, stationData, markerStation));
                     allMarkersStations.push(markerStation);
                     $("#bike_station_details").hide();
-                    $("#user_form_booking").hide();
+                    // $("#user_booking_form").hide();
                     }
                 self.map.markerCluster(allMarkersStations)
             })
@@ -27,9 +26,7 @@ class Station {
     }
     
     showInfosStation(stationData, markerStation) {
-        console.log(stationData.name)
-        console.log(this)
-        console.log(markerStation)
+        console.log(this.booking)
         $("#bike_station_details").show();
         $("#infos_station_name").text(stationData.name);
         let option;
@@ -39,6 +36,8 @@ class Station {
                                                 Si vous souhaitez effectuer une réservation cliquer sur le bouton ci-dessous. Vous pouvez sinon retourner sur la carte pour sélectionner une autre station.`);
             $("#reservation_button").show();
             $("#button_split").show();
+            console.log(this.booking)
+            this.booking.userBookingStation(stationData);
         } if (stationData.status === "CLOSED") {
             console.log("CLOSED")
             $("#infos_station_description").text("Désolé mais cette station est actuellement fermé. Veuillez nous excuser pour le dérangement occasionné. Merci de vous rapprocher d'une autre station de location.")
