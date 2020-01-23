@@ -56,6 +56,7 @@ class Slide {
             this.sliderChange(-1);
         } if (event.keyCode === 32) {
             event.preventDefault();
+            event.stopPropagation();
             console.log(event.keyCode + " => Play/Pause Slider !");
             this.sliderChange();
 
