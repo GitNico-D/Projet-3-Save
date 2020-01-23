@@ -31,7 +31,7 @@ class Map {
         // return L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).addTo(this.bikeStationMap).bindPopup(popup);
     }
 
-    eventMarkerClick(markerStation, event, stationName, showInfosStation) {
+    eventMarkerClick(markerStation, event, showInfosStation) {
         let map = this.bikeStationMap
         markerStation.on(event, function(event) {
             map.setView(event.latlng, 20)
