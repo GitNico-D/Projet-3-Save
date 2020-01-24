@@ -10,7 +10,7 @@ class Station {
                 for (let i = 0; i < allStationsData.length; i++) {
                     let stationData = allStationsData[i];
                     // let optionStation;
-                    let colorMarker = stationData.status === "OPEN" ? (stationData.totalStands.availabilities.bikes === 0 ? "orange" :  "green" ) : "red";
+                    let colorMarker = stationData.status === "OPEN" ? stationData.totalStands.availabilities.bikes === 0 ? "orange" :  "green" : "red";
                     let colorStationMarker = L.icon({iconUrl: `assets/img/leaf-${colorMarker}.png`});           
                     let markerStation = self.map.generateStationMarker(stationData,colorStationMarker);
                     self.map.eventMarkerClick(markerStation, "click", self.showInfosStation.bind(self, stationData, markerStation));
