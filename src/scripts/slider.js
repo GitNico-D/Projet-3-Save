@@ -47,7 +47,7 @@ class Slide {
     }
 
     sliderKeyboardChange() {
-        event.stopPropagation();
+        // event.stopPropagation();
         if (event.keyCode === 39) {
             console.log(event.keyCode + " => Right Slider Change !");
             this.sliderChange(1);
