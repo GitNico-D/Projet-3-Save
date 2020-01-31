@@ -261,4 +261,10 @@ input
 #signature_canvas
 {
     border: 1px solid blue;
+    display: none;
+}
+
+#confirm_canvas, #clear_canvas
+{
+    display: none;
 }

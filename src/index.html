@@ -53,7 +53,7 @@
                     <p class="infos_station_introduction" >Vous avez sélectionné la station :</p>
                     <p id="infos_station_name" class="infos_station_name"></p>
                     <p id="infos_station_description" class="infos_station_description"></p>
-                    <button id="reservation_button" class="reservation_button">Effectuer une réservation</button>
+                    <button id="reservation_access_button" class="reservation__access_button">Effectuer une réservation</button>
                     <p id="button_split" class="button_split">OU</p>
                     <button id="return_to_global_map" class="return_to_global_map"> Retour sur la carte</button>
                 </div>
@@ -63,14 +63,16 @@
             <form>
                 <label for="first_name">Prénom : </label><input type="text" id="first_name" name="first_name" >
                 <label for="last_name">Nom : </label><input type="text" id="last_name" name="last_name" >
-                <input type="submit" value="Réserver !" class="button">
+                <input type="submit" value="Réserver !" class="button" id="reservation_button">
             </form>
             <div id="reservation_status">
                 <p id="reservation_status_text"></p>
-                <button id="reservation_confirm">Confirmer</button>
+                <p id="reservation_status_timer"></p>
+                <!-- <button id="reservation_confirm">Confirmer</button> -->
                 <button id="reservation_cancel">Annuler</button>
             </div>                
-            <canvas id="signature_canvas" height="200" width="300"></canvas>
+            <canvas id="signature_canvas" height="200" width="300" disabled></canvas>
+            <button id="confirm_canvas">Confirmer</button>
             <button id="clear_canvas">Effacer</button>
             <p id="canvas_text">Mouse Position</p>
             <p id="canvas_text_2">Mouse Position</p>
