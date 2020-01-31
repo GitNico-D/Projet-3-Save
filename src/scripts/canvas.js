@@ -9,7 +9,6 @@ class Canvas {
         $("#signature_canvas").mousedown(this.mouseDown.bind(this));
         $("#signature_canvas").mousemove(this.mouseMove.bind(this));
         $("#signature_canvas").mouseup(this.mouseUp.bind(this));
-        $("#signature_canvas").mouseleave(this.mouseLeave.bind(this));
         $("#clear_canvas").click(this.clearCanvas.bind(this));
         // this.testingDraw()
     }
@@ -19,11 +18,6 @@ class Canvas {
     //     this.context.moveTo(0,75);
     //     this.context.lineTo(250,75);
     //     this.context.stroke()
-    // }
-
-    // showCanvas() {
-    //     console.log("Affichage Canvas " )
-    //     $("#signature_canvas").css("display", "block")
     // }
 
     signatureValidation() {
@@ -54,14 +48,8 @@ class Canvas {
 
     mouseUp() {
         this.startSignature = false;
-        this.signatureValidation();
         console.log("Stoping signature !");
-        this.context.removeHitRegion()
         $("#canvas_text_3").text("MouseUp position => X : " + event.clientX + " , " + " Y : " + event.clientY);
-    }
-
-    mouseLeave() {
-        this.startSignature = false;
         this.signatureValidation();
     }
 
