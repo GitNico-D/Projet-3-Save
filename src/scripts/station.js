@@ -37,7 +37,8 @@ class Station {
             $("#reservation_button").show();
             $("#button_split").show();
             console.log(this.booking)
-            this.booking.userBookingStation(stationData);
+            this.booking.userBookingStatus(stationData);
+            // this.booking.userSummaryBooking(stationData);
         } if (stationData.status === "CLOSED") {
             console.log("CLOSED")
             $("#infos_station_description").text("Désolé mais cette station est actuellement fermé. Veuillez nous excuser pour le dérangement occasionné. Merci de vous rapprocher d'une autre station de location.")
