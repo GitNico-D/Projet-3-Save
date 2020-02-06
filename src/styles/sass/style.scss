@@ -196,14 +196,14 @@ button:active, .button:hover
     width: 100%;
     margin-top: 80px;
     height: 600px;
-    
+    border : 2px solid yellow;
 }
 
 #bike_station_details
 {    
     text-align: center;
     border: 2px solid blue;
-    display: inline-block;
+    display: block;
     height: 350px;
     width: 24%;
     padding: 15px;
@@ -219,6 +219,17 @@ button:active, .button:hover
 .infos_station_description
 {
     text-align: justify;
+}
+
+#user_summary_details
+{
+    display: block;    
+    text-align: center;
+    border: 2px solid blue;
+    display: inline-block;
+    height: 350px;
+    width: 24%;
+    padding: 15px;
 }
 /*----- FIN INFOS STATIONS ----*/
 
@@ -253,6 +264,12 @@ input
 #reservation_confirm, #reservation_cancel
 {
     display: none;
+    height: 100px;
+}
+
+#reservation_cancel_summary
+{
+    display: block;
     height: 100px;
 }
 /*----- FIN BOOKING FORM ----*/
