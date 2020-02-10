@@ -6,7 +6,7 @@ class Map {
         this.bikeStationMap = L.map("bike_station_map").setView([this.coordinateX, this.coordinateY], this.zoom);
         this.generateMap();
         console.log(this)
-        $("#return_to_map").click(this.resetMapView.bind(this));
+        $("#return_to_map_button").click(this.resetMapView.bind(this));
         $("#return_to_global_map").click(this.resetMapView.bind(this))
         this.bikeStationMap.on("click", this.closedInfosStation.bind(this))
     }
@@ -24,9 +24,8 @@ class Map {
     }
     
     generateStationMarker(stationData, stationMarker) {
-        let popup = L.popup().setContent(`<p class=popup_infos_station > Vous êtes sur la station : </p>
-                                            <p class=popup_infos_station_name>${stationData.name}</p>
-                                            <button id=station_details_informations class=station_details_informations> Informations détaillées`);
+        let popup = L.popup().setContent(`<p class=popup_infos_station> Station sélectionné : </p>
+                                            <p class=popup_infos_station_name>${stationData.name}</p>`);
         return L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).bindPopup(popup);
         // return L.marker([stationData.position.latitude,stationData.position.longitude], {icon: stationMarker}).addTo(this.bikeStationMap).bindPopup(popup);
     }
@@ -35,10 +34,7 @@ class Map {
         let map = this.bikeStationMap
         markerStation.on(event, function(event) {
             map.setView(event.latlng, 20)
-            $("#station_details_informations").click(function(){
-                console.log("Click info détaillé")
-                showInfosStation()
-            });
+            showInfosStation()
         });
     }
 
