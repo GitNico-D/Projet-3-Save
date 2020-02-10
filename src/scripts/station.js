@@ -29,26 +29,36 @@ class Station {
         console.log(this.booking)
         $("#bike_station_details").show();
         $("#infos_station_name").text(stationData.name);
+        $("#infos_station_total_station_bikes").text(stationData.totalStands.capacity);   
+        $("#infos_station_available_bikes_stand").text(stationData.totalStands.availabilities.stands);
+        $("#infos_station_available_bikes").text(stationData.totalStands.availabilities.bikes); 
         let option;
-        if (stationData.status === "OPEN") {
-            console.log("OPEN")
-            $("#infos_station_description").text(`La station est ouverte, et il reste ${stationData.totalStands.availabilities.bikes} vélos disponibles à la location.
-                                                Si vous souhaitez effectuer une réservation cliquer sur le bouton ci-dessous. Vous pouvez sinon retourner sur la carte pour sélectionner une autre station.`);
+        if (stationData.status === "OPEN") {            
+            $("#station_status").text("OUVERTE").addClass("text-success");
+            $("#infos_station_description_status_green").show();                    
+            $("#infos_station_description_status_red").hide();
+            $("#infos_station_description_status_orange").hide();
             $("#reservation_button").show();
             $("#button_split").show();
-            console.log(this.booking)
             this.booking.userBookingStatus(stationData);
             // this.booking.userSummaryBooking(stationData);
         } if (stationData.status === "CLOSED") {
-            console.log("CLOSED")
-            $("#infos_station_description").text("Désolé mais cette station est actuellement fermé. Veuillez nous excuser pour le dérangement occasionné. Merci de vous rapprocher d'une autre station de location.")
-            $("#reservation_button").hide();
+            $("#station_status").text("OUVERTE").removeClass("text-success");
+            $("#station_status").text("FERMÉ").addClass("text-danger"); 
+            $("#infos_station_description_status_red").show();
+            $("#infos_station_description_status_green").hide();
+            $("#infos_station_description_status_orange").hide();
+            $("#reservation_access_button").hide();
+            $("#reservation_button_description").hide();
             $("#button_split").hide();
         } if (stationData.status === "OPEN" && stationData.totalStands.availabilities.bikes === 0) {
-            console.log("OPEN mais 0 Vélos")
-            $("#infos_station_description").text(`La station est bien ouverte, malheureusement ${stationData.totalStands.availabilities.bikes} vélos sont
-                                                  disponibles à la location. Merci de vous rapprocher d'une autre station de location.`);
-            $("#reservation_button").hide();
+            $("#station_status").text("OUVERTE").removeClass("text-success");
+            $("#station_status").text("OUVERTE").addClass("text-warning");
+            $("#infos_station_description_status_orange").show();
+            $("#infos_station_description_status_green").hide();
+            $("#infos_station_description_status_red").hide();
+            $("#reservation_access_button").hide();
+            $("#reservation_button_description").hide();
             $("#button_split").hide();
         }
     }
