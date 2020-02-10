@@ -10,19 +10,18 @@ class Booking {
         this.timerDuration = (20 * 60);
         this.bookingStart = false;
         this.bookingTimer;
-        console.log(this.bookingTimer)
     }
 
     displayBookingForm() {
         $("#reservation_access_button").click(function() {
-            $("#bike_station_details").hide();
+            // $("#bike_station_details").hide();
             $("#user_booking_form").show();
             console.log("Booking")
         })
     }
 
     userBookingStorage(stationData) {
-        $("form").submit((event) => { 
+        $("#reservation_canvas_acess_button").click((event) => { 
             event.preventDefault()
             if ($("#first_name").val() != "" && $("#last_name").val() != "") {   
                 let userIdentity = {
@@ -33,6 +32,9 @@ class Booking {
                 localStorage.setItem("UserIdentity", JSON.stringify(userIdentity));
                 sessionStorage.setItem("stationName", stationData.name);
                 console.log(userIdentity.userFirstName, userIdentity.userLastName);
+            } else {
+                console.log("Alert Error")
+                $(".alert").show("slow");
             }
             $("#confirm_canvas").click(() => {
                 $("#reservation_status_text").text($("#last_name").val() + " " + $("#first_name").val() + " vous avez effectué la réservation d'un vélo à la station " 
@@ -49,8 +51,8 @@ class Booking {
     }
 
     userBookingSummary() {
-        console.log(this.bookingStart)
-        if (this.bookingStart) {
+        // console.log(this.bookingStart)
+        // if (this.bookingStart) {
             console.log("Un utilisateur est enregistré")
             let userIdentity = JSON.parse(localStorage.getItem("UserIdentity"));
             let userBookingStation = sessionStorage.getItem("stationName")
@@ -65,11 +67,11 @@ class Booking {
             $("#reservation_cancel_summary").show();
             $("#user_summary_details").text(userIdentity.userFirstName + " " + userIdentity.userLastName + " vous avez effectué la réservation d'un vélo à la station " 
                                                     + userBookingStation + " Cette réservation est encore valable " + userBookingTimer + " Souhaitez-vous annulez ?");
-            $("form").hide();
-        } else {
+            // $("form").hide();
+        // } else {
             // $("#user_summary_details").show();
-            $("#reservation_cancel_summary").hide();
-        }
+        //     $("#reservation_cancel_summary").hide();
+        // }
         //     bookingSummary
         // } else {
         //     cancelBooking
