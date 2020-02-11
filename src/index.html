@@ -7,7 +7,7 @@
         <!-- ----- CDN BootStrap ----- -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- ----- CDN Font Awesome ----- -->
-        <script src="https://kit.fontawesome.com/8b1d8d6405.js" crossorigin=""></script>
+        <script src="https://kit.fontawesome.com/8b1d8d6405.js" crossorigin="anonymous"></script>
         <!-- ----- CDN Leaflet ----- -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin=""/>
@@ -77,8 +77,15 @@
                         <button id="return_to_global_map" class="btn btn-primary btn-info"> Retour sur la carte</button>
                     </div>    
                 </div>
-                <div id="user_summary_details">
-                    <button id="reservation_cancel_summary">Annuler</button>
+                <div id="user_summary_details" class="col-lg-3 card border-warning">
+                    <div class="card-body">
+                        <h5 class="card-header">Résumé réservation</h5>
+                        <p class="card-text"><span id="user_first_name"></span> <span id="user_last_name"></span> vous avez une réservation en cours sur la station <span id="user_booking_station_name"></span></p>
+                        <p class="card-text">Souhaitez-vous annuler ?</p>
+                        <button id="reservation_cancel_summary" class="btn btn-block btn-danger">Annuler</button>
+                        <p id="button_split" class="button_split"></p>
+                        <button id="return_to_global_map" class="btn btn-primary btn-info"> Retour sur la carte</button>
+                    </div>    
                 </div>
             </div>
         </section>
@@ -111,19 +118,33 @@
                                 <div class="alert alert-danger" role="alert"><strong>Attention !</strong> Aucun <strong>Nom</strong> et <strong>Prénom</strong> n'a été renseignés !</div>
                                 <div class="alert_first_name alert-warning" role="alert"><strong>Attention !</strong> Votre <strong>Nom</strong> n'ai pas renseigné !</div>
                                 <div class="alert_last_name alert-warning" role="alert"><strong>Attention !</strong> Votre <strong>Nom</strong> n'ai pas renseigné !</div>
-                                <button type="submit" class="btn btn-primary btn-block" id="reservation_canvas_acess_button"> Valider </button>
+                                <button type="submit" class="btn btn-primary btn-block" id="reservation_canvas_access_button"> Valider </button>
                             </div>
                         </div>
                     </form>
+                <div class="row">
+                    <div class="col-6 offset-lg-3 text_alert_canvas">
+                        <div class="alert_canvas alert-info" role="alert">Pour <strong>valider</strong> votre réservation, merci d'aposer votre <strong>signature</strong> dans le cadre ci-dessous :</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 offset-lg-4">
+                        <canvas id="signature_canvas" height="200" width="400"></canvas>
+                    </div>
+                </div>        
+                <div class="row justify-content-center">
+                    <div class="col-6 offset-lg-4">
+                        <button id="confirm_canvas" class="btn btn-success">Confirmer</button>
+                        <button id="clear_canvas" class="btn btn-danger">Effacer</button> 
+                    </div>
+                </div>
                 <div id="reservation_status">
                     <p id="reservation_status_text"></p>
                     <p id="reservation_status_timer"></p>
                     <!-- <button id="reservation_confirm">Confirmer</button> -->
                     <button id="reservation_cancel">Annuler</button>
                 </div>                
-                <canvas id="signature_canvas" height="200" width="300" disabled></canvas>
-                <button id="confirm_canvas">Confirmer</button>
-                <button id="clear_canvas">Effacer</button>
+                
             </section> 
         </div>       
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
