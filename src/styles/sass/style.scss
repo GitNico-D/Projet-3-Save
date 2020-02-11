@@ -151,6 +151,12 @@ h1
 
 /*----- FIN  MAP -----*/
 
+#reservation_cancel_summary
+{
+    z-index: 10;
+}
+
+
 /*----- DÉBUT POPUP MARKER ----*/
 
 .popup_infos_station
@@ -194,6 +200,16 @@ h1
     text-align: center;
 }
 
+#user_summary_details
+{    
+    text-align: center;
+}
+
+#user_summary_details span
+{    
+    font-weight: bold;
+}
+
 // .infos_station_introduction
 // {    
 //     font-weight: bold;
@@ -205,16 +221,16 @@ h1
     text-align: justify;
 }
 
-#user_summary_details
-{
-    display: block;    
-    text-align: center;
-    border: 2px solid blue;
-    display: inline-block;
-    height: 350px;
-    width: 24%;
-    padding: 15px;
-}
+// #user_summary_details
+// {
+//     display: block;    
+//     text-align: center;
+//     border: 2px solid blue;
+//     display: inline-block;
+//     height: 350px;
+//     width: 24%;
+//     padding: 15px;
+// }
 /*----- FIN INFOS STATIONS ----*/
 
 /*----- DÉBUT BOOKING FORM ----*/
@@ -249,6 +265,17 @@ h1
     margin-top: 5px;
 }
 
+.alert_canvas
+{
+    display: none;
+    margin-bottom: 5px;
+}
+
+.text_alert_canvas
+{
+    text-align: center;
+}
+
 .form-row label
 {    
     font-size: 1.1em;
@@ -273,11 +300,11 @@ h1
     height: 100px;
 }
 
-#reservation_cancel_summary
-{
-    display: block;
-    height: 100px;
-}
+// #reservation_cancel_summary
+// {
+//     display: block;
+//     height: 100px;
+// }
 /*----- FIN BOOKING FORM ----*/
 
 /*----- DÉBUT CANVAS -----*/
