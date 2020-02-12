@@ -35,16 +35,20 @@ class Station {
         let option;
         if (stationData.status === "OPEN") {            
             $("#station_status").text("OUVERTE").addClass("text-success");
+            $("#station_status").removeClass("text-danger");
+            $("#station_status").removeClass("text-warning"); 
             $("#infos_station_description_status_green").show();                    
             $("#infos_station_description_status_red").hide();
             $("#infos_station_description_status_orange").hide();
-            $("#reservation_button").show();
+            $("#reservation_access_button").show();
+            $("#reservation_button_description").show();
             $("#button_split").show();
-            this.booking.userBookingStatus(stationData);
+            // this.booking.userBookingStatus(stationData);
             // this.booking.userSummaryBooking(stationData);
         } if (stationData.status === "CLOSED") {
-            $("#station_status").text("OUVERTE").removeClass("text-success");
             $("#station_status").text("FERMÉ").addClass("text-danger"); 
+            $("#station_status").removeClass("text-success");
+            $("#station_status").removeClass("text-warning"); 
             $("#infos_station_description_status_red").show();
             $("#infos_station_description_status_green").hide();
             $("#infos_station_description_status_orange").hide();
@@ -52,8 +56,9 @@ class Station {
             $("#reservation_button_description").hide();
             $("#button_split").hide();
         } if (stationData.status === "OPEN" && stationData.totalStands.availabilities.bikes === 0) {
-            $("#station_status").text("OUVERTE").removeClass("text-success");
             $("#station_status").text("OUVERTE").addClass("text-warning");
+            $("#station_status").removeClass("text-success");
+            $("#station_status").removeClass("text-danger"); 
             $("#infos_station_description_status_orange").show();
             $("#infos_station_description_status_green").hide();
             $("#infos_station_description_status_red").hide();
