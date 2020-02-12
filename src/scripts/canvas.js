@@ -10,16 +10,8 @@ class Canvas {
         $("#signature_canvas").mousemove(this.mouseMove.bind(this));
         $("#signature_canvas").mouseup(this.mouseUp.bind(this));
         $("#clear_canvas").click(this.clearCanvas.bind(this));
-        // this.testingDraw()
     }
     
-    // testingDraw() {
-    //     this.context.beginPath();
-    //     this.context.moveTo(0,75);
-    //     this.context.lineTo(250,75);
-    //     this.context.stroke()
-    // }
-
     signatureValidation() {
         console.log("Show Confirmation or Cancelation");
         $("#confirm_canvas").show().fadeIn(1000, "linear");
