@@ -104,21 +104,22 @@
                         <span class="fas fa-arrow-down fa-lg float-left"></span>  
                     </div>
                 </div>
+                <!-- <form onsubmit="return validation()"> -->
                     <form>
                         <div class="form-row">
                             <div class="col-4 offset-lg-2">
-                                <label for="first_name">Prénom</label><input type="text" class="form-control" id="first_name" name="first_name" placeholder="Entrer votre Prénom" required>
+                                <label for="first_name">Prénom</label><input type="text" class="form-control" id="form_first_name" name="first_name" placeholder="Entrer votre Prénom" required>
                             </div>
                             <div class="col-4 ">
-                                <label for="last_name">Nom</label><input type="text" class="form-control"id="last_name" name="last_name" placeholder="Entrer votre Nom" required>
+                                <label for="last_name">Nom</label><input type="text" class="form-control" id="form_last_name" name="last_name" placeholder="Entrer votre Nom" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6 offset-lg-3">
-                                <div class="alert alert-danger" role="alert"><strong>Attention !</strong> Aucun <strong>Nom</strong> et <strong>Prénom</strong> n'a été renseignés !</div>
-                                <div class="alert_first_name alert-warning" role="alert"><strong>Attention !</strong> Votre <strong>Nom</strong> n'ai pas renseigné !</div>
-                                <div class="alert_last_name alert-warning" role="alert"><strong>Attention !</strong> Votre <strong>Nom</strong> n'ai pas renseigné !</div>
-                                <button type="submit" class="btn btn-primary btn-block" id="reservation_canvas_access_button"> Valider </button>
+                                <div class="alert-danger alert_nothing" role="alert"><strong>Attention !</strong> Aucun <strong>Nom</strong> et <strong>Prénom</strong> n'a été renseignés !</div>
+                                <div class="alert-warning alert_first_name" role="alert"><strong>Attention !</strong> Votre <strong>Prénom</strong> n'est pas renseigné !</div>
+                                <div class="alert-warning alert_last_name" role="alert"><strong>Attention !</strong> Votre <strong>Nom</strong> n'est pas renseigné !</div>
+                                <button type="submit" class="btn btn-primary btn-block" id="reservation_canvas_access_button" > Valider </button>
                             </div>
                         </div>
                     </form>
@@ -127,24 +128,34 @@
                         <div class="alert_canvas alert-info" role="alert">Pour <strong>valider</strong> votre réservation, merci d'aposer votre <strong>signature</strong> dans le cadre ci-dessous :</div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6 offset-lg-4">
-                        <canvas id="signature_canvas" height="200" width="400"></canvas>
-                    </div>
-                </div>        
-                <div class="row justify-content-center">
-                    <div class="col-6 offset-lg-4">
-                        <button id="confirm_canvas" class="btn btn-success">Confirmer</button>
-                        <button id="clear_canvas" class="btn btn-danger">Effacer</button> 
+                <div id="canvas">
+                    <div class="row">
+                        <div class="col-6 offset-lg-4">
+                            <canvas id="signature_canvas" height="200" width="500"></canvas>
+                        </div>
+                    </div>        
+                    <div class="row justify-content-center">
+                        <div class="col-6 offset-lg-4">
+                            <button id="confirm_canvas" class="btn btn-success">Confirmer</button>
+                            <button id="clear_canvas" class="btn btn-danger">Effacer</button> 
+                        </div>
                     </div>
                 </div>
                 <div id="reservation_status">
-                    <p id="reservation_status_text"></p>
-                    <p id="reservation_status_timer"></p>
-                    <!-- <button id="reservation_confirm">Confirmer</button> -->
-                    <button id="reservation_cancel">Annuler</button>
-                </div>                
-                
+                    <div class="row">
+                        <div class="col-8 offset-lg-2">
+                            <p id="reservation_status_text">Votre réservation est effectuée. Un vélo vous est réservé sur la station pendant pendant une durée de 20 minutes.</p>
+
+                        </div>
+                    </div>
+                    <div class="row card justify-content-center">
+                        <div class="col-8">
+
+                            <p class="card-header">Temps restants <span id="reservation_status_timer"></span></p>
+                            <button id="reservation_cancel" class="btn btn-danger">Annuler</button>
+                        </div>
+                    </div>
+                </div>   
             </section> 
         </div>       
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
