@@ -250,6 +250,23 @@ h1
     font-weight: bold;
 }
 
+
+#form_direction
+{
+    display: none;
+}
+
+.form_direction_text
+{
+    font-weight: bold;
+}
+
+#form_direction .fa-arrow-down
+{
+    margin-top: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
 // .fa-arrow-down
 // {
 //     float: right;
@@ -298,6 +315,17 @@ h1
 #reservation_status
 {
     display: none;
+    text-align: center;
+}
+
+#reservation_status .card-title
+{
+    font-weight: bold;
+}
+
+#booking_station_name, #reservation_status_timer
+{
+    font-weight: bold;
 }
 
 #reservation_confirm, #reservation_cancel
