@@ -43,7 +43,7 @@ class Station {
             $("#reservation_access_button").show();
             $("#reservation_button_description").show();
             $("#button_split").show();
-            // this.booking.userBookingStatus(stationData);
+            this.booking.userBookingStorage(stationData);
             // this.booking.userSummaryBooking(stationData);
         } if (stationData.status === "CLOSED") {
             $("#station_status").text("FERMÉ").addClass("text-danger"); 
