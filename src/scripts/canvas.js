@@ -18,6 +18,7 @@ class Canvas {
         $("#clear_canvas").show().fadeIn("slow");
         $("#clear_canvas").click(function(){
             $("#confirm_canvas").hide().fadeOut(1000, "linear");
+            $("#clear_canvas").hide().fadeOut(1000, "linear");
         })
     }
 
