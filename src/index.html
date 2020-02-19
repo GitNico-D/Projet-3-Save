@@ -60,7 +60,7 @@
                         <button id="return_to_map_button" class="btn btn-sm btn-info">Recentrer la carte</button> 
                     </div>
                 </div>
-                <div id="bike_station_details" class="col-lg-3 card border-success">
+                <div id="bike_station_details" class="col-lg-3 card border-success hide">
                     <div class="card-body">
                         <h5 class="card-header"><span id="infos_station_name"></span></h5>
                         <h5 class="card-title">La station est <span id="station_status"></span></h5>
@@ -96,18 +96,38 @@
             </div>
         </section>
         <section id="booking_session">
-            <div id="user_booking_form">
-                <div class="row form_description">
-                    <p class="col"> 
-                        Afin de réserver un vélo sur la station, merci de renseigner votre <span>Nom</span> et votre <span>Prénom</span> dans le formulaire ci-dessous.
-                    </p>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <span class="fas fa-arrow-down fa-lg float-right"></span>  
+            <div id="user_booking_form" class="hide">
+                <div id="user_without_booking">
+                    <div class="row form_description justify-content-center">
+                        <p class="col"> 
+                            Afin de réserver un vélo sur la station, merci de renseigner votre <span>Nom</span> et votre <span>Prénom</span> dans le formulaire ci-dessous.
+                        </p>
                     </div>
-                    <div class="col-6">
-                        <span class="fas fa-arrow-down fa-lg float-left"></span>  
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="fas fa-arrow-down fa-lg float-right"></span>  
+                        </div>
+                        <div class="col-6">
+                            <span class="fas fa-arrow-down fa-lg float-left"></span>  
+                        </div>
+                    </div>
+                </div>
+                <div id="user_with_booking" class="hide">
+                    <div class="row form_description justify-content-center">
+                        <div class="row">
+                            <span class="text-warning"> ATTENTION !</span>
+                        </div>
+                        <div class="row justify-content-center">
+                            <p class="col-8"> 
+                                Vous avez déjà une réservation en cours à la station <span id="booking_station_name"></span> !
+                                Si vous enregistrez une nouvelle réservation sur cette station, <span id="current_clicked_station_name"></span>, la précédente sera ANNULER !
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 offset-lg-5">
+                            <button class="btn btn-warning">Effectuer une nouvelle réservation</button>  
+                        </div>
                     </div>
                 </div>
                     <form>
@@ -147,7 +167,7 @@
                     </div>
                 </div>
             </div>
-            <div id="reservation_status" class="row">
+            <div id="reservation_done" class="row hide">
                 <div class="col-8 offset-lg-2 card border-success">
                     <div class="card-body">
                         <div class="card-title"> Votre réservation est effectuée!</div>
@@ -156,7 +176,17 @@
                         <button id="cancel_booking" class="btn btn-danger">Annuler</button>
                     </div>
                 </div>
-            </div> 
+            </div>
+            <div id="reservation_status" class="row hide">
+                <div class="col-8 offset-lg-2 card border-success">
+                    <div class="card-body">
+                        <div class="card-title"> Votre réservation :</div>
+                        <p id="reservation_status_text card-text">Un vélo est réservé sur la station <span id="booking_station_name_summary"></span> pendant encore <span id="booking_time_left"></span></p>
+                        <p class="card-header">Temps restants : <span id="reservation_status_timer"></span></p>
+                        <button id="cancel_booking" class="btn btn-danger">Annuler</button>
+                    </div>
+                </div>
+            </div>  
         </section>       
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="./scripts/slider.js"></script>
