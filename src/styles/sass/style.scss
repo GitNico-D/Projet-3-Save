@@ -13,6 +13,10 @@ h1
     color: $darkgray;
 }
 
+.hide
+{
+    display: none;
+}
 
 [class*="col"] 
 {
@@ -235,10 +239,10 @@ h1
 /*----- FIN INFOS STATIONS ----*/
 
 /*----- DÉBUT BOOKING FORM ----*/
-#user_booking_form
-{
-    display: none;
-}
+// #user_booking_form
+// {
+//     display: none;
+// }
 
 .form_description
 {
@@ -301,6 +305,23 @@ h1
     text-align: center;
 }
 
+#booking_station_name_summary
+{
+    font-weight: bold;
+}
+
+#booking_station_name, #current_clicked_station_name 
+{
+    font-weight: bold;
+}
+
+#user_with_booking > .text-warning 
+ {
+     font-weight: bold;
+     font-size: 1.3rem;
+     margin-bottom: 10px;
+ }
+
 // input
 // {
 //     color: #555;
@@ -312,13 +333,12 @@ h1
 //     line-height: 2em;
 // }
 
-#reservation_status
+#reservation_status, #reservation_done
 {
-    display: none;
     text-align: center;
 }
 
-#reservation_status .card-title
+#reservation_status .card-title, #reservation_done .card-title
 {
     font-weight: bold;
 }

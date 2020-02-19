@@ -32,6 +32,7 @@ class Station {
         $("#infos_station_total_station_bikes").text(stationData.totalStands.capacity);   
         $("#infos_station_available_bikes_stand").text(stationData.totalStands.availabilities.stands);
         $("#infos_station_available_bikes").text(stationData.totalStands.availabilities.bikes); 
+        sessionStorage.setItem("currentClickedStationName", stationData.name);
         let option;
         if (stationData.status === "OPEN") {            
             $("#station_status").text("OUVERTE").addClass("text-success");
@@ -43,8 +44,8 @@ class Station {
             $("#reservation_access_button").show();
             $("#reservation_button_description").show();
             $("#button_split").show();
+            // this.booking.displayBookingForm(stationData);
             this.booking.userBookingStorage(stationData);
-            // this.booking.userSummaryBooking(stationData);
         } if (stationData.status === "CLOSED") {
             $("#station_status").text("FERMÉ").addClass("text-danger"); 
             $("#station_status").removeClass("text-success");
