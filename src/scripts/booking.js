@@ -1,9 +1,10 @@
 class Booking {
     constructor() {
-        this.displayBookingForm();
+        // this.displayBookingForm();
         this.formVerification();
         this.existingUser();
         this.bookingTimeLeft();
+        // this.informationsShow();
         // this.userBookingStation();
         // this.userIdentityStorage();
         // this.userExist();
@@ -15,12 +16,14 @@ class Booking {
         // this.bookingTimer;
     }
 
+
     displayBookingForm() {
         $("#reservation_access_button").click(function() {
             $("#form_direction").show();
             $("#return_button_description").hide();
             $("#return_to_global_map").hide();
             $("#user_booking_form").show();
+            $("#user_without_booking").show();
             console.log("Booking")
         })
     }
@@ -28,6 +31,7 @@ class Booking {
     formVerification() {
         $("#reservation_canvas_access_button").click((event) => {
             event.preventDefault();
+            $("#reservation_canvas_access_button").show();
             if ($("#form_first_name").val() === "" && $("#form_last_name").val() === "") {
                 $(".alert_nothing").addClass("alert").show("slow");  
             }
@@ -38,7 +42,8 @@ class Booking {
                 $(".alert_last_name").addClass("alert").show("slow");
             } 
             if ($("#form_first_name").val() != "" && $("#form_last_name").val() != "") {
-                // $("#canvas").show();
+                $("#canvas").show();
+                $("#alert_canvas").show();
                 $(".alert_canvas").addClass("alert").show("slow");
                 $("#signature_canvas").css("display", "block").fadeIn("slow");               
                 $("#reservation_canvas_access_button").fadeOut("fast");
@@ -60,17 +65,26 @@ class Booking {
                 userLastName: $("#form_last_name").val()
                 };
             localStorage.setItem("UserIdentity", JSON.stringify(userIdentity));
+            // let userBookingInformations = {
+            //     userBookingStation = stationData.name,
+            //     userStartBookingTime = new Date(),
+            // }
+            // sessionStorage.setItem("userBookingInformations", JSON.stringify(userBookingInformations))
             sessionStorage.setItem("stationBookingName", stationData.name);
-            // let timerBookingStart = new Date().getTime();
             let startBookingTime = new Date();
             console.log(startBookingTime);
             sessionStorage.setItem("startBookingTime", startBookingTime)
-            // sessionStorage.setItem("bookingTimer", timerBookingEnd)
             console.log(userIdentity.userFirstName, userIdentity.userLastName);
             $("#user_booking_form").hide();
             $("#signature_canvas").css("display", "none");
-            $("#booking_station_name").text(sessionStorage.stationBookingName);
+            // $("#booking_station_name_storage").text(sessionStorage.stationBookingName);
             $("#reservation_done").show();
+            $("#reservation_status").hide();
+            $("#return_button_description").show();
+            $("#return_to_global_map").show();
+            $("#canvas").hide();
+            $("#alert_canvas").hide();
+            $("#form_direction").hide();
             // let timeLeftBooking = 
             // this.reservationTimer(timerBookingEnd);
             // $("#reservation_status_timer").text(timeLeftBooking);
@@ -81,60 +95,100 @@ class Booking {
         if (localStorage.getItem("UserIdentity")) {
             let userIdentity = JSON.parse(localStorage.getItem("UserIdentity"));
             let userBookingStation = sessionStorage.getItem("stationBookingName");
-            let currentClickedStationName = sessionStorage.getItem("currentClickedStationName");
-            $("#user_with_booking").show();
-            $("#user_without_booking").hide();
-            $("#reservation_status").hide();
-            $("form").hide();
+            $("#reservation_status").show();
+            $("#booking_station_name_summary").text(userBookingStation);
             $("#form_first_name").val(userIdentity.userFirstName).css("background-color", "rgba(0, 255, 84, 0.2)");
             $("#form_last_name").val(userIdentity.userLastName).css("background-color", "rgba(0, 255, 84, 0.2)");
-            $("#booking_station_name").text(userBookingStation);
-            $("#current_clicked_station_name").text(currentClickedStationName);
-            if (userBookingStation === currentClickedStationName) {
-                console.log(userBookingStation, currentClickedStationName);
-                $("#user_booking_form").hide();
-                $("#booking_station_name_summary").text(userBookingStation);
-                $("#reservation_status").show();
-            }
-            // $("#reservation_button").focus(function() {
-            //     $(this).css("background-color", "green");
-            // })
+            this.bookingInProgress(userBookingStation);
+            $("#erase_and_new_booking").click(function(){
+                $("form").fadeIn("slow");
+                $("#user_with_booking").hide("slow");
+            })
+        } else {
+            this.displayBookingForm();
         }
+    }
+
+    bookingInProgress(userBookingStation) {
+        // console.log(userBookingStation)
+            // $("#reservation_status").show();
+            // $("#booking_station_name_summary").text(userBookingStation);
+            $("#reservation_access_button").click(function() {
+                userBookingStation = sessionStorage.getItem("stationBookingName");
+                let currentClickedStationName = sessionStorage.getItem("currentClickedStationName");
+                console.log("Click bookingInProgress")
+                if (userBookingStation === currentClickedStationName) {
+                    console.log(userBookingStation, currentClickedStationName);
+                    $("#reservation_status").show();
+                    $("#reservation_done").hide();
+                } else { 
+                    $("#user_booking_form").show();
+                    $("#user_with_booking").show();
+                    $("#return_button_description").hide();
+                    $("#return_to_global_map").hide();
+                    $("#booking_station_name").text(userBookingStation);
+                    $("#current_clicked_station_name").text(currentClickedStationName);
+                    $("form").hide();
+                }        
+            });
+            $("#keep_booking").click(function(){
+                $("#user_booking_form").fadeOut("slow");
+                $("#reservation_status").show("slow");
+                $("#return_button_description").show();
+                $("#return_to_global_map").show();
+            })
     }
 
     // cancelBooking(){
 
     // }
 
-    // resertBooking()
-    // {
+    resetBooking() {
 
-    // }
-
-
-    bookingTimeLeft() {
-        let startBookingTime = sessionStorage.getItem("startBookingTime");
-        let dateNow = new Date();
-        let timeLeft = dateNow - startBookingTime;
-        console.log(timeLeft);
     }
 
-    reservationTimer(timerBookingEnd) {
-        let countdownTimer = setInterval(function(){
-            let dateNow = new Date().getTime();
-            let timeElapse = timerBookingEnd - dateNow;
-            console.log("timerBookingEnd = " + timerBookingEnd + " DateNow = " + dateNow)
-            console.log("TimeElapse = " + timeElapse);
-                if (timeElapse >= 0) {
-                    let minutes = Math.floor((timeElapse % (1000 * 60 * 60)) / (1000 * 60));
-                    let seconds = Math.floor((timeElapse % (1000 * 60)) / 1000);
-                    console.log(minutes + " minutes " + seconds + " secondes");
-                    $("#reservation_status_timer").text(minutes + " minutes " + seconds + " secondes");
-                } else {
-                    clearInterval(countdownTimer);
-                    console.log("BookingExpired")
-                } 
-        }, 1000) 
+    timerConversion(timeLeft) {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft * 60;
+        console.log(minutes, seconds)
+    }
+
+    bookingTimeLeft() {
+        let maxBookingTimer = 20;
+        let startBookingTime = sessionStorage.getItem("startBookingTime");
+        startBookingTime = new Date(startBookingTime);
+        console.log(typeof startBookingTime)
+        console.log(startBookingTime.getMinutes());
+        let dateNow = new Date();
+        console.log(dateNow.getMinutes());
+        let timeLeft = (dateNow.getMinutes() - startBookingTime.getMinutes()) ; 
+        if (timeLeft > maxBookingTimer) {
+            console.log("Réservation expiré");
+        } else {
+            let interval = setInterval(function() {
+                this.timerConversion(timeLeft)
+            }, 1000);
+        }
+        // let timeLeft = dateNow - startBookingTime;
+        // console.log(timeLeft);
+    }
+
+    // reservationTimer(timerBookingEnd) {
+    //     let countdownTimer = setInterval(function(){
+    //         let dateNow = new Date().getTime();
+    //         let timeElapse = timerBookingEnd - dateNow;
+    //         console.log("timerBookingEnd = " + timerBookingEnd + " DateNow = " + dateNow)
+    //         console.log("TimeElapse = " + timeElapse);
+    //             if (timeElapse >= 0) {
+    //                 let minutes = Math.floor((timeElapse % (1000 * 60 * 60)) / (1000 * 60));
+    //                 let seconds = Math.floor((timeElapse % (1000 * 60)) / 1000);
+    //                 console.log(minutes + " minutes " + seconds + " secondes");
+    //                 $("#reservation_status_timer").text(minutes + " minutes " + seconds + " secondes");
+    //             } else {
+    //                 clearInterval(countdownTimer);
+    //                 console.log("BookingExpired")
+    //             } 
+    //     }, 1000) 
         // console.log(timerBookingStart);
         // let timerBookingEnd = timerBookingStart + (20 * 60);
         // console.log(timerBookingStart, timerBookingEnd);
@@ -160,7 +214,7 @@ class Booking {
         //         maxBookingTimer--;
         //     }, 1000)
         // }
-    }
+    // }
 
     // userBookingStorage(stationData) {
     //     $("#reservation_canvas_access_button").click((event) => { 
