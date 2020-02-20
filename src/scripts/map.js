@@ -34,7 +34,7 @@ class Map {
         let map = this.bikeStationMap
         markerStation.on(event, function(event) {
             map.setView(event.latlng, 20)
-            showInfosStation()
+            showInfosStation();
         });
     }
 
