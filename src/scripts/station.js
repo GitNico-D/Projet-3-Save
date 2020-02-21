@@ -24,9 +24,10 @@ class Station {
             })        
     }
     
-    showInfosStation(stationData, markerStation) {
+    showInfosStation(stationData) {
         console.log(this.booking)
         $("#bike_station_details").show();
+        $("#bike_station_map").removeClass("col").addClass("col-lg-9");
         $("#infos_station_name").text(stationData.name);
         $("#infos_station_total_station_bikes").text(stationData.totalStands.capacity);   
         $("#infos_station_available_bikes_stand").text(stationData.totalStands.availabilities.stands);
