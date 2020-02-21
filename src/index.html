@@ -21,10 +21,10 @@
         <link rel="stylesheet" href="./css/style.css" >
     </head>
     <body>
+        <header class="container-fluid row">
+            <h1 id="title" class="col-12">Location de vélo</h1>
+        </header>
         <section class="container-fluid"> <!-- DÉBUT SECTION BANNIÈRE ET SLIDER -->
-            <div class="row">
-                <h1 id="title" class="col-12">Location de vélo</h1>
-            </div>
             <div class="row">
                 <div class="col-12">
                     <div id="slide_one" class="slide_img blue active_slide">  
@@ -53,9 +53,8 @@
             </div>
         </section> <!-- FIN SECTION BANNIÈRE ET SLIDER -->
         <section class="container-fluid"> <!-- DÉBUT SECTION CARTE, INFORMATIONS STATIONS ET FORMULAIRE -->
-            <!-- <section id="infos_bike_station"> -->
             <div class="row">                
-                <div id="bike_station_map" class="col-lg-9 card">
+                <div id="bike_station_map" class="col card"> <!--class="col-lg-9-->
                     <div class="row justify-content-center">
                         <button id="return_to_map_button" class="btn btn-sm btn-info">Recentrer la carte</button> 
                     </div>
@@ -77,8 +76,6 @@
                             <span class="form_direction_text text-success">Pour la réservation, suivez les instructions ci-dessous</span>
                             <span class="fas fa-arrow-down fa-lg"></span><span class="fas fa-arrow-down fa-lg"></span>
                         </p>
-                        <!-- <p id="form_direction" class="card-text text-success">Suivre les instructions du formulaire ci-dessous</p>
-                        <p id="form_direction_arrow"><span class="fas fa-arrow-down fa-lg"></span><span class="fas fa-arrow-down fa-lg"></span></p> -->
                         <p id="return_button_description" class="card-text">Pour choisir une autre station :</p>
                         <button id="return_to_global_map" class="btn btn-primary btn-info"> Retour sur la carte</button>
                     </div>    
@@ -95,15 +92,59 @@
                 </div>
             </div>
         </section>
-        <section id="booking_session">
-            <div id="user_booking_form" class="hide">
-                <div id="user_without_booking" class="hide">
+        <section id="user_booking_status" class="hide">
+            <div class="row justify-content-center">
+                <h3 id="description_booking_title" class="col"></h3>
+            </div>
+            <div class="row justify-content-center">
+                <p id="description_booking_text" class="col"></p>
+            </div>
+            <div id="booking_decoration" class="row">
+                <div class="col-6">
+                    <span class="fas fa-arrow-down fa-lg float-right"></span>  
+                </div>
+                <div class="col-6">
+                    <span class="fas fa-arrow-down fa-lg float-left"></span>  
+                </div>
+            </div>
+            <div class="card">
+                <form class="form-row">
+                    <div class="col-4 offset-lg-2">
+                        <label for="first_name">Prénom</label><input type="text" class="form-control" id="form_first_name" name="first_name" placeholder="Entrer votre Prénom" required>
+                    </div>
+                    <div class="col-4 ">
+                        <label for="last_name">Nom</label><input type="text" class="form-control" id="form_last_name" name="last_name" placeholder="Entrer votre Nom" required>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-6 offset-lg-3">
+                        <div id="alert" class="alert hide" role="alert"></div>
+                        <button type="submit" class="btn btn-primary btn-block" id="reservation_canvas_access_button" > Valider </button>
+                    </div>
+                </div>
+                <div id="canvas" class="hide">
+                    <div class="row">
+                        <div class="col-6 offset-lg-4">
+                            <canvas id="signature_canvas" height="200" width="500"></canvas>
+                        </div>
+                    </div>        
+                    <div class="row justify-content-center">
+                        <div class="col-6 offset-lg-4">
+                            <button id="confirm_canvas" class="btn btn-success">Confirmer</button>
+                            <button id="clear_canvas" class="btn btn-danger">Effacer</button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div id="user_booking_form" class="hide"> -->
+                <!-- <div id="user_without_booking" class="hide">
                     <div class="row form_description justify-content-center">
                         <p class="col"> 
                             Afin de réserver un vélo sur la station, merci de renseigner votre <span>Nom</span> et votre <span>Prénom</span> dans le formulaire ci-dessous.
                         </p>
-                    </div>
-                    <div class="row">
+                    </div> -->
+                    <!-- <div class="row">
                         <div class="col-6">
                             <span class="fas fa-arrow-down fa-lg float-right"></span>  
                         </div>
@@ -111,7 +152,7 @@
                             <span class="fas fa-arrow-down fa-lg float-left"></span>  
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div id="user_with_booking" class="hide">
                     <div class="row form_description justify-content-center">
                         <div class="row">
@@ -135,7 +176,7 @@
                         </div>
                     </div>
                 </div>
-                    <form>
+                    <!-- <form>
                         <div class="form-row">
                             <div class="col-4 offset-lg-2">
                                 <label for="first_name">Prénom</label><input type="text" class="form-control" id="form_first_name" name="first_name" placeholder="Entrer votre Prénom" required>
@@ -152,8 +193,8 @@
                                 <button type="submit" class="btn btn-primary btn-block" id="reservation_canvas_access_button" > Valider </button>
                             </div>
                         </div>
-                    </form>
-                <div id="alert_canvas" class="row hide">
+                    </form> -->
+                <!-- <div id="alert_canvas" class="row hide">
                     <div class="col-6 offset-lg-3 text_alert_canvas">
                         <div class="alert_canvas alert-info" role="alert">Pour <strong>valider</strong> votre réservation, merci d'aposer votre <strong>signature</strong> dans le cadre ci-dessous :</div>
                     </div>
@@ -170,7 +211,7 @@
                             <button id="clear_canvas" class="btn btn-danger">Effacer</button> 
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div id="reservation_done" class="row hide">
                 <div class="col-8 offset-lg-2 card border-success">
@@ -187,7 +228,7 @@
                     <div class="card-body">
                         <div class="card-title"> Votre réservation :</div>
                         <p id="reservation_status_text card-text">Un vélo est réservé sur la station <span id="booking_station_name_summary"></span> !</p>
-                        <p class="card-header">Temps restants : <span id="reservation_status_timer"></span></p>
+                        <p id="timer_text" class="card-header">Temps restants : <span id="reservation_status_timer"></span></p>
                         <button id="cancel_booking" class="btn btn-danger">Annuler</button>
                     </div>
                 </div>
@@ -196,7 +237,8 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="./scripts/slider.js"></script>
         <script type="text/javascript" src="./scripts/canvas.js"></script>
-        <script type="text/javascript" src="./scripts/booking.js"></script>
+        <!-- <script type="text/javascript" src="./scripts/booking.js"></script> -->
+        <script type="text/javascript" src="./scripts/booking2.js"></script>
         <script type="text/javascript" src="./scripts/station.js"></script>
         <script type="text/javascript" src="./scripts/map.js"></script>
         <script type="text/javascript" src="./scripts/main.js"></script>
