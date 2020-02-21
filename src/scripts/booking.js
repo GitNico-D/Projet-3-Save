@@ -4,6 +4,8 @@ class Booking {
         this.formVerification();
         this.existingUser();
         this.bookingTimeLeft();
+        $(window).on("load", this.bookingTimeLeft.bind(this));
+
         // this.informationsShow();
         // this.userBookingStation();
         // this.userIdentityStorage();
@@ -65,16 +67,12 @@ class Booking {
                 userLastName: $("#form_last_name").val()
                 };
             localStorage.setItem("UserIdentity", JSON.stringify(userIdentity));
-            // let userBookingInformations = {
-            //     userBookingStation = stationData.name,
-            //     userStartBookingTime = new Date(),
-            // }
-            // sessionStorage.setItem("userBookingInformations", JSON.stringify(userBookingInformations))
             sessionStorage.setItem("stationBookingName", stationData.name);
             let startBookingTime = new Date();
-            console.log(startBookingTime);
+            // console.log(startBookingTime);
             sessionStorage.setItem("startBookingTime", startBookingTime)
-            console.log(userIdentity.userFirstName, userIdentity.userLastName);
+            // console.log(userIdentity.userFirstName, userIdentity.userLastName);
+            this.bookingTimeLeft();
             $("#user_booking_form").hide();
             $("#signature_canvas").css("display", "none");
             // $("#booking_station_name_storage").text(sessionStorage.stationBookingName);
@@ -139,36 +137,61 @@ class Booking {
             })
     }
 
-    // cancelBooking(){
+    cancelBooking(){
 
-    // }
+    }
 
     resetBooking() {
 
     }
 
     timerConversion(timeLeft) {
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft * 60;
+        console.log(timeLeft);
+        // let minutes = Math.floor((timeLeft / 1000 / 60) % 60);
+        // let seconds = Math.floor((timeLeft / 1000) % 60);
+        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
         console.log(minutes, seconds)
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        return minutes + " : " + seconds
+        // $("#reservation_status").show()
+        // $("#reservation_status_timer").text(minutes + " : " + seconds);
     }
 
     bookingTimeLeft() {
-        let maxBookingTimer = 20;
+        let maxBookingTimer = 121000;
         let startBookingTime = sessionStorage.getItem("startBookingTime");
         startBookingTime = new Date(startBookingTime);
-        console.log(typeof startBookingTime)
-        console.log(startBookingTime.getMinutes());
-        let dateNow = new Date();
-        console.log(dateNow.getMinutes());
-        let timeLeft = (dateNow.getMinutes() - startBookingTime.getMinutes()) ; 
-        if (timeLeft > maxBookingTimer) {
-            console.log("Réservation expiré");
-        } else {
-            let interval = setInterval(function() {
-                this.timerConversion(timeLeft)
-            }, 1000);
-        }
+        let interval = setInterval( e => {
+            let dateNow = new Date();
+            let timeLeft = (dateNow - startBookingTime);
+            console.log(startBookingTime, dateNow); 
+            if (timeLeft > maxBookingTimer) {
+                console.log("Réservation expiré");
+                $("#timer_text").text("Temps de réservation expiré").addClass("text-danger");
+                clearInterval(interval);
+                this.cancelBooking();
+            } else {
+                let timeBookingLeft = this.timerConversion(timeLeft);
+                // this.timerConversion(maxBookingTimer);
+                // let timeRemaining = maxBookingTimer - timeLeft;
+                // $("#reservation_status_timer").text(minutes + " : " + seconds);
+                $("#reservation_status_timer").text(timeBookingLeft);
+                console.log(timeBookingLeft);
+            }
+        },1000);
+        // let dateNow = new Date();
+        // console.log(dateNow.getMinutes());
+        // console.log(dateNow - startBookingTime)
+        // let timeLeft = (dateNow.getMinutes() - startBookingTime.getMinutes()) ; 
+        // if (timeLeft > maxBookingTimer) {
+        //     console.log("Réservation expiré");
+        // } else {
+        //     let interval = setInterval(e => {
+        //         this.timerConversion(timeLeft)
+        //     }, 1000);
+        // }
         // let timeLeft = dateNow - startBookingTime;
         // console.log(timeLeft);
     }
