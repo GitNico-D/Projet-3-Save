@@ -54,5 +54,6 @@ class Map {
         console.log("Click Return to global map button")
         this.bikeStationMap.setView([this.coordinateX, this.coordinateY], this.zoom);
         $("#bike_station_details").hide();
+        $("#bike_station_map").addClass("col").removeClass("col-lg-9");
     }
 }
