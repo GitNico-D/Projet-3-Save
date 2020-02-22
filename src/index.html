@@ -73,59 +73,42 @@
                         <button id="reservation_access_button" class="btn btn-primary btn-info" href="#user_booking_form">Réserver un vélo</button>
                         <p id="button_split" class="button_split"></p>
                         <p id="form_direction" class="card-text">
-                            <span class="form_direction_text text-success">Pour la réservation, suivez les instructions ci-dessous</span>
-                            <span class="fas fa-arrow-down fa-lg"></span><span class="fas fa-arrow-down fa-lg"></span>
+                            <span class="form_direction_text text-success">Pour effectuer une réservation, suivez les instructions ci-dessous</span>
                         </p>
                         <p id="return_button_description" class="card-text">Pour choisir une autre station :</p>
                         <button id="return_to_global_map" class="btn btn-primary btn-info"> Retour sur la carte</button>
                     </div>    
                 </div>
-                <div id="user_summary_details" class="col-lg-3 card border-warning hide">
-                    <div class="card-body">
-                        <h5 class="card-header">Résumé réservation</h5>
-                        <p class="card-text"><span id="user_first_name"></span> <span id="user_last_name"></span> vous avez une réservation en cours sur la station <span id="user_booking_station_name"></span></p>
-                        <p class="card-text">Souhaitez-vous annuler ?</p>
-                        <button id="reservation_cancel_summary" class="btn btn-block btn-danger">Annuler</button>
-                        <p id="button_split" class="button_split"></p>
-                        <button id="return_to_global_map" class="btn btn-primary btn-info"> Retour sur la carte</button>
-                    </div>    
-                </div>
             </div>
         </section>
-        <section id="user_booking_status" class="hide">
-            <div class="row justify-content-center">
-                <h3 id="description_booking_title" class="col"></h3>
-            </div>
-            <div class="row justify-content-center">
-                <p id="description_booking_text" class="col"></p>
-            </div>
-            <div id="booking_decoration" class="row">
-                <div class="col-6">
-                    <span class="fas fa-arrow-down fa-lg float-right"></span>  
+        <section id="booking_alert_status" class="row hide" >
+                <div class="col-8 offset-lg-2">
+                    <div id="booking_alert" class="alert" role="alert">
+                        <h3 id="booking_alert_title" class="alert-heading text-center"></h3>
+                        <p id="booking_alert_text" class="col text-center"></p>
+                        <hr>
+                        <p id="booking_alert_info" class="text-center"></p>
+                        <button class="btn btn-secondary btn-block hide" id="booking_summary_button"> Afficher le résumé de réservation</button>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <span class="fas fa-arrow-down fa-lg float-left"></span>  
-                </div>
-            </div>
-            <div class="card">
+        </section>
+        <section id="user_booking_form" class="col card hide">
                 <form class="form-row">
                     <div class="col-4 offset-lg-2">
-                        <label for="first_name">Prénom</label><input type="text" class="form-control" id="form_first_name" name="first_name" placeholder="Entrer votre Prénom" required>
+                        <input type="text" class="form-control" id="form_first_name" name="first_name" placeholder="Entrer votre Prénom" required>
                     </div>
                     <div class="col-4 ">
-                        <label for="last_name">Nom</label><input type="text" class="form-control" id="form_last_name" name="last_name" placeholder="Entrer votre Nom" required>
+                        <input type="text" class="form-control" id="form_last_name" name="last_name" placeholder="Entrer votre Nom" required>
                     </div>
                 </form>
-                <div class="row">
-                    <div class="col-6 offset-lg-3">
-                        <div id="alert" class="alert hide" role="alert"></div>
-                        <button type="submit" class="btn btn-primary btn-block" id="reservation_canvas_access_button" > Valider </button>
-                    </div>
+                <div class="col-6 offset-lg-3">
+                    <div id="alert" class="alert hide" role="alert"></div>
+                    <button type="submit" class="btn btn-primary btn-block" id="reservation_canvas_access_button" > Valider </button>
                 </div>
                 <div id="canvas" class="hide">
                     <div class="row">
                         <div class="col-6 offset-lg-4">
-                            <canvas id="signature_canvas" height="200" width="500"></canvas>
+                            <canvas id="signature_canvas" height="200" width="400"></canvas>
                         </div>
                     </div>        
                     <div class="row justify-content-center">
@@ -135,105 +118,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- <div id="user_booking_form" class="hide"> -->
-                <!-- <div id="user_without_booking" class="hide">
-                    <div class="row form_description justify-content-center">
-                        <p class="col"> 
-                            Afin de réserver un vélo sur la station, merci de renseigner votre <span>Nom</span> et votre <span>Prénom</span> dans le formulaire ci-dessous.
-                        </p>
-                    </div> -->
-                    <!-- <div class="row">
-                        <div class="col-6">
-                            <span class="fas fa-arrow-down fa-lg float-right"></span>  
-                        </div>
-                        <div class="col-6">
-                            <span class="fas fa-arrow-down fa-lg float-left"></span>  
-                        </div>
-                    </div>
-                </div> -->
-                <div id="user_with_booking" class="hide">
-                    <div class="row form_description justify-content-center">
-                        <div class="row">
-                            <span class="text-warning"> ATTENTION !</span>
-                        </div>
-                        <div class="row justify-content-center">
-                            <p class="col-8"> 
-                                Vous avez déjà une réservation en cours à la station <span id="booking_station_name"></span> !
-                                Si vous enregistrez une nouvelle réservation sur cette station, <span id="current_clicked_station_name"></span>, la précédente sera ANNULER !
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 offset-lg-5">
-                            <button id="erase_and_new_booking" class="btn btn-warning">Effectuer une nouvelle réservation</button>  
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 offset-lg-5">
-                            <button id="keep_booking" class="btn btn-success">Garder réservation en cours</button>  
-                        </div>
-                    </div>
-                </div>
-                    <!-- <form>
-                        <div class="form-row">
-                            <div class="col-4 offset-lg-2">
-                                <label for="first_name">Prénom</label><input type="text" class="form-control" id="form_first_name" name="first_name" placeholder="Entrer votre Prénom" required>
-                            </div>
-                            <div class="col-4 ">
-                                <label for="last_name">Nom</label><input type="text" class="form-control" id="form_last_name" name="last_name" placeholder="Entrer votre Nom" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6 offset-lg-3">
-                                <div class="alert-danger alert_nothing" role="alert"><strong>Attention !</strong> Aucun <strong>Nom</strong> et <strong>Prénom</strong> n'a été renseignés !</div>
-                                <div class="alert-warning alert_first_name" role="alert"><strong>Attention !</strong> Votre <strong>Prénom</strong> n'est pas renseigné !</div>
-                                <div class="alert-warning alert_last_name" role="alert"><strong>Attention !</strong> Votre <strong>Nom</strong> n'est pas renseigné !</div>
-                                <button type="submit" class="btn btn-primary btn-block" id="reservation_canvas_access_button" > Valider </button>
-                            </div>
-                        </div>
-                    </form> -->
-                <!-- <div id="alert_canvas" class="row hide">
-                    <div class="col-6 offset-lg-3 text_alert_canvas">
-                        <div class="alert_canvas alert-info" role="alert">Pour <strong>valider</strong> votre réservation, merci d'aposer votre <strong>signature</strong> dans le cadre ci-dessous :</div>
-                    </div>
-                </div>
-                <div id="canvas" class="hide">
-                    <div class="row">
-                        <div class="col-6 offset-lg-4">
-                            <canvas id="signature_canvas" height="200" width="500"></canvas>
-                        </div>
-                    </div>        
-                    <div class="row justify-content-center">
-                        <div class="col-6 offset-lg-4">
-                            <button id="confirm_canvas" class="btn btn-success">Confirmer</button>
-                            <button id="clear_canvas" class="btn btn-danger">Effacer</button> 
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-            <div id="reservation_done" class="row hide">
+        </section>
+        <section id="user_booking_summary" class="hide">
                 <div class="col-8 offset-lg-2 card border-success">
                     <div class="card-body">
-                        <div class="card-title"> Votre réservation est effectuée!</div>
-                        <p id="reservation_status_text card-text">Un vélo vous est réservé sur la station <span id="booking_station_name_storage"></span> pendant pendant une durée de <strong>20 minutes</strong>.</p>
-                        <p class="card-header">Temps restants : <span id="reservation_status_timer"></span></p>
-                        <button id="cancel_booking" class="btn btn-danger">Annuler</button>
+                        <h4 id="user_booking_summary_title" class="card-title text-center"> Résumé de votre réservation :</h4>
+                        <p id="user_booking_summary_text" class="card-text text-center"></p>
+                        <p id="user_booking_summary_timer" class="card-header text-center"></p>
+                        <button id="cancel_booking" class="btn btn-danger btn-block">Annuler la réservation</button>
                     </div>
                 </div>
-            </div>
-            <div id="reservation_status" class="row hide">
-                <div class="col-8 offset-lg-2 card border-success">
-                    <div class="card-body">
-                        <div class="card-title"> Votre réservation :</div>
-                        <p id="reservation_status_text card-text">Un vélo est réservé sur la station <span id="booking_station_name_summary"></span> !</p>
-                        <p id="timer_text" class="card-header">Temps restants : <span id="reservation_status_timer"></span></p>
-                        <button id="cancel_booking" class="btn btn-danger">Annuler</button>
-                    </div>
-                </div>
-            </div>  
-        </section>       
+            <!-- </div> -->
+        </section>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="./scripts/slider.js"></script>
         <script type="text/javascript" src="./scripts/canvas.js"></script>
