@@ -28,15 +28,20 @@ h1
     margin-bottom: 10px;
 }
 
-#description_booking_title, #description_booking_text
-{
-    text-align: center;
-}
-
-#description_booking_text span
+#booking_alert_status span, #user_booking_status span
 {
     font-weight: bold;
 }
+
+// #description_booking_title, #description_booking_text
+// {
+//     text-align: center;
+// }
+
+// #description_booking_text span
+// {
+//     font-weight: bold;
+// }
 /*---- DÉBUT SLIDER -----*/
 
 .text_content_slide
@@ -308,11 +313,9 @@ h1
     text-align: center;
 }
 
-.form-row label
-{    
-    font-size: 1.1em;
-    color: $darkgray;
-    text-align: center;
+.form-row
+{        
+    margin-top: 20px;
 }
 
 
