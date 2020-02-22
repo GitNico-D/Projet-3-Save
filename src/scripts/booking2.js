@@ -5,7 +5,8 @@ class Booking {
         this.existingUser();
         this.bookingTimeLeft();
         $(window).on("load", this.bookingTimeLeft.bind(this));
-
+        // $("#booking_summary_button").click(this.displayBookingSummary(this));
+        // this.displayBookingSummary();
         // this.informationsShow();
         // this.userBookingStation();
         // this.userIdentityStorage();
@@ -21,14 +22,23 @@ class Booking {
 
     displayBookingForm() {
         $("#reservation_access_button").click(function() {
-            $("#form_direction").show();
             $("#return_button_description").hide();
             $("#return_to_global_map").hide();
-            $("#user_booking_status").show();
-            $("#description_booking_title").html("Enregister une réservation !");
-            $("#description_booking_text").html("Afin de réserver un vélo sur la station, merci de renseigner votre <span>Nom</span> et votre <span>Prénom</span> dans le formulaire ci-dessous.");
-            console.log("Booking")
+            $("#booking_alert_status").show();
+            $("#booking_alert").addClass("alert-info");
+            $("#booking_alert_title").html("Enregistrement d'une réservation !");
+            $("#booking_alert_info").html("Pour effectuer une réservation, merci de renseigner votre <span>Nom</span> et <span>Prénom</span> dans le formulaire ci-dessous.");
+            $("#user_booking_form").show();
+            console.log("Booking");
         })
+    }
+
+    displayBookingSummary() {
+            $("#user_booking_summary").fadeIn("slow");
+            $("#user_booking_summary_text").html("Un vélo vous est réservé sur la station <span id=booking_station_name_summary></span> !");
+            $("#user_booking_summary_timer").html("Temps restants : <span id=booking_timer></span>")
+            $("#booking_station_name_summary").text(sessionStorage.stationBookingName);
+            
     }
 
     formVerification() {
@@ -42,11 +52,11 @@ class Booking {
                 $("#alert").removeClass("alert-danger").addClass("alert-warning").show("slow").html("<strong>Attention !</strong> Votre <strong>Prénom</strong> n'est pas renseigné !");
             } 
             if ($("#form_first_name").val() != "" && $("#form_last_name").val() === "") {
-                $("#alert").addClass("alert-warning").show("slow").html("<strong>Attention !</strong> Votre <strong>Nom</strong> n'est pas renseigné !");
+                $("#alert").removeClass("alert-danger").addClass("alert-warning").show("slow").html("<strong>Attention !</strong> Votre <strong>Nom</strong> n'est pas renseigné !");
             } 
             if ($("#form_first_name").val() != "" && $("#form_last_name").val() != "") {
+                $("#alert").removeClass("alert-danger").removeClass("alert-warning").addClass("alert-info").show("slow").html("Pour <strong>valider</strong> votre réservation, merci d'aposer votre <strong>signature</strong> dans le cadre ci-dessous :");
                 $("#canvas").show();
-                $("#alert").addClass("alert-info").show("slow").html("Pour <strong>valider</strong> votre réservation, merci d'aposer votre <strong>signature</strong> dans le cadre ci-dessous :");
                 $("#signature_canvas").css("display", "block").fadeIn("slow");               
                 $("#reservation_canvas_access_button").fadeOut("fast");
             }
@@ -69,20 +79,30 @@ class Booking {
             localStorage.setItem("UserIdentity", JSON.stringify(userIdentity));
             sessionStorage.setItem("stationBookingName", stationData.name);
             let startBookingTime = new Date();
-            // console.log(startBookingTime);
             sessionStorage.setItem("startBookingTime", startBookingTime)
-            // console.log(userIdentity.userFirstName, userIdentity.userLastName);
             this.bookingTimeLeft();
-            $("#user_booking_status").hide();
-            $("#signature_canvas").css("display", "none");
-            // $("#booking_station_name_storage").text(sessionStorage.stationBookingName);
-            $("#reservation_done").show();
-            $("#reservation_status").hide();
+            // $("#signature_canvas").css("display", "none");
+            $("#booking_alert").removeClass("alert-info").addClass("alert-success");
+            $("#booking_alert_title").html("Réservation effectuée ! ");
+            $("#booking_alert_text").html("Un vélo vous est réservé sur la station <span id=booking_station_name_storage></span>.");
+            $("#booking_alert_info").html("Cette réservation est valable pour une durée de <span>20 minutes</span>, passé ce délai elle sera <span>automatiquement annulé</span>.")
+            $("#booking_station_name_storage").text(sessionStorage.stationBookingName);
+            $("#booking_summary_button").show();
+            $("#timer").show("slow");
             $("#return_button_description").show();
             $("#return_to_global_map").show();
             $("#canvas").hide();
-            $("#alert_canvas").hide();
-            $("#form_direction").hide();
+            $("#alert").hide();
+            $("#user_booking_form").hide();
+            // this.displayBookingSummary();
+            $("#booking_summary_button").click(function(){
+                $("#user_booking_summary").fadeIn("slow");
+                $("#user_booking_summary_text").html("Un vélo vous est réservé sur la station <span id=booking_station_name_summary></span> !");
+                $("#user_booking_summary_timer").html("Temps restants : <span id=booking_timer></span>")
+                $("#booking_station_name_summary").text(sessionStorage.stationBookingName);
+                $("#booking_alert_status").fadeOut("slow")
+            });
+            
             // let timeLeftBooking = 
             // this.reservationTimer(timerBookingEnd);
             // $("#reservation_status_timer").text(timeLeftBooking);
@@ -93,8 +113,10 @@ class Booking {
         if (localStorage.getItem("UserIdentity")) {
             let userIdentity = JSON.parse(localStorage.getItem("UserIdentity"));
             let userBookingStation = sessionStorage.getItem("stationBookingName");
-            $("#reservation_status").show();
-            $("#booking_station_name_summary").text(userBookingStation);
+            this.displayBookingSummary();
+            // $("#user_booking_summary").show();
+            // $("#reservation_status").show();
+            // $("#booking_station_name_summary").text(userBookingStation);
             $("#form_first_name").val(userIdentity.userFirstName).css("background-color", "rgba(0, 255, 84, 0.2)");
             $("#form_last_name").val(userIdentity.userLastName).css("background-color", "rgba(0, 255, 84, 0.2)");
             this.bookingInProgress(userBookingStation);
