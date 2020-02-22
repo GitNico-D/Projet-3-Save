@@ -8,7 +8,7 @@ class Map {
         console.log(this)
         $("#return_to_map_button").click(this.resetMapView.bind(this));
         $("#return_to_global_map").click(this.resetMapView.bind(this))
-        this.bikeStationMap.on("click", this.closedInfosStation.bind(this))
+        this.bikeStationMap.on("click", this.closedInfosStation.bind(this));
     }
     
 
@@ -39,6 +39,8 @@ class Map {
     }
 
     closedInfosStation() {
+        console.log("Click Map")
+        $("#bike_station_map").removeClass("col-lg-9").addClass("col");
         $("#bike_station_details").hide();
     }
 
