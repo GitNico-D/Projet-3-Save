@@ -7,7 +7,7 @@ class Map {
         this.generateMap();
         console.log(this)
         $("#return_to_map_button").click(this.resetMapView.bind(this));
-        $("#return_to_global_map").click(this.resetMapView.bind(this))
+        $("#alert_return_map_button").click(this.resetMapView.bind(this))
         this.bikeStationMap.on("click", this.closedInfosStation.bind(this));
     }
     
