@@ -33,6 +33,20 @@ h1
     font-weight: bold;
 }
 
+.title_section
+{
+    background-color: whitesmoke;
+    border: 1px outset #1C6EA4;
+    box-shadow: 10px 10px 10px -9px rgba(0,0,0,0.75);
+    height: 70px;
+}
+
+.header
+{
+    background-color: whitesmoke;
+    box-shadow: 10px 10px 10px -9px rgba(0,0,0,0.75);
+    height: 70px;
+}
 // #description_booking_title, #description_booking_text
 // {
 //     text-align: center;
