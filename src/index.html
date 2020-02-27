@@ -22,7 +22,7 @@
     </head>
     <body>
         <header class="container-fluid row">
-            <h1 id="title" class="col-12">Location de vélo</h1>
+            <h1 id="title" class="col-12 header">Location de vélo</h1>
         </header>
         <section class="container-fluid"> <!-- DÉBUT SECTION BANNIÈRE ET SLIDER -->
             <div class="row">
@@ -52,9 +52,11 @@
                 </div>
             </div>
         </section> <!-- FIN SECTION BANNIÈRE ET SLIDER -->
+        <div class="row"></div>
+            <h2 class="col-12 text-center title_section">La carte</h2>
         <section class="container-fluid"> <!-- DÉBUT SECTION CARTE, INFORMATIONS STATIONS ET FORMULAIRE -->
             <div class="row">                
-                <div id="bike_station_map" class="col card"> <!--class="col-lg-9-->
+                <div id="bike_station_map" class="col card">
                     <div class="row justify-content-center">
                         <button id="return_to_map_button" class="btn btn-sm btn-info">Recentrer la carte</button> 
                     </div>
@@ -82,8 +84,8 @@
             </div>
         </section>
         <section class="row">
-                <div id="booking_alert" class="col-8 offset-lg-2 hide">
-                    <div class="alert" role="alert">
+                <!-- <div id="booking_alert" class="col-8 offset-lg-2 hide"> -->
+                    <div id="booking_alert" class="col-8 offset-lg-2 alert hide" role="alert">
                         <h3 id="booking_alert_title" class="alert-heading text-center"></h3>
                         <p id="booking_alert_text" class="col text-center"></p>
                         <hr>
@@ -93,7 +95,7 @@
                         <button class="btn btn-warning btn-block hide" id="new_booking_button"> Effectuer une nouvelle réservation</button>
                         <button class="btn btn-info btn-block hide" id="alert_return_map_button"> Retour à la carte</button>
                     </div>
-                </div>
+                <!-- </div> -->
         </section>
         <section id="user_booking_form" class="col card hide">
                 <form class="form-row">
@@ -106,6 +108,8 @@
                 </form>
                 <div class="col-6 offset-lg-3">
                     <div id="alert" class="alert hide" role="alert"></div>
+                </div>
+                <div class="col-6 offset-lg-3">
                     <button type="submit" class="btn btn-primary btn-block" id="booking_canvas_access_button" > Valider </button>
                 </div>
                 <div id="canvas" class="hide">
