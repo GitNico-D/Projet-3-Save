@@ -13,7 +13,7 @@ class Canvas {
     }
     
     signatureValidation() {
-        console.log("Show Confirmation or Cancelation");
+        // console.log("Show Confirmation or Cancelation");
         $("#confirm_canvas").show().fadeIn(1000, "linear");
         $("#clear_canvas").show().fadeIn("slow");
         $("#clear_canvas").click(function(){
@@ -26,7 +26,7 @@ class Canvas {
         this.startSignature = true;
         this.context.moveTo(event.offsetX, event.offsetY)
         this.context.beginPath()
-        console.log("Starting signature !")
+        // console.log("Starting signature !")
         $("#canvas_text").text("MouseDown position => X : " + event.offsetX + " , " + " Y : " + event.offsetY);
     }
 
@@ -34,14 +34,14 @@ class Canvas {
         if (this.startSignature === true) {
             this.context.lineTo(event.offsetX, event.offsetY);
             this.context.stroke();
-            console.log("During signature !")
+            // console.log("During signature !")
         }
         $("#canvas_text_2").text("MouseMove position => X : " + event.offsetX + " , " + " Y : " + event.offsetY);
     }
 
     mouseUp() {
         this.startSignature = false;
-        console.log("Stoping signature !");
+        // console.log("Stoping signature !");
         $("#canvas_text_3").text("MouseUp position => X : " + event.clientX + " , " + " Y : " + event.clientY);
         this.signatureValidation();
     }
