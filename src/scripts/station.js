@@ -25,7 +25,6 @@ class Station {
     }
     
     showInfosStation(stationData) {
-        console.log(this.booking)
         $("#bike_station_details").show();
         $("#bike_station_map").removeClass("col").addClass("col-lg-9");
         $("#infos_station_name").text(stationData.name);
