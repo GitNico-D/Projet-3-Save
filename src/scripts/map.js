@@ -7,6 +7,7 @@ class Map {
         this.generateMap();
         $("#return_to_map_button").click(this.resetMapView.bind(this));
         $("#alert_return_map_button").click(this.resetMapView.bind(this));
+        $("#booking_return_to_map_button").click(this.resetMapView.bind(this));
         this.bikeStationMap.on("click", this.closedInfosStation.bind(this));
     }
     
@@ -36,7 +37,7 @@ class Map {
 
     closedInfosStation() {
         $("#bike_station_map").removeClass("col-lg-9").addClass("col");
-        $("#bike_station_details").hide();
+        $("#bike_station_details").toggleClass("hide", true);
     }
 
     markerCluster(allMarkersStations) {
@@ -49,7 +50,7 @@ class Map {
 
     resetMapView(){
         this.bikeStationMap.setView([this.coordinateX, this.coordinateY], this.zoom);
-        $("#bike_station_details").hide();
+        $("#bike_station_details").toggleClass("hide", true);
         $("#bike_station_map").addClass("col").removeClass("col-lg-9");
     }
 }
