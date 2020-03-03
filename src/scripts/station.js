@@ -8,13 +8,12 @@ class Station {
                 let allMarkersStations = [];
                 for (let i = 0; i < allStationsData.length; i++) {
                     let stationData = allStationsData[i];
-                    // let optionStation;
                     let colorMarker = stationData.status === "OPEN" ? stationData.totalStands.availabilities.bikes === 0 ? "orange" :  "green" : "red";
                     let colorStationMarker = L.icon({iconUrl: `assets/img/leaf-${colorMarker}.png`});           
                     let markerStation = self.map.generateStationMarker(stationData,colorStationMarker);
                     self.map.eventMarkerClick(markerStation, "click", self.showInfosStation.bind(self, stationData, markerStation));
                     allMarkersStations.push(markerStation);
-                    $("#bike_station_details").hide();
+                    // $("#bike_station_details").hide();
                     // $("#user_booking_form").hide();
                     }
                 self.map.markerCluster(allMarkersStations)
@@ -25,7 +24,7 @@ class Station {
     }
     
     showInfosStation(stationData) {
-        $("#bike_station_details").show();
+        $("#bike_station_details").toggleClass("hide", false);
         $("#bike_station_map").removeClass("col").addClass("col-lg-9");
         $("#infos_station_name").text(stationData.name);
         $("#infos_station_total_station_bikes").text(stationData.totalStands.capacity);   
@@ -33,36 +32,27 @@ class Station {
         $("#infos_station_available_bikes").text(stationData.totalStands.availabilities.bikes); 
         sessionStorage.setItem("currentClickedStationName", stationData.name);
         if (stationData.status === "OPEN") {            
-            $("#station_status").text("OUVERTE").addClass("text-success");
-            $("#station_status").removeClass("text-danger");
-            $("#station_status").removeClass("text-warning"); 
-            $("#infos_station_description_status_green").show();                    
-            $("#infos_station_description_status_red").hide();
-            $("#infos_station_description_status_orange").hide();
-            $("#reservation_access_button").show();
-            $("#reservation_button_description").show();
-            $("#button_split").show();
+            $("#station_status").text("OUVERTE").removeClass("text-danger").removeClass("text-warning").addClass("text-success"); 
+            $("#infos_station_description_status").html("La station est disponible pour la <span>location</span> et le <span>retour</span> de vélos.");
+            $("#available_bikes").removeClass("table-danger").addClass("table-success");
+            $("#booking_access_button").toggleClass("hide", false);
+            $("#booking_button_description").toggleClass("hide", false);
+            $("#button_split").toggleClass("hide", false);
             this.booking.userBookingStorage(stationData);
         } if (stationData.status === "CLOSED") {
-            $("#station_status").text("FERMÉ").addClass("text-danger"); 
-            $("#station_status").removeClass("text-success");
-            $("#station_status").removeClass("text-warning"); 
-            $("#infos_station_description_status_red").show();
-            $("#infos_station_description_status_green").hide();
-            $("#infos_station_description_status_orange").hide();
-            $("#reservation_access_button").hide();
-            $("#reservation_button_description").hide();
-            $("#button_split").hide();
+            $("#station_status").text("FERMÉ").removeClass("text-success").removeClass("text-warning").addClass("text-danger"); 
+            $("#infos_station_description_status").html("Veuillez nous excuser pour le dérangement occasionné. Merci de vous rapprocher d'une autre station de location.");
+            $("#available_bikes").removeClass("table-success").addClass("table-danger");            
+            $("#booking_access_button").toggleClass("hide", true);
+            $("#booking_button_description").toggleClass("hide", true);
+            $("#button_split").toggleClass("hide", true);
         } if (stationData.status === "OPEN" && stationData.totalStands.availabilities.bikes === 0) {
-            $("#station_status").text("OUVERTE").addClass("text-warning");
-            $("#station_status").removeClass("text-success");
-            $("#station_status").removeClass("text-danger"); 
-            $("#infos_station_description_status_orange").show();
-            $("#infos_station_description_status_green").hide();
-            $("#infos_station_description_status_red").hide();
-            $("#reservation_access_button").hide();
-            $("#reservation_button_description").hide();
-            $("#button_split").hide();
+            $("#station_status").text("OUVERTE").removeClass("text-success").removeClass("text-danger").addClass("text-warning");
+            $("#infos_station_description_status").html("<span>Aucun</span> vélos n'est actuellement disponibles à la location. Merci de vous rapprocher d'une autre station de location.");
+            $("#available_bikes").addClass("table-danger");
+            $("#booking_access_button").toggleClass("hide", true);
+            $("#booking_button_description").toggleClass("hide", true);
+            $("#button_split").toggleClass("hide", true);
         }
     }
 }
