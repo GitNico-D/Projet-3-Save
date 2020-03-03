@@ -128,6 +128,11 @@ h1
 
 /*----- DÉBUT MAP -----*/
 
+#booking_access_button
+{
+    margin-top: 15px;
+}
+
 #return_to_map_button
 {
     z-index: 406;
@@ -155,14 +160,37 @@ h1
     // padding: 10px;
 }
 
-#infos_station_description_status_green, #infos_station_description_status_red, #infos_station_description_status_orange
+#booking_canvas_access_button
 {
-    display: none;
+    margin-bottom: 5px;
 }
 
-.available-bike, .total-bike, .total-stand-bike
+#infos_station_description_status
+{
+    margin-top: 20px;
+
+}
+
+#infos_station_description_status > span
 {
     font-weight: bold;
+}
+
+
+// #infos_station_description_status_green, #infos_station_description_status_red, #infos_station_description_status_orange
+// {
+//     display: none;
+// }
+
+.available_bikes_stand, .available_bikes, .total_station_bikes
+{
+    font-weight: bold;
+}
+
+#table_infos_stations
+{
+    margin-top: 25px;
+    margin-bottom: 15px;
 }
 
 .button_split
@@ -235,7 +263,7 @@ h1
 
 #user_summary_details
 {    
-    display: none;
+    // display: none;
     text-align: center;
 }
 
@@ -284,10 +312,10 @@ h1
 }
 
 
-#form_direction
-{
-    display: none;
-}
+// #form_direction
+// {
+//     display: none;
+// }
 
 .form_direction_text
 {
@@ -310,17 +338,17 @@ h1
 //     text-align: center;
 // }
 
-.alert_nothing, .alert_first_name, .alert_last_name
-{
-    display: none;
-    margin-top: 5px;
-}
+// .alert_nothing, .alert_first_name, .alert_last_name
+// {
+//     display: none;
+//     margin-top: 5px;
+// }
 
-.alert_canvas
-{
-    display: none;
-    margin-bottom: 5px;
-}
+// .alert_canvas
+// {
+//     display: none;
+//     margin-bottom: 5px;
+// }
 
 .text_alert_canvas
 {
