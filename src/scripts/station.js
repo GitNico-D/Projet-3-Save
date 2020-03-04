@@ -27,9 +27,20 @@ class Station {
         $("#bike_station_details").toggleClass("hide", false);
         $("#bike_station_map").removeClass("col").addClass("col-lg-9");
         $("#infos_station_name").text(stationData.name);
-        $("#infos_station_total_station_bikes").text(stationData.totalStands.capacity);   
-        $("#infos_station_available_bikes_stand").text(stationData.totalStands.availabilities.stands);
-        $("#infos_station_available_bikes").text(stationData.totalStands.availabilities.bikes); 
+        $("#infos_station_total_station_bikes").text(stationData.totalStands.capacity);  
+        if (sessionStorage.startBookingTime && (stationData.name === sessionStorage.stationBookingName)) {
+            // sessionStorage.setItem("stationAvailableBikesStands", stationData.totalStands.availabilities.stands);
+            $("#infos_station_available_bikes_stand").text(sessionStorage.stationAvailableBikesStands);
+            // sessionStorage.setItem("stationAvailableBikes", stationData.totalStands.availabilities.bikes);
+            $("#infos_station_available_bikes").text(sessionStorage.stationAvailableBikes);
+        } else {
+            $("#infos_station_available_bikes_stand").text(stationData.totalStands.availabilities.stands);
+            $("#infos_station_available_bikes").text(stationData.totalStands.availabilities.bikes);
+        }
+        // sessionStorage.setItem("stationAvailableBikesStands", stationData.totalStands.availabilities.stands); 
+        // $("#infos_station_available_bikes_stand").text(sessionStorage.stationAvailableBikesStands);
+        // sessionStorage.setItem("stationAvailableBikes", stationData.totalStands.availabilities.bikes);
+        // $("#infos_station_available_bikes").text(sessionStorage.stationAvailableBikes);
         sessionStorage.setItem("currentClickedStationName", stationData.name);
         if (stationData.status === "OPEN") {            
             $("#station_status").text("OUVERTE").removeClass("text-danger").removeClass("text-warning").addClass("text-success"); 
