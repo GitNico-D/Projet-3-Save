@@ -21,14 +21,43 @@
         <link rel="stylesheet" href="./css/style.css" >
     </head>
     <body>
-        <header class="container-fluid row">
-            <h1 id="title" class="col-12 header">Location de vélo</h1>
+        <header class="row">
+            <nav id="title" class="navbar fixed-top navbar-expand-xl navbar-light bg-white">
+                <a href="#" ><img src="../assets/img/logo_3.png" class="img-fluid float-left img_resize"/></a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#slider">Comment ça marche ?</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#bike_station_map">Carte des stations</a>
+                    </li>
+                    <li id="booking_summary_navbar" class="nav-item">
+                        <a class="nav-link" href="#user_booking_summary">Votre réservation</a>
+                    </li>
+                </ul>
+            </nav>
         </header>
-        <section class="container-fluid"> <!-- DÉBUT SECTION BANNIÈRE ET SLIDER -->
+        <section id="introduction" class="container-fluid">
             <div class="row">
+                <h1 class="col main-title text-center">Bienvenue sur VéloLyon'Lib !</h1>
+            </div>
+            <div class="row">
+                <p class="col text-center">Parcourez la ville de Lyon avec les vélos diponibles en libre accès dans l'une de nos stations de Vélyon.</p>
+            </div>
+        </section>
+        <section class="container-fluid slider"> <!-- DÉBUT SECTION BANNIÈRE ET SLIDER -->
+            <div id="slider" class="row slider">
                 <div class="col-12">
                     <div id="slide_one" class="slide_img blue active_slide">  
-                        <span class="text_content_slide">SLIDE 1</span>
+                        <!-- <p class="text_content_slide text-center">Pour effectuer la réservation d'un vélo, la première chose à faire est de sélectionné une station sur la carte ci-dessous !</p> -->
+                        <p class="text-center">Pour effectuer la réservation d'un vélo, la première chose à faire est de sélectionné une station sur la carte ci-dessous !</p>
+                        <p class="text-center">Les stations sont regroupé pour plus de lisiblité, zoomer avec votre souris ou cliquez sur les marqueurs pour vous rapproché de la station recherché</p>
+                        <p class="text-center">La couleur des marqueurs vous donne une indication visuelles de leur status :</p>
+                        <ul>
+                            <li>En VERT, la station est Ouverte et des vélos sont disponibles à la location. Le retour de vélo est possible également.</li>
+                            <li>En ORANGE, la station est Ouverte mais aucuns vélos n'est disponible pour le moment. Seul le retour de vélo est possible.</li>
+                            <li>En ROUGE, la station est Fermé.</li>
+                        </ul>
                     </div>
                     <div id="slide_two" class="slide_img red">
                         <span class="text_content_slide">SLIDE 2</span>
