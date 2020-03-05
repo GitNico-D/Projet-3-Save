@@ -3,7 +3,7 @@
 @font-face
 {
     font-family: 'roboto_black';
-    src: url('../src/data/fonts/Roboto-Black.ttf') format('truetype');
+    src: url('../assets/fonts/Roboto-Black.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
@@ -11,7 +11,7 @@
 @font-face
 {
     font-family: 'roboto_blackitalic';
-    src: url('../src/data/fonts/Roboto-BlackItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Roboto-BlackItalic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
@@ -19,7 +19,7 @@
 @font-face
 {
     font-family: 'roboto_bold';
-    src: url('../src/data/fonts/Roboto-Bold.ttf') format('truetype');
+    src: url('../assets/fonts/Roboto-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
@@ -27,21 +27,20 @@
 @font-face
 {
     font-family: 'roboto_regular';
-    src: url('../src/data/fonts/Roboto-Regular.ttf') format('truetype');
+    src: url('../assets/fonts/Roboto-Regular.ttf') format('truetype');
     font-style: normal;
 }
 
 @font-face
 {
     font-family: 'roboto_medium';
-    src: url('../src/data/fonts/Roboto-Medium.ttf') format('truetype');
+    src: url('../assets/fonts/Roboto-Medium.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 body 
 {
-    background-color: rgb(250, 250, 250);
     margin: 0;
     text-decoration: none;
 }
@@ -50,6 +49,9 @@ h1
 {
     text-align: center;  
     color: $darkgray;
+    font-family: 'roboto_black';
+    font-size: 3rem;
+    text-transform: uppercase;
 }
 
 .hide
@@ -65,12 +67,13 @@ h1
 .navbar
 {
     box-shadow: 10px 10px 10px -9px rgba(0,0,0,0.75);
+    height: 80px;
 }
 
 #introduction
 {
     padding-top: 170px;
-    padding-bottom: 70px;
+    padding-bottom: 50px;
 }
 
 .main_title
@@ -89,23 +92,11 @@ h1
     font-weight: bold;
 }
 
-.title_section
+.booking_link
 {
-    background-color: whitesmoke;
-    border: 1px outset #1C6EA4;
-    box-shadow: 10px 10px 10px -9px rgba(0,0,0,0.75);
-    height: 70px;
+    font-weight: bold;
 }
 
-// #description_booking_title, #description_booking_text
-// {
-//     text-align: center;
-// }
-
-// #description_booking_text span
-// {
-//     font-weight: bold;
-// }
 /*---- DÉBUT SLIDER -----*/
 
 .text_content_slide
@@ -126,6 +117,21 @@ h1
     margin-left: 5px;;
 }
 
+#slider
+{  
+    background-color: whitesmoke;  
+    padding: 85px 0 20px 0;
+    margin-bottom: 2rem;
+}
+
+.title_section
+{
+    font-family: 'roboto_black';
+    text-transform: uppercase;
+    padding-top: 7px;
+    padding-bottom: 30px;
+}
+
 .slider_buttons
 {
     z-index: 2;
@@ -139,12 +145,65 @@ h1
 .slide_img 
 {
     display: none;
-    // width: 100%;
-    // position: relative;
+    width: 90%;
+    margin: auto;
     height: 300px;
-    // margin-top: 150px;
-    // box-shadow: 10px 8px 25px 1px rgba(0,0,0,0.65);
-    // border-radius: 0px 80px 0px 80px;
+    border: 5px double #D6D6D6;
+    background-color: white;
+}
+
+.slide_one_title, .slide_two_title, .slide_three_title, .slide_four_title
+{
+    font-size: 1.1rem;
+    padding-top: 20px;
+    line-height: 25px;
+    font-family: 'roboto_medium';
+    color: $grey;
+}
+
+.slide_one_title
+{   
+    margin: 0;
+}
+
+.slide_one_content, .slide_two_content, .slide_three_content, .slide_four_content
+{
+    color: $grey;
+}
+
+.slide_one_content
+{
+    font-family: 'roboto_regular';
+    margin-top: 25px;
+    padding-left: 25px;
+}
+
+.slide_one_content span
+{
+    font-weight: bold;
+}
+
+.slide_two_title span
+{
+    text-transform: uppercase;
+}
+
+.slide_four_content span
+{
+    font-family: 'roboto_regular';
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.slide_one_content ul
+{
+    padding: 0;
+}
+
+.slide_one_marker_description
+{
+    
+    list-style: none;
 }
 
 .blue
@@ -155,7 +214,6 @@ h1
 .red
 {
     background-color: red;
-
     background: url("../assets/img/bike_6_resizeTest.jpg") no-repeat ;
     // background-size: 100px 500px;
 }
@@ -344,12 +402,6 @@ h1
     font-weight: bold;
 }
 
-
-// #form_direction
-// {
-//     display: none;
-// }
-
 .form_direction_text
 {
     font-weight: bold;
@@ -361,27 +413,6 @@ h1
     margin-left: 2px;
     margin-right: 2px;
 }
-// .fa-arrow-down
-// {
-//     float: right;
-// }
-
-// form
-// {
-//     text-align: center;
-// }
-
-// .alert_nothing, .alert_first_name, .alert_last_name
-// {
-//     display: none;
-//     margin-top: 5px;
-// }
-
-// .alert_canvas
-// {
-//     display: none;
-//     margin-bottom: 5px;
-// }
 
 .text_alert_canvas
 {
@@ -405,17 +436,6 @@ h1
      font-size: 1.3rem;
      margin-bottom: 10px;
  }
-
-// input
-// {
-//     color: #555;
-//     text-align: center;
-//     background-color: #fff;
-//     border: 1px solid #ccc;
-//     border-radius: 4px;   
-//     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-//     line-height: 2em;
-// }
 
 #reservation_status, #reservation_done
 {
@@ -450,4 +470,22 @@ h1
 #confirm_canvas, #clear_canvas
 {
     display: none;
+}
+
+.footer
+{
+    height: 100px;
+    background-color: $darkgray;
+    position: relative;
+    margin-top: 50px;
+}
+
+.footer_content
+{
+    color: white;
+    font-family: 'roboto-regular';
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: 0;
 }
