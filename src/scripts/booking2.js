@@ -130,6 +130,7 @@ class Booking {
                 $("#booking_alert").toggleClass("hide", true);
             }, 5000);
             $("#user_booking_summary").toggleClass("hide", false);
+            $(".booking_link").removeClass("text-danger").addClass("text-success").html("Votre Réservation");
             this.displayBookingSummary();
             $("#canvas").toggleClass("hide", true);
             $("#alert").toggleClass("hide", true);
@@ -263,6 +264,7 @@ class Booking {
         $("#new_booking_button").toggleClass("hide", true);
         $("#user_booking_summary").toggleClass("hide", true);
         $("#alert_return_map_button").toggleClass("hide", true);
+        $(".booking_link").removeClass("text-success").addClass("text-danger").html("Aucune Réservation");
         $("#alert_return_map_button").toggleClass("hide", false).click(() => {
             $("#booking_alert").toggleClass("hide", true);
             this.existingUser();
