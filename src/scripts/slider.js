@@ -6,7 +6,7 @@ class Slide {
         $("#next_slide").click(this.sliderChange.bind(this, 1));
         $("#previous_slide").click(this.sliderChange.bind(this, -1));
         this.start = false;
-        // this.sliderAutoChange();
+        this.sliderAutoChange();
         $("#play_pause_slider").click(this.sliderAutoChange.bind(this));
         $(document).keydown(this.sliderKeyboardChange.bind(this));
     }
@@ -34,12 +34,10 @@ class Slide {
         $slidePosition += direction;
         $($allSlides[$slidePosition]).addClass("active_slide") 
         if ($slidePosition >= $allSlides.length) {
-            console.log("Reset slider plus !")
             $($allSlides[$slidePosition]).removeClass("active_slide")  
             $slidePosition = 0;
             $($allSlides[$slidePosition]).addClass("active_slide")
         } else if ($slidePosition < 0) {
-            console.log("Reset Slide moins !")
             $($allSlides[$slidePosition]).removeClass("active_slide")
             $slidePosition = $allSlides.length - 1;
             $($allSlides[$slidePosition]).addClass("active_slide")
