@@ -8,6 +8,7 @@ class Map {
         $("#return_to_map_button").click(this.resetMapView.bind(this));
         $("#alert_return_map_button").click(this.resetMapView.bind(this));
         $("#booking_return_to_map_button").click(this.resetMapView.bind(this));
+        // $("#summary_return_to_map_button").click(this.resetMapView.bind(this));
         this.bikeStationMap.on("click", this.closedInfosStation.bind(this));
     }
     
@@ -28,7 +29,7 @@ class Map {
     }
 
     eventMarkerClick(markerStation, event, showInfosStation) {
-        let map = this.bikeStationMap
+        let map = this.bikeStationMap;
         markerStation.on(event, function(event) {
             map.setView(event.latlng, 20)
             showInfosStation();
@@ -49,8 +50,9 @@ class Map {
     }
 
     resetMapView(){
+        console.log("click")
         this.bikeStationMap.setView([this.coordinateX, this.coordinateY], this.zoom);
         $("#bike_station_details").toggleClass("hide", true);
-        $("#bike_station_map").addClass("col").removeClass("col-lg-9");
+        $("#bike_station_map").removeClass("col-lg-9").addClass("col");
     }
 }
