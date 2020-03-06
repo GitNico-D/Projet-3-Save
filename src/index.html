@@ -29,10 +29,10 @@
                         <a class="nav-link" href="#slider">Comment ça marche ?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#bike_station_map">Carte des stations</a>
+                        <a class="nav-link" href="#map_section_title">Carte des stations</a>
                     </li>
                     <li id="booking_summary_navbar" class="nav-item">
-                        <a class="nav-link booking_link" href="#user_booking_summary"></a>
+                        <a id="booking_link" class="nav-link booking_link hide" href="#user_booking_summary"></a>
                     </li>
                 </ul>
             </nav>
@@ -99,13 +99,13 @@
             <div class="row justify-content-center">
                 <div id="slider_buttons">
                     <button id="previous_slide" class="btn btn-primary btn-info"><span class="fas fa-angle-double-left fa-lg"></span>Précédent</button>
-                    <button class="btn btn-primary btn-info"><span id="play_pause_slider" class="far fa-play-circle fa-lg"></span></button>
+                    <button id="play_pause_slider" class="btn btn-primary btn-info"><span class="far fa-play-circle fa-lg"></span></button>
                     <button id="next_slide" class="btn btn-primary btn-info">Suivant<span class="fas fa-angle-double-right fa-lg"></span></button>  
                 </div>
             </div>
         </section> <!-- FIN SECTION BANNIÈRE ET SLIDER -->
         <hr>
-        <div class="row"></div>
+        <div id="map_section_title" class="row"></div>
             <h2 class="col-12 text-center title_section">Carte des stations</h2>
         <section class="container-fluid"> <!-- DÉBUT SECTION CARTE, INFORMATIONS STATIONS ET FORMULAIRE -->
             <div class="row">                
@@ -151,7 +151,7 @@
                     <p id="booking_alert_info" class="text-center"></p>
                     <button class="btn btn-success btn-block hide" id="keep_booking_button"> Afficher ma réservation en cours</button>
                     <button class="btn btn-warning btn-block hide" id="new_booking_button"> Effectuer une réservation sur cette station !</button>
-                    <button class="btn btn-info btn-block hide" id="alert_return_map_button"> Retour à la carte</button>
+                    <a href="#map_section_title"><button class="btn btn-info btn-block hide" id="alert_return_map_button"> Retour à la carte</button></a>
                 </div>
         </section>
         <section id="user_booking_form" class="col card hide">
@@ -167,8 +167,8 @@
                     <div id="alert" class="alert text-center hide" role="alert"></div>
                 </div>
                 <div class="col-6 offset-lg-3">
-                    <a href="#booking_alert"><button type="submit" class="btn btn-primary btn-block" id="booking_canvas_access_button">Valider</button></a>
-                    <button class="btn btn-primary btn-block" id="booking_return_to_map_button">Annuler</button>
+                    <a href="#booking_alert"><button type="submit" id="booking_canvas_access_button" class="btn btn-primary btn-block hide" >Valider</button></a>
+                    <button id="booking_return_to_map_button" class="btn btn-primary btn-block hide" >Annuler</button>
                 </div>
                 <div id="canvas" class="hide">
                     <div class="row">
@@ -178,8 +178,8 @@
                     </div>        
                     <div class="row justify-content-center">
                         <div class="col-6 offset-lg-4">
-                            <button id="confirm_canvas" class="btn btn-success">Confirmer</button>
-                            <button id="clear_canvas" class="btn btn-danger">Effacer</button> 
+                            <a href="#user_booking_summary"><button id="confirm_canvas" class="btn btn-success hide">Confirmer</button></a>
+                            <button id="clear_canvas" class="btn btn-danger hide">Effacer</button> 
                         </div>
                     </div>
                 </div>
@@ -190,10 +190,10 @@
                         <h4 id="user_booking_summary_title" class="card-title text-center"> Résumé de votre réservation :</h4>
                         <p id="user_booking_summary_text" class="card-text text-center"></p>
                         <p id="user_booking_summary_timer" class="card-header text-center"></p>
+                        <!-- <button id="summary_return_to_map_button" class="btn btn-info btn-block">Retour à la carte</button>  -->
                         <button id="cancel_booking" class="btn btn-danger btn-block">Annuler la réservation</button>
                     </div>
                 </div>
-            <!-- </div> -->
         </section>
         <footer class="row">
             <div class="col footer">
