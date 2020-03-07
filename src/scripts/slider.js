@@ -1,4 +1,4 @@
-class Slide {
+class Slider {
   constructor(slideId, color, position) {
     this.slideId = slideId;
     this.color = color;
@@ -13,14 +13,14 @@ class Slide {
 
   sliderAutoChange() {
     if (!this.start) {
-      $("#play_pause_slider").removeClass("fa-play-circle");
+      $("#changed_icon").removeClass("fa-play-circle");
       this.interval = setInterval(this.sliderChange.bind(this, 1), 5000);
-      $("#play_pause_slider").addClass("fa-pause-circle");
+      $("#changed_icon").addClass("fa-pause-circle");
       console.log("Start Slider !");
     } else {
-      $("#play_pause_slider").removeClass("fa-pause-circle");
+      $("#changed_icon").removeClass("fa-pause-circle");
       clearInterval(this.interval);
-      $("#play_pause_slider").addClass("fa-play-circle");
+      $("#changed_icon").addClass("fa-play-circle");
       console.log("Pause Slider !");
     }
     this.start = !this.start;
