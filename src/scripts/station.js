@@ -29,8 +29,6 @@ class Station {
             self.showInfosStation.bind(self, stationData, markerStation)
           );
           allMarkersStations.push(markerStation);
-          // $("#bike_station_details").hide();
-          // $("#user_booking_form").hide();
         }
         self.map.markerCluster(allMarkersStations);
       })
@@ -52,11 +50,9 @@ class Station {
       sessionStorage.startBookingTime &&
       stationData.name === sessionStorage.stationBookingName
     ) {
-      // sessionStorage.setItem("stationAvailableBikesStands", stationData.totalStands.availabilities.stands);
       $("#infos_station_available_bikes_stand").text(
         sessionStorage.stationAvailableBikesStands
       );
-      // sessionStorage.setItem("stationAvailableBikes", stationData.totalStands.availabilities.bikes);
       $("#infos_station_available_bikes").text(
         sessionStorage.stationAvailableBikes
       );
@@ -68,10 +64,6 @@ class Station {
         stationData.totalStands.availabilities.bikes
       );
     }
-    // sessionStorage.setItem("stationAvailableBikesStands", stationData.totalStands.availabilities.stands);
-    // $("#infos_station_available_bikes_stand").text(sessionStorage.stationAvailableBikesStands);
-    // sessionStorage.setItem("stationAvailableBikes", stationData.totalStands.availabilities.bikes);
-    // $("#infos_station_available_bikes").text(sessionStorage.stationAvailableBikes);
     sessionStorage.setItem("currentClickedStationName", stationData.name);
     if (stationData.status === "OPEN") {
       $("#station_status")
