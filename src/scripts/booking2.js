@@ -250,10 +250,14 @@ class Booking {
         // clearInterval(this.intervalTimer);
     }
 
-    timerConversion(maxBookingTimer) {
+    timerConversion(timeLeft) {
         console.log("timerConversion")
-        let minutes = Math.floor(maxBookingTimer / 60);
-        let seconds = maxBookingTimer - (minutes * 60);
+        // let minutes = Math.floor(maxBookingTimer / 60);
+        // let seconds = maxBookingTimer - (minutes * 60);
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = Math.floor(timeLeft - (minutes * 60));
+        // let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        // let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
         $("#booking_timer").html(`<span> ${minutes} : ${seconds} </span>`);
@@ -268,8 +272,8 @@ class Booking {
         // let intervalTimer = setInterval( e => {
             let dateNow = new Date();
             let timeLeft = (dateNow - startBookingTime);
-            // console.log(timeLeft); 
-            if (timeLeft > (maxBookingTimer * 1000)) {
+            console.log(timeLeft); 
+            if ((timeLeft /1000) > maxBookingTimer) {
                 // console.log(this.maxBookingTimer);
                 // console.log("If bookingTimeLeft");
                 this.cancelBooking();
@@ -278,8 +282,8 @@ class Booking {
                 // this.stopTimer(intervalTimer); 
             } else {
                 // console.log(this.maxBookingTimer);
-                maxBookingTimer --; 
-                this.timerConversion(maxBookingTimer);
+                // maxBookingTimer --; 
+                this.timerConversion(timeLeft /1000);
                 // console.log("Else bookingTimeLeft")
                 // $("#booking_timer").html(this.timerConversion(timeLeft));
             }
