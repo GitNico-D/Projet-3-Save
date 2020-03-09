@@ -1,4 +1,4 @@
-let maxBookingTimer = 1201;
+let maxBookingTimer = 16;
 
 class Booking {
     constructor(map, canvas) {
@@ -54,6 +54,7 @@ class Booking {
         $("#booking_access_button").removeAttr("disabled");
         $("#booking_link").toggleClass("hide", false).removeClass("text-danger").addClass("text-success").html("Votre Réservation");     
         this.bookingTimeLeft();
+        // this.timerConversion();
     }
 
     formVerification() {
@@ -108,6 +109,7 @@ class Booking {
             // setTimeout(() => {
             //     // $("#booking_alert").toggleClass("hide", true);
             // }, 5000);
+            // this.bookingTimeLeft();
             this.resetDisplayBooking();
             this.map.resetMapView();
             this.displayBookingSummary();
@@ -221,6 +223,9 @@ class Booking {
 
     cancelBooking() {
         console.log("cancelBooking");
+        if (this.intervalTimer) {
+            clearInterval(this.intervalTimer);
+        }
         $("#user_booking_summary").toggleClass("hide", true);
         $("#booking_alert").removeClass("alert-info").removeClass("alert-success").addClass("alert-danger").toggleClass("hide", false);
         $("#booking_alert_title").html("Votre Réservation a été annulé !");
@@ -241,27 +246,21 @@ class Booking {
             // $("#booking_alert").toggleClass("hide", true);
             this.resetDisplayBooking();
         });
-        if (this.intervalTimer) {
-            clearInterval(this.intervalTimer);
-        }
+        
         // if (intervalTimer) {
-        //     this.stopTimer(intervalTimer);
+            // clearInterval(intervalTimer);
+            // this.stopTimer(intervalTimer);
         // }
-        // clearInterval(this.intervalTimer);
     }
 
     timerConversion(timeLeft) {
-        console.log("timerConversion")
-        // let minutes = Math.floor(maxBookingTimer / 60);
-        // let seconds = maxBookingTimer - (minutes * 60);
+        console.log("timerConversion");
         let minutes = Math.floor(timeLeft / 60);
         let seconds = Math.floor(timeLeft - (minutes * 60));
-        // let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        // let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
         $("#booking_timer").html(`<span> ${minutes} : ${seconds} </span>`);
-        // return minutes + " : " + seconds
+        // return `<span> ${minutes} : ${seconds} </span>`;
     }
 
     bookingTimeLeft() {
@@ -271,28 +270,30 @@ class Booking {
         this.intervalTimer = setInterval( e => {
         // let intervalTimer = setInterval( e => {
             let dateNow = new Date();
-            let timeLeft = (dateNow - startBookingTime);
-            console.log(timeLeft); 
-            if ((timeLeft /1000) > maxBookingTimer) {
-                // console.log(this.maxBookingTimer);
-                // console.log("If bookingTimeLeft");
-                this.cancelBooking();
-                // this.cancelBooking(intervalTimer);
-                // this.stopTimer();
-                // this.stopTimer(intervalTimer); 
+            let timeDifference = (dateNow - startBookingTime);
+            if (timeDifference > (maxBookingTimer * 1000)) {
+                // this.cancelBooking(); 
+                // console.log(startBookingTime);
+                // console.log(timeDifference, (maxBookingTimer * 1000));
+                // timeDifference = maxBookingTimer * 1000;
+                this.cancelBooking(); 
+                clearInterval(this.intervalTimer);
             } else {
-                // console.log(this.maxBookingTimer);
-                // maxBookingTimer --; 
-                this.timerConversion(timeLeft /1000);
-                // console.log("Else bookingTimeLeft")
-                // $("#booking_timer").html(this.timerConversion(timeLeft));
+                // console.log(intervalTimer);
+                // console.log(startBookingTime);
+                console.log(timeDifference, (maxBookingTimer * 1000));
+                this.timerConversion(maxBookingTimer - (timeDifference /1000));
+                // $("#booking_timer").html(this.timerConversion(maxBookingTimer - (timeDifference /1000)));
             }
         }, 1000);
+        // console.log(intervalTimer);
     }
 
     // stopTimer(intervalTimer) {
-    //     console.log("stopTimer");
-    //     clearInterval(intervalTimer);
-    // }
+    //     if (intervalTimer) {
 
+    //         console.log("Stop Timer")
+    //         clearInterval(intervalTimer);
+    //     }
+    // }
 }
