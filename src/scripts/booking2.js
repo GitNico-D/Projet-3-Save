@@ -106,10 +106,6 @@ class Booking {
             $("#booking_alert_title").html("Réservation effectuée ! ");
             $("#booking_alert_text").html("");
             $("#booking_alert_info").html("Cette réservation est valable pour une durée de <span>20 minutes</span>, passé ce délai elle sera <span>automatiquement annulé</span>.")
-            // setTimeout(() => {
-            //     // $("#booking_alert").toggleClass("hide", true);
-            // }, 5000);
-            // this.bookingTimeLeft();
             this.resetDisplayBooking();
             this.map.resetMapView();
             this.displayBookingSummary();
@@ -142,9 +138,7 @@ class Booking {
     }
 
     bookingInProgress() {
-        console.log("bookingInProgress")   
-        // this.displayBookingSummary();    
-        // $("#booking_access_button").click( () => {   
+        console.log("bookingInProgress");  
             if (sessionStorage.stationBookingName === sessionStorage.currentClickedStationName) {
                 console.log("Stations identiques !")
                 $("#booking_alert").toggleClass("hide", false).removeClass("alert-danger").removeClass("alert-warning").removeClass("alert-success").addClass("alert-info");
@@ -158,7 +152,6 @@ class Booking {
                 $("#alert_return_map_button").toggleClass("hide", false).click(() => {
                     $("#booking_alert").toggleClass("hide", true);
                 });
-                // $("#user_booking_summary").toggleClass("hide", false); 
                 this.displayBookingSummary();
             } else { 
                 console.log("Station différentes !")
@@ -182,27 +175,18 @@ class Booking {
                     this.cancelBooking();
                     setTimeout(() => {
                         $("#booking_alert").toggleClass("hide", true).removeClass("alert-warning").removeClass("alert-danger");
-                        // $("#user_booking_summary").toggleClass("hide", true);
-                        // this.existingUser();
-                        // this.displayBookingForm();
                     }, 5000);
-                    // $("#keep_booking_button").toggleClass("hide", true);
-                    // $("#new_booking_button").toggleClass("hide", true);
                     this.resetDisplayBookingAlertButton();
                 });
                 $("#alert_return_map_button").click(() => {
-                    // console.log("Click alert return map button");
                     if (sessionStorage.startBookingTime) {
                         this.displayBookingSummary();
                     } else {
                         $("#user_booking_summary").toggleClass("hide", true);
-                        // $("#booking_alert").toggleClass("hide", true);
-                        // $("user_booking_form").toggleClass("hide", true);
                         this.resetDisplayBooking();
                     }
                 });
-            }                    
-        // });
+            }   
     }
 
     resetDisplayBooking() {
@@ -243,14 +227,8 @@ class Booking {
         $("#user_booking_summary").toggleClass("hide", true);
         $(".booking_link").removeClass("text-success").addClass("text-danger").html("Aucune Réservation");
         $("#alert_return_map_button").toggleClass("hide", false).click(() => {
-            // $("#booking_alert").toggleClass("hide", true);
             this.resetDisplayBooking();
         });
-        
-        // if (intervalTimer) {
-            // clearInterval(intervalTimer);
-            // this.stopTimer(intervalTimer);
-        // }
     }
 
     timerConversion(timeLeft) {
