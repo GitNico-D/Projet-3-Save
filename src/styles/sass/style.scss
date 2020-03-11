@@ -1,5 +1,7 @@
 @import "variables";
 
+// #region [rgba (0 ,255, 30, 0.1)]
+// FONTFACE
 @font-face
 {
     font-family: 'roboto_black';
@@ -38,6 +40,7 @@
     font-weight: bold;
     font-style: normal;
 }
+//#endregion
 
 body 
 {
@@ -105,16 +108,16 @@ a:hover
 
 /*---- DÉBUT SLIDER -----*/
 
-.text_content_slide
-{
-    left: 50%;
-    top: 50%;
-    font-weight: bold;
-    transform: translate(-50%,-50%);
-    position: absolute;
-    font-size: 1.5em;
-    color: $darkgray;
-}
+// .text_content_slide
+// {
+//     left: 50%;
+//     top: 50%;
+//     font-weight: bold;
+//     transform: translate(-50%,-50%);
+//     position: absolute;
+//     font-size: 1.5em;
+//     color: $darkgray;
+// }
 
 .fa-angle-double-left, .fa-angle-double-right
 {
@@ -153,9 +156,15 @@ a:hover
     display: none;
     width: 90%;
     margin: auto;
-    height: 300px;
+    height: 400px;
     border: 5px double #D6D6D6;
-    background-color: white;
+    // background-color: white;
+}
+
+.slide_one_img
+{
+    
+    width: 100%;
 }
 
 .slide_one_title, .slide_two_title, .slide_three_title, .slide_four_title
@@ -169,7 +178,8 @@ a:hover
 
 .slide_one_title
 {   
-    margin: 0;
+    margin: auto;
+    width: 80%;
 }
 
 .slide_one_content, .slide_two_content, .slide_three_content, .slide_four_content
@@ -242,15 +252,20 @@ a:hover
 
 /*----- DÉBUT MAP -----*/
 
+.map_section
+{
+    max-width: 90%;
+}
+
 #map_section_title
 {
     padding-top: 85px;
 }
 
-#booking_access_button
-{
-    margin-top: 15px;
-}
+// #booking_access_button
+// {
+//     margin-top: 15px;
+// }
 
 #return_to_map_button
 {
@@ -295,12 +310,6 @@ a:hover
     font-weight: bold;
 }
 
-
-// #infos_station_description_status_green, #infos_station_description_status_red, #infos_station_description_status_orange
-// {
-//     display: none;
-// }
-
 .available_bikes_stand, .available_bikes, .total_station_bikes
 {
     font-weight: bold;
@@ -340,8 +349,8 @@ a:hover
     margin-top: 8px;
 }
 
-/*----- DÉBUT POPUP MARKER ----*/
-
+//#region [rgba (224, 55, 48, 0.1)]
+/*----- POPUP MARKER ----*/
 .popup_infos_station
 {
     text-align: center;
@@ -367,7 +376,13 @@ a:hover
     margin: auto;
     margin-top: 5px;
 }
-/*----- FIN POPUP MARKER ----*/
+//#endregion
+
+.alert_position, .booking_alert_position
+{
+    margin: auto;
+    padding-bottom: 10px;
+}
 
 
 #alert span
@@ -381,8 +396,6 @@ a:hover
 }
 
 /*----- DÉBUT INFOS STATIONS ----*/
-
-
 
 #infos_bike_station
 {
@@ -398,6 +411,13 @@ a:hover
     z-index: 405;
 }
 
+.user_booking_form
+{
+    max-width: 90%;
+    margin: auto;
+    margin-top: 15px;
+}
+
 #user_summary_details
 {    
     // display: none;
@@ -409,17 +429,10 @@ a:hover
     font-weight: bold;
 }
 
-// .infos_station_introduction
-// {    
-//     font-weight: bold;
-//     font-size: 1.2em;
-// }
-
 .infos_station_description
 {
     text-align: justify;
 }
-
 
 .form_description
 {
@@ -453,6 +466,12 @@ a:hover
     margin-top: 20px;
 }
 
+.button_form_position
+{
+    margin: auto;
+    margin-bottom: 10px;
+}
+
 #booking_station_name, #current_clicked_station_name, #booking_station_name_storage, #booking_station_name_summary 
 {
     font-weight: bold;
@@ -465,27 +484,40 @@ a:hover
      margin-bottom: 10px;
 }
 
-
 #booking_station_name, #reservation_status_timer
 {
     font-weight: bold;
 }
 
-
 /*----- FIN BOOKING FORM ----*/
 
 /*----- DÉBUT CANVAS -----*/
+
+// #signature_canvas
+// {
+//     height: 200px;
+//     width: 30%;
+// }
+
+.canvas_position
+{
+    margin: auto;
+}
+
 #signature_canvas
 {
     border: 1px solid blue;
     display: none;
 }
 
-// #confirm_canvas, #clear_canvas
-// {
-//     display: none;
-// }
+.confirm_canvas_button, .cancel_canvas_button
+{
+    // margin-top: 10px;
+    margin-left: 10px;
+}
 
+//#region [rgba (255, 159, 53, 0.1)]
+//FOOTER
 .footer
 {
     height: 100px;
@@ -503,3 +535,4 @@ a:hover
     left: 50%;
     bottom: 0;
 }
+//#endregion
