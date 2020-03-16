@@ -80,7 +80,7 @@ class Station {
       $("#booking_access_button").toggleClass("hide", false);
       $("#booking_button_description").toggleClass("hide", false);
       $("#button_split").toggleClass("hide", false);
-      this.booking.userBookingStorage(stationData);
+      this.booking.stationInfosStorage(stationData);
     }
     if (stationData.status === "CLOSED") {
       $("#station_status")
