@@ -44,6 +44,7 @@ class Canvas {
 
     mouseUp() {
         this.startSignature = false;
+        console.log(this.signaturePoints);
         if (this.signaturePoints > 100) {
             this.signatureValidation();
         } else {
@@ -74,6 +75,7 @@ class Canvas {
     touchEnd() {
         event.preventDefault();
         this.startSignature = false;
+        console.log(this.signaturePoints);
         if (this.signaturePoints > 100) {
             this.signatureValidation();
         } else {
