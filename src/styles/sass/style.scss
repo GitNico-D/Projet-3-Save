@@ -255,6 +255,7 @@ a:hover
 .map_section
 {
     max-width: 90%;
+    max-height: 600px;
 }
 
 #map_section_title
@@ -409,6 +410,7 @@ a:hover
 {    
     text-align: center;
     z-index: 405;
+    max-: ;
 }
 
 .user_booking_form
@@ -536,3 +538,14 @@ a:hover
     bottom: 0;
 }
 //#endregion
+
+#user_booking_summary
+{
+    margin-top: 15px;
+}
+
+#booking_description span
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
