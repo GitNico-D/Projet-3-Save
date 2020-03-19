@@ -7,6 +7,11 @@ class Canvas {
         this.context.strokeStyle = "black";
         this.startSignature = false;
         this.signaturePoints = 0;
+        // this.width = this.canvasId.width;
+        // this.height = this.cancasId.height;
+        // console.log(this.canvasId.width);
+        // this.canvasId.width;
+        this.canvasDimensions();
         $("#signature_canvas").mousedown(this.mouseDown.bind(this));
         $("#signature_canvas").mousemove(this.mouseMove.bind(this));
         $("#signature_canvas").mouseup(this.mouseUp.bind(this));
@@ -14,10 +19,25 @@ class Canvas {
         $("#signature_canvas").on("touchmove", this.touchMove.bind(this));
         $("#signature_canvas").on("touchend", this.touchEnd.bind(this));
         $("#clear_canvas").click(this.clearCanvas.bind(this));
+        $("#confirm_canvas").click(this.clearCanvas.bind(this));
+    }
+    // }
+
+    canvasDimensions() {
+        console.log(window.innerWidth);
+        console.log(this.canvasId.width);
+        if (window.innerWidth < 480) {
+            this.canvasId.width = 250;
+            console.log(this.canvasId.width);
+        //     this.canvasId.height = 200;
+        } else {
+            this.canvasId.width = 500;
+            console.log(this.canvasId.width);
+        //     this.canvasId.height = 400;
+        }
     }
 
-    signatureValidation() {
-        console.log("Show Confirmation or Cancelation");
+    signatureValidation() {;
         $("#confirm_canvas").toggleClass("hide", false);
         $("#clear_canvas").toggleClass("hide", false);
         $("#clear_canvas").click(function () {
@@ -44,12 +64,10 @@ class Canvas {
 
     mouseUp() {
         this.startSignature = false;
-        console.log(this.signaturePoints);
         if (this.signaturePoints > 100) {
             this.signatureValidation();
         } else {
             $("#alert").removeClass("alert-info").addClass("alert-warning").html("Désolé mais votre <span>signature</span> est trop <span>courte</span>, merci de recommencer.");
-            // this.clearCanvas();
         }
     }
 
@@ -75,12 +93,10 @@ class Canvas {
     touchEnd() {
         event.preventDefault();
         this.startSignature = false;
-        console.log(this.signaturePoints);
         if (this.signaturePoints > 100) {
             this.signatureValidation();
         } else {
             $("#alert").removeClass("alert-info").addClass("alert-warning").html("Désolé mais votre <span>signature</span> est trop <span>courte</span>, merci de recommencer.");
-            // this.clearCanvas();
         }
     }
 
