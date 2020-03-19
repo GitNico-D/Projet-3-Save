@@ -1,48 +1,69 @@
-let maxBookingTimer = 16;
+ let maxBookingTimer = 31;
 
 class Booking {
-    constructor(map, canvas) {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.intervalTimer = null;
+        this.stationBookingName;
+        this.stationAvailableBikesStands;
+        this.stationAvailableBikes;
+        this.startBookingTime;
         if (sessionStorage.startBookingTime) {  
             console.log("Booking YES") 
-            sessionStorage.removeItem("currentClickedStationName");    
-            $("#booking_link").removeClass("text-danger").addClass("text-success").html("Votre Réservation"); 
-            this.displayBookingSummary();   
+            sessionStorage.removeItem("currentClickedStationName");  
+            $("#booking_link").removeClass("text-danger").addClass("text-success").html("Votre Réservation");
+            $("#booking_description").html("<span>Réservation en cours</span>").addClass("text-success");
+            $("#booking_in_progress_button").toggleClass("hide", false);
+            this.displayBookingSummary();
+            this.bookingTimeLeft();
         } else {
             console.log("Booking NO")
-            $("#booking_link").removeClass("text-success").addClass("text-danger").html("Aucune Réservation");  
-            this.existingUser();
-        }    
-        this.canvas = canvas;
-        this.map = map;
-        $("#cancel_booking").click(this.cancelBooking.bind(this));
+            $("#booking_link").removeClass("text-success").addClass("text-danger").html("Aucune Réservation");
+            // this.resetDisplayBooking();
+            $("#booking_access_button").click(() => {
+                this.displayBookingForm();
+            });
+        }
+        this.existingUser();
+        $("#booking_access_button").click(this.displayBookingForm.bind(this));
+        $("#booking_in_progress_button").click(this.bookingInProgress.bind(this)); 
+        $("#cancel_booking").click(() => {
+            clearInterval(this.intervalTimer);
+            this.cancelBooking();
+        });
         $("#booking_canvas_access_button").click(this.formVerification.bind(this));
-        $("#booking_access_button").click(this.existingUser.bind(this));
-        
-        this.intervalTimer;
+        $("#confirm_canvas").click(() => {
+            this.userBookingStorage();
+            this.displayBookingSummary();
+            // this.resetDisplayBooking();
+        });
+        $("#confirm_canvas").click(this.bookingTimeLeft.bind(this));
+        // $("#keep_booking_button").click(this.displayBookingSummary.bind(this));
+        $("#keep_booking_button").click(() => {
+            this.displayBookingSummary();
+            this.resetDisplayBooking();
+        });
+        $("#booking_return_to_map_button").click(this.resetDisplayBooking.bind(this));
+        $("#alert_return_map_button").click(() => {
+            this.resetDisplayBooking();
+            // this.displayBookingSummary();
+        });
+        $("#new_booking_button").click(() => {
+            clearInterval(this.intervalTimer);
+            this.cancelBooking();
+        });
     }
 
     displayBookingForm() {
-            console.log("displayBookingForm");
-            $("#booking_access_button").attr("disabled", "disabled");
-            // $("#alert").toggleClass("hide", true);
-            $("#booking_canvas_access_button").toggleClass("hide", false);
-            $("#booking_return_to_map_button").toggleClass("hide", false);
-            $("#booking_alert").toggleClass("hide", false).removeClass("alert-danger").removeClass("alert-warning").addClass("alert-info");
-            $("#booking_alert_title").html("Enregistrement d'une réservation !");
-            $("#booking_alert_text").html("");
-            $("#booking_alert_info").html("Pour effectuer une réservation, merci de renseigner votre <span>Nom</span> et <span>Prénom</span> dans le formulaire ci-dessous.");
-            $("#user_booking_form").toggleClass("hide", false);
-            $("#alert_return_map_button").click(() => {
-                $("#booking_access_button").removeAttr("disabled");
-                $("#booking_alert").toggleClass("hide", true);
-                $("#user_booking_form").toggleClass("hide", true);
-            });
-            $("#booking_return_to_map_button").click(() => {
-                $("#booking_alert").toggleClass("hide", true);
-                $("#user_booking_form").toggleClass("hide", true);
-                $("#booking_access_button").removeAttr("disabled");
-                $("#alert").fadeOut("slow").toggleClass("hide", true);
-            });
+        console.log("displayBookingForm");
+        $("#booking_access_button").attr("disabled", "disabled");
+        $("#booking_canvas_access_button").toggleClass("hide", false);
+        $("#booking_return_to_map_button").toggleClass("hide", false);
+        $("#booking_alert").toggleClass("hide", false).removeClass("alert-danger").removeClass("alert-warning").addClass("alert-info");
+        $("#booking_alert_title").html("Enregistrement d'une réservation !");
+        $("#booking_alert_text").html("");
+        $("#booking_alert_info").html("Pour effectuer une réservation, merci de renseigner votre <span>Nom</span> et <span>Prénom</span> dans le formulaire ci-dessous.");
+        $("#user_booking_form").toggleClass("hide", false);
     }
 
     displayBookingSummary() {
@@ -52,9 +73,8 @@ class Booking {
         $("#user_booking_summary_timer").html("Temps restants : <span id=booking_timer></span>");
         $("#booking_station_name_summary").text(sessionStorage.stationBookingName);
         $("#booking_access_button").removeAttr("disabled");
-        $("#booking_link").toggleClass("hide", false).removeClass("text-danger").addClass("text-success").html("Votre Réservation");     
-        this.bookingTimeLeft();
-        // this.timerConversion();
+        // $("#booking_alert").toggleClass("hide", true);
+        $("#booking_link").toggleClass("hide", false).removeClass("text-danger").addClass("text-success").html("Votre Réservation");
     }
 
     formVerification() {
@@ -83,68 +103,56 @@ class Booking {
         });
     }
 
-    userBookingStorage(stationData) {
+    stationInfos(stationData) {
+        this.stationBookingName = stationData.name;   
+        this.stationAvailableBikesStands = stationData.totalStands.availabilities.stands;
+        this.stationAvailableBikes = stationData.totalStands.availabilities.bikes;
+    }
+
+    userBookingStorage() {
         console.log("userBookingStorage");
-        $("#confirm_canvas").click((event) => {
-            console.log("confirmCanvas")
-            event.preventDefault();
-            let userIdentity = {
-                userFirstName: $("#form_first_name").val(),
-                userLastName: $("#form_last_name").val()
-                };
-            localStorage.setItem("UserIdentity", JSON.stringify(userIdentity));
-            sessionStorage.setItem("stationBookingName", stationData.name);
-            let startBookingTime = new Date();
-            sessionStorage.setItem("startBookingTime", startBookingTime);
-            sessionStorage.setItem("stationAvailableBikesStands", stationData.totalStands.availabilities.stands);
-            sessionStorage.setItem("stationAvailableBikes", stationData.totalStands.availabilities.bikes);
-            sessionStorage.stationAvailableBikes --;
-            sessionStorage.stationAvailableBikesStands ++;
-            $("#infos_station_available_bikes").text(sessionStorage.stationAvailableBikes); 
-            $("#infos_station_available_bikes_stand").text(sessionStorage.stationAvailableBikesStands);
-            $("#booking_alert").toggleClass("hide", false).removeClass("alert-danger").removeClass("alert-info").addClass("alert-success");
-            $("#booking_alert_title").html("Réservation effectuée ! ");
-            $("#booking_alert_text").html("");
-            $("#booking_alert_info").html("Cette réservation est valable pour une durée de <span>20 minutes</span>, passé ce délai elle sera <span>automatiquement annulé</span>.")
-            // setTimeout(() => {
-            //     // $("#booking_alert").toggleClass("hide", true);
-            // }, 5000);
-            // this.bookingTimeLeft();
-            this.resetDisplayBooking();
-            this.map.resetMapView();
-            this.displayBookingSummary();
-        });
+        event.preventDefault();
+        let userIdentity = {
+            userFirstName: $("#form_first_name").val(),
+            userLastName: $("#form_last_name").val()
+            };
+        localStorage.setItem("UserIdentity", JSON.stringify(userIdentity));
+        this.startBookingTime = new Date();
+        sessionStorage.setItem("startBookingTime", this.startBookingTime);
+        sessionStorage.setItem("stationBookingName", this.stationBookingName);
+        sessionStorage.setItem("stationAvailableBikesStands", this.stationAvailableBikesStands);
+        sessionStorage.setItem("stationAvailableBikes", this.stationAvailableBikes);
+        sessionStorage.stationAvailableBikesStands ++;
+        sessionStorage.stationAvailableBikes --;
+        console.log("userBookingStorage => ", sessionStorage.stationAvailableBikesStands, sessionStorage.stationAvailableBikes);
+        $("#infos_station_available_bikes_stand").text(sessionStorage.stationAvailableBikesStands);
+        $("#infos_station_available_bikes").text(sessionStorage.stationAvailableBikes); 
+        $("#booking_alert").toggleClass("hide", false).removeClass("alert-danger").removeClass("alert-info").addClass("alert-success");
+        $("#booking_alert_title").html("Réservation effectuée ! ");
+        $("#booking_alert_text").html("");
+        $("#booking_alert_info").html("Cette réservation est valable pour une durée de <span>20 minutes</span>, passé ce délai elle sera <span>automatiquement annulé</span>.")
+        $("#user_booking_form").toggleClass("hide", true);
+        setTimeout(() => {
+            $("#booking_alert").toggleClass("hide", true);
+        }, 5000);
+        $("#booking_description").html("<span>Réservation en cours</span>").addClass("text-success");
+        $("#booking_in_progress_button").toggleClass("hide", false).removeClass("btn-primary").addClass("btn-info");
     }
 
     existingUser() {
-        console.log("existingUser");
         if (localStorage.getItem("UserIdentity")) {
-            console.log("User Storage YES")
+            console.log("existingUser => User Storage YES")
             let userIdentity = JSON.parse(localStorage.getItem("UserIdentity"));
             $("#form_first_name").val(userIdentity.userFirstName).css("background-color", "rgba(0, 255, 84, 0.2)");
             $("#form_last_name").val(userIdentity.userLastName).css("background-color", "rgba(0, 255, 84, 0.2)");
-            $("#booking_access_button").click( () => {
-                if (sessionStorage.startBookingTime) {
-                    console.log("User ET Booking click 'Réserver'")
-                    this.bookingInProgress();
-                } else {
-                    console.log("User ET NON Booking click 'Réserver'");
-                    this.displayBookingForm();
-                }
-            });
         } else {
-            console.log("User Storage NO");
+            console.log("existingUser => User Storage NO");
             $("#booking_link").toggleClass("hide", true).removeClass("text-success").removeClass("text-danger");
-            $("#booking_access_button").click( () => {
-                this.displayBookingForm();
-            });
         }
     }
-
+   
     bookingInProgress() {
-        console.log("bookingInProgress")   
-        // this.displayBookingSummary();    
-        // $("#booking_access_button").click( () => {   
+        console.log("bookingInProgress"); 
             if (sessionStorage.stationBookingName === sessionStorage.currentClickedStationName) {
                 console.log("Stations identiques !")
                 $("#booking_alert").toggleClass("hide", false).removeClass("alert-danger").removeClass("alert-warning").removeClass("alert-success").addClass("alert-info");
@@ -152,16 +160,13 @@ class Booking {
                 $("#booking_alert_text").html("");
                 $("#booking_alert_info").html("");
                 $("#keep_booking_button").toggleClass("hide", true);
-                $("#new_booking_button").toggleClass("hide", true);
-                // this.resetDisplayBooking();                
+                $("#new_booking_button").toggleClass("hide", true);                
                 $("user_booking_form").toggleClass("hide", false);
-                $("#alert_return_map_button").toggleClass("hide", false).click(() => {
-                    $("#booking_alert").toggleClass("hide", true);
-                });
-                // $("#user_booking_summary").toggleClass("hide", false); 
-                this.displayBookingSummary();
+                $("#alert_return_map_button").toggleClass("hide", false);
+                $("#user_booking_summary").toggleClass("hide", false);
+            // }
             } else { 
-                console.log("Station différentes !")
+                console.log("bookingInProgress NO")
                 $("#booking_alert").toggleClass("hide", false).removeClass("alert-danger").removeClass("alert-info").removeClass("alert-success").addClass("alert-warning");
                 $("#booking_alert_title").html("Réservation en cours !");
                 $("#booking_alert_text").html("Vous avez déjà un vélo réservé sur la station <span id=booking_station_name_storage></span>.");
@@ -172,128 +177,68 @@ class Booking {
                 $("#new_booking_button").toggleClass("hide", false);
                 $("#alert_return_map_button").toggleClass("hide", false);
                 $("#user_booking_summary").toggleClass("hide", true);
-                $("#keep_booking_button").click(() => {
-                    this.map.resetMapView();
-                    this.displayBookingSummary();
-                    $("#booking_alert").toggleClass("hide", true).removeClass("alert-warning");
-                });
-                $("#new_booking_button").click(() => {
-                    $("#booking_access_button").removeAttr("disabled");
-                    this.cancelBooking();
-                    setTimeout(() => {
-                        $("#booking_alert").toggleClass("hide", true).removeClass("alert-warning").removeClass("alert-danger");
-                        // $("#user_booking_summary").toggleClass("hide", true);
-                        // this.existingUser();
-                        // this.displayBookingForm();
-                    }, 5000);
-                    // $("#keep_booking_button").toggleClass("hide", true);
-                    // $("#new_booking_button").toggleClass("hide", true);
-                    this.resetDisplayBookingAlertButton();
-                });
-                $("#alert_return_map_button").click(() => {
-                    // console.log("Click alert return map button");
-                    if (sessionStorage.startBookingTime) {
-                        this.displayBookingSummary();
-                    } else {
-                        $("#user_booking_summary").toggleClass("hide", true);
-                        // $("#booking_alert").toggleClass("hide", true);
-                        // $("user_booking_form").toggleClass("hide", true);
-                        this.resetDisplayBooking();
-                    }
-                });
-            }                    
-        // });
+            } 
     }
 
     resetDisplayBooking() {
+        console.log("resetDisplayBooking");
         $("#booking_alert").toggleClass("hide", true);
         $("#user_booking_form").toggleClass("hide", true);
         $("#booking_canvas_access_button").toggleClass("hide", true);
         $("#booking_return_to_map_button").toggleClass("hide", true);
-        this.canvas.clearCanvas.bind(this);
+        $("#booking_access_button").removeAttr("disabled");
         $("#canvas").toggleClass("hide", true);
         $("#alert").toggleClass("hide", true);
-    }
-
-    resetDisplayBookingAlertButton() {
+        $("#alert_return_map_button").toggleClass("hide", true);
         $("#keep_booking_button").toggleClass("hide", true);
         $("#new_booking_button").toggleClass("hide", true);
-        $("#alert_return_map_button").toggleClass("hide", true);
+        
     }
 
     cancelBooking() {
         console.log("cancelBooking");
-        if (this.intervalTimer) {
-            clearInterval(this.intervalTimer);
-        }
         $("#user_booking_summary").toggleClass("hide", true);
-        $("#booking_alert").removeClass("alert-info").removeClass("alert-success").addClass("alert-danger").toggleClass("hide", false);
+        $("#booking_alert").removeClass("alert-info").addClass("alert-danger").toggleClass("hide", false);
         $("#booking_alert_title").html("Votre Réservation a été annulé !");
         $("#booking_alert_info").html("Vous pouvez refaire une réservation en sélectionnant une station !");
         $("#booking_alert_text").html("");
-        let availableBikesStandsNow = JSON.parse(sessionStorage.getItem("stationAvailableBikesStands"));
-        let availableBikesNow = JSON.parse(sessionStorage.getItem("stationAvailableBikes"));
-        availableBikesStandsNow --;        
-        availableBikesNow ++;
-        $("#infos_station_available_bikes_stand").text(availableBikesStandsNow);
-        $("#infos_station_available_bikes").text(availableBikesNow); 
+        sessionStorage.stationAvailableBikesStands --;    
+        sessionStorage.stationAvailableBikes ++;
+        $("#infos_station_available_bikes_stand").text(sessionStorage.stationAvailableBikesStands);
+        $("#infos_station_available_bikes").text(sessionStorage.stationAvailableBikes); 
         sessionStorage.clear();
-        this.resetDisplayBookingAlertButton();
-        this.canvas.clearCanvas();
+        $("#alert_return_map_button").toggleClass("hide", true);
+        $("#keep_booking_button").toggleClass("hide", true);
+        $("#new_booking_button").toggleClass("hide", true);
         $("#user_booking_summary").toggleClass("hide", true);
         $(".booking_link").removeClass("text-success").addClass("text-danger").html("Aucune Réservation");
-        $("#alert_return_map_button").toggleClass("hide", false).click(() => {
-            // $("#booking_alert").toggleClass("hide", true);
-            this.resetDisplayBooking();
-        });
-        
-        // if (intervalTimer) {
-            // clearInterval(intervalTimer);
-            // this.stopTimer(intervalTimer);
-        // }
+        $("#alert_return_map_button").toggleClass("hide", false);
+        $("#booking_access_button").toggleClass("hide", false);
+        $("#booking_in_progress_button").toggleClass("hide", true);
+        $("#booking_description").html("");
     }
 
     timerConversion(timeLeft) {
-        console.log("timerConversion");
         let minutes = Math.floor(timeLeft / 60);
         let seconds = Math.floor(timeLeft - (minutes * 60));
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-        $("#booking_timer").html(`<span> ${minutes} : ${seconds} </span>`);
-        // return `<span> ${minutes} : ${seconds} </span>`;
+        return `<span> ${minutes} : ${seconds} </span>`;
     }
 
     bookingTimeLeft() {
         console.log("bookingTimeLeft");
-        // let maxBookingTimer = 31000;
         let startBookingTime = new Date(sessionStorage.getItem("startBookingTime"));
         this.intervalTimer = setInterval( e => {
-        // let intervalTimer = setInterval( e => {
             let dateNow = new Date();
             let timeDifference = (dateNow - startBookingTime);
             if (timeDifference > (maxBookingTimer * 1000)) {
-                // this.cancelBooking(); 
-                // console.log(startBookingTime);
-                // console.log(timeDifference, (maxBookingTimer * 1000));
-                // timeDifference = maxBookingTimer * 1000;
-                this.cancelBooking(); 
                 clearInterval(this.intervalTimer);
+                this.cancelBooking(); 
             } else {
-                // console.log(intervalTimer);
-                // console.log(startBookingTime);
-                console.log(timeDifference, (maxBookingTimer * 1000));
-                this.timerConversion(maxBookingTimer - (timeDifference /1000));
-                // $("#booking_timer").html(this.timerConversion(maxBookingTimer - (timeDifference /1000)));
+                // console.log(timeDifference, (maxBookingTimer * 1000));
+                $("#booking_timer").html(this.timerConversion(maxBookingTimer - (timeDifference /1000)))
             }
-        }, 1000);
-        // console.log(intervalTimer);
+        }, 1000);        
     }
-
-    // stopTimer(intervalTimer) {
-    //     if (intervalTimer) {
-
-    //         console.log("Stop Timer")
-    //         clearInterval(intervalTimer);
-    //     }
-    // }
 }
