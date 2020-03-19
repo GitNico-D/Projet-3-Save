@@ -11,7 +11,8 @@ class Map {
     $("#return_to_map_button").click(this.resetMapView.bind(this));
     $("#alert_return_map_button").click(this.resetMapView.bind(this));
     $("#booking_return_to_map_button").click(this.resetMapView.bind(this));
-    // $("#summary_return_to_map_button").click(this.resetMapView.bind(this));
+    $("#confirm_canvas").click(this.resetMapView.bind(this));
+    $("#keep_booking_button").click(this.resetMapView.bind(this));
     this.bikeStationMap.on("click", this.closedInfosStation.bind(this));
   }
 
