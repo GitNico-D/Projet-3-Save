@@ -78,9 +78,12 @@ class Station {
         .removeClass("table-danger")
         .addClass("table-success");
       $("#booking_access_button").toggleClass("hide", false);
+      if (sessionStorage.startBookingTime) {
+        $("#booking_access_button").toggleClass("hide", true);
+      }
       $("#booking_button_description").toggleClass("hide", false);
       $("#button_split").toggleClass("hide", false);
-      this.booking.stationInfosStorage(stationData);
+      this.booking.stationInfos(stationData);
     }
     if (stationData.status === "CLOSED") {
       $("#station_status")
