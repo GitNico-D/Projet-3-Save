@@ -26,95 +26,96 @@
 </head>
 
 <body>
-    <header class="row">
+    <header>
         <nav id="title" class="navbar fixed-top navbar-expand-xl navbar-light bg-white">
-            <a href="#"><img src="../assets/img/logo_4.png" class="img-fluid float-left img_resize" /></a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#slider">Comment ça marche ?</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#map_section_title">Carte des stations</a>
-                </li>
-                <li id="booking_summary_navbar" class="nav-item">
-                    <a id="booking_link" class="nav-link booking_link hide" href="#user_booking_summary"></a>
-                </li>
-            </ul>
+            <div class="container">
+                <a href="#"><img src="../assets/img/logo_4.png" class="img-fluid float-left img_resize" /></a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#slider">Comment ça marche ?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#map_section_title">Carte des stations</a>
+                    </li>
+                    <li id="booking_summary_navbar" class="nav-item">
+                        <a id="booking_link" class="nav-link booking_link hide" href="#user_booking_summary"></a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
-    <section id="introduction" class="container-fluid">
-        <div class="row">
-            <h1 class="col main-title text-center">Bienvenue sur VéloLyon'Lib !</h1>
-        </div>
-        <div class="row">
-            <p class="col text-center">Sélectionnez une station, réservez un vélo, aller le récupérer et partez à la
-                découverte de la ville de Lyon !</p>
+    <section class="jumbotron text-center jumbotron-background">
+        <div class="container jumbotron-container">
+            <h1>Bienvenue sur VéloLyon'Lib !</h1>        
+            <p class="text-muted jumbotron-content">Notre réseau de location de vélo en libre service, vous permettra de parcourir la ville de Lyon simplement.
+                Comment faire ? Rien de plus simple : sélectionnez une station, réservez un vélo, aller le récupérer et c'est parti !</p>
+            <a href="#slider"><button class="btn btn-lg btn-info">Découvrir le service</button></a>
         </div>
     </section>
-    <section id="slider" class="container-fluid slider">
+    <section id="slider" class="text-center slider">
         <!-- DÉBUT SECTION BANNIÈRE ET SLIDER -->
-        <h2 class="text-center title_section">Comment ça marche ?</h2>
-        <div class="row slider">
-            <div class="col-12">
-                <div id="slide_one" class="slide_img active_slide">
-                    <!-- <img src="../assets/img/test-slide-1.png" class="slide_one_img"> -->
-                    <div class="text-center slide_one_title">
-                        <p>La première chose à faire est de sélectionné une station sur la carte ci-dessous !</p>
-                        <p>Pour vous rapprochez de la station recherchée, zoomer
-                            avec la molette de votre souris ou cliquez sur les marqueurs.
-                        </p>
-                    </div>
-                    <div class="slide_one_content">
-                        <p class="slide_one_marker_title">La couleur des marqueurs vous donne une indication visuelles
-                            de leur status :</p>
-                        <ul class="slide_one_marker_description">
-                            <li>En <span class="text-success">VERT</span>, la station est <span>Ouverte</span> et des
-                                vélos sont disponibles à la location. Le retour de vélo est possible également.</li>
-                            <li>En <span class="text-warning">ORANGE</span>, la station est <span>Ouverte</span> mais
-                                aucuns vélos n'est disponible pour le moment. Seul le retour de vélo est possible.</li>
-                            <li>En <span class="text-danger">ROUGE</span>, la station est <span>Fermé</span>.</li>
-                        </ul>
-                    </div>
+        <div class="container-fluid">
+            <h2 class="slider-title">Comment ça marche ?</h2>
+            <!-- <div class="col"> -->
+            <div id="slide_one" class="slider-slide_img slide-text_color slide_one slider-active_slide">
+                <img src="../assets/img/slide-one-1.png" class="slide_one-img">
+                <div class="text-center slide_one-title">
+                    <p>La première chose à faire est de sélectionné une station sur la carte ci-dessous !</p>
+                    <p>Pour vous rapprochez de la station recherchée, zoomer
+                        avec la molette de votre souris ou cliquez sur les marqueurs.
+                    </p>
                 </div>
-                <div id="slide_two" class="slide_img">
-                    <div class="text-center slide_two_title">
-                        <p>Si des vélos sont disponibles, cliquez sur le bouton "Réserver un vélo"</p>
-                        <p>Renseignez ensuite votre <span>Nom</span> et <span>Prénom</span> dans le formulaire</p>
-                    </div>
-                    <div class="text-center slide_two_content">
-                        "Illustration en cours"
-                    </div>
-                </div>
-                <div id="slide_three" class="slide_img ">
-                    <div class="text-center slide_three_title">
-                        <p>Une fois le formulaire validé, un signature vous sera demandé pour finaliser la réservation.
-                        </p>
-                        <p>Sur PC ou Mac, aposer votre signature en la réproduisant à l'aide de votre souris dans
-                            l'encadré. Sur mobile avec votre doigt ou un stylet.</p>
-                    </div>
-                    <div class="text-center slide_three_content">
-                        "Illustration en cours"
-                    </div>
-                </div>
-                <div id="slide_four" class="slide_img  ">
-                    <div class="text-center slide_four_title">
-                        <p>Lorsque votre signature est confirmée, la réservation de votre vélo est effectuée.</p>
-                    </div>
-                    <div class="text-center slide_four_content">
-                        <p> <span class="text-warning">A savoir !</span>
-                            <p>Cette réservation sera valable pour une durée de 20 minutes. Passé ce délai la
-                                réservation sera automatiquement annulé.
-                                <br>Un résumé de votre réservation vous permettra de suivre l'évolution de ce compteur
-                            </p>
-                            <p> <span class="text-danger">Attention !</span></p>
-                            <p>Si vous fermez votre navigateur, la réservation sera également annulée.</p>
-                            "Illustration en cours"
-                    </div>
+                <div class="slide_one-content">
+                    <p class="slide_one_marker_title">La couleur des marqueurs vous donne une indication visuelles
+                        de leur status :</p>
+                    <ul class="slide_one_marker_description">
+                        <li>En <span class="text-success">VERT</span>, la station est <span>Ouverte</span> et des
+                            vélos sont disponibles à la location. Le retour de vélo est possible également.</li>
+                        <li>En <span class="text-warning">ORANGE</span>, la station est <span>Ouverte</span> mais
+                            aucuns vélos n'est disponible pour le moment. Seul le retour de vélo est possible.</li>
+                        <li>En <span class="text-danger">ROUGE</span>, la station est <span>Fermé</span>.</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="row justify-content-center">
-            <div id="slider_buttons">
+            <div id="slide_two" class="slider-slide_img slide-text_color">
+                <img src="../assets/img/slide-two-1.png" class="slide_one-img">
+                <div class="text-center slide_two_title">
+                    <p>Si des vélos sont disponibles, cliquez sur le bouton "Réserver un vélo"</p>
+                    <p>Renseignez ensuite votre <span>Nom</span> et <span>Prénom</span> dans le formulaire</p>
+                </div>
+                <div class="text-center slide_two_content">
+                    "Illustration en cours"
+                </div>
+            </div>
+            <div id="slide_three" class="slider-slide_img slide-text_color">
+                <div class="text-center slide_three_title">
+                    <p>Une fois le formulaire validé, un signature vous sera demandé pour finaliser la réservation.
+                    </p>
+                    <p>Sur PC ou Mac, aposer votre signature en la réproduisant à l'aide de votre souris dans
+                        l'encadré. Sur mobile avec votre doigt ou un stylet.</p>
+                </div>
+                <div class="text-center slide_three_content">
+                    "Illustration en cours"
+                </div>
+            </div>
+            <div id="slide_four" class="slider-slide_img slide-text_color">
+                <div class="text-center slide_four_title">
+                    <p>Lorsque votre signature est confirmée, la réservation de votre vélo est effectuée.</p>
+                </div>
+                <div class="text-center slide_four_content">
+                    <p> <span class="text-warning">A savoir !</span>
+                        <p>Cette réservation sera valable pour une durée de 20 minutes. Passé ce délai la
+                            réservation sera automatiquement annulé.
+                            <br>Un résumé de votre réservation vous permettra de suivre l'évolution de ce compteur
+                        </p>
+                        <p> <span class="text-danger">Attention !</span></p>
+                        <p>Si vous fermez votre navigateur, la réservation sera également annulée.</p>
+                        "Illustration en cours"
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="row justify-content-center"> -->
+            <div id="slider_buttons" class="col slider-buttons">
                 <button id="previous_slide" class="btn btn-primary btn-info"><span
                         class="fas fa-angle-double-left fa-lg"></span>Précédent</button>
                 <button id="play_pause_slider" class="btn btn-primary btn-info"><span id="changed_icon"
@@ -122,65 +123,70 @@
                 <button id="next_slide" class="btn btn-primary btn-info">Suivant<span
                         class="fas fa-angle-double-right fa-lg"></span></button>
             </div>
+            <!-- </div> -->
         </div>
     </section> <!-- FIN SECTION BANNIÈRE ET SLIDER -->
     <hr>
-    <div id="map_section_title" class="row"></div>
-    <h2 class="col-12 text-center title_section">Carte des stations</h2>
-    <section class="container-fluid map_section">
-        <!-- DÉBUT SECTION CARTE, INFORMATIONS STATIONS ET FORMULAIRE -->
-        <div class="row">
-            <div id="bike_station_map" class="col card">
-                <div class="row justify-content-center">
-                    <button id="return_to_map_button" class="btn btn-sm btn-info">Recentrer la carte</button>
-                </div>
-            </div>
-            <div id="bike_station_details" class="col-lg-3 col-md-12 card border-success hide">
-                <div class="card-body">
-                    <h5 class="card-header"><span id="infos_station_name"></span></h5>
-                    <h5 class="card-title">La station est <span id="station_status"></span></h5>
-                    <p id="infos_station_description_status" class="card-text"></p>
-                    <div id="table_infos_stations" class="table-responsive">
-                        <table class="table table-striped">
-                            <tr>
-                                <td class="total_station_bikes">Capacité de vélos maximum : </td>
-                                <td><span id="infos_station_total_station_bikes"></span></td>
-                            </tr>
-                            <tr id="available_bikes_stand">
-                                <td class="available_bikes_stand">Stand de retour vélos disponibles : </td>
-                                <td><span id="infos_station_available_bikes_stand"></span></td>
-                            </tr>
-                            <tr id="available_bikes">
-                                <td class="available_bikes">Vélos actuellement disponibles : </td>
-                                <td><span id="infos_station_available_bikes"></span></td>
-                            </tr>
-                        </table>
+    <!-- DÉBUT SECTION CARTE, INFORMATIONS STATIONS ET FORMULAIRE -->
+    <section id="map_section_title" class="map text-center">
+        <div class="container-fluid map-dimension">
+            <h2 class="col-12 map-title_section">Carte des stations</h2>
+            <div class="row">
+                <div id="bike_station_map" class="col card map-map_section">
+                    <div class="row justify-content-center">
+                        <button id="return_to_map_button" class="btn btn-sm btn-info map_button">Recentrer la carte</button>
                     </div>
-                    <p id="button_split" class="button_split"></p>
-                    <p id="booking_description" class="card-text text-center bold">
-                        <p><a href="#booking_alert"><button id="booking_access_button"
-                                    class="btn btn-md btn-primary btn-info text-center hide">Réserver un vélo</button></a>
-                            <a href="#booking_alert"><button id="booking_in_progress_button"
-                                class="btn btn-md btn-primary btn-info text-center hide">Plus d'infos</button></a>
+                </div>    
+                <div id="bike_station_details" class="col-lg-3 col-md-12 card border-success hide map-station_section">
+                    <div class="card-body">
+                        <h5 class="card-header"><span id="infos_station_name"></span></h5>
+                        <h5 class="card-title">La station est <span id="station_status"></span></h5>
+                        <p id="infos_station_description_status" class="card-text"></p>
+                        <div id="table_infos_stations" class="table-responsive">
+                            <table class="table table-striped">
+                                <tr>
+                                    <td class="total_station_bikes">Capacité de vélos maximum : </td>
+                                    <td><span id="infos_station_total_station_bikes"></span></td>
+                                </tr>
+                                <tr id="available_bikes_stand">
+                                    <td class="available_bikes_stand">Stand de retour vélos disponibles : </td>
+                                    <td><span id="infos_station_available_bikes_stand"></span></td>
+                                </tr>
+                                <tr id="available_bikes">
+                                    <td class="available_bikes">Vélos actuellement disponibles : </td>
+                                    <td><span id="infos_station_available_bikes"></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p id="button_split" class="button_split"></p>
+                        <p id="booking_description" class="card-text text-center bold">
+                            <p><a href="#booking_alert"><button id="booking_access_button"
+                                        class="btn btn-md btn-primary btn-info text-center hide">Réserver un vélo</button></a>
+                                <a href="#booking_alert"><button id="booking_in_progress_button"
+                                    class="btn btn-md btn-primary btn-info text-center hide">Plus d'infos</button></a>
+                            </p>
                         </p>
-                    </p>
+                    </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </section>
-    <section class="row">
-        <div id="booking_alert" class="col-8 col-md-10 alert hide booking_alert_position" role="alert">
-            <h3 id="booking_alert_title" class="alert-heading text-center"></h3>
-            <p id="booking_alert_text" class="col text-center"></p>
-            <hr>
-            <p id="booking_alert_info" class="text-center"></p>
-            <button class="btn btn-success btn-block hide" id="keep_booking_button"> Afficher ma réservation en
-                cours</button>
-            <button class="btn btn-warning btn-block hide" id="new_booking_button"> Effectuer une réservation sur cette
-                station !</button>
-            <a href="#map_section_title"><button class="btn btn-info btn-block hide" id="alert_return_map_button">
-                    Retour à la carte</button></a>
-        </div>
+        <!-- </div> -->
+    <section class="booking_alert-section">
+        <div class="container-fluid">
+           <div id="booking_alert" class="col-8 col-md-10 alert hide booking_alert_position" role="alert">
+                <h3 id="booking_alert_title" class="alert-heading text-center"></h3>
+                <p id="booking_alert_text" class="col text-center"></p>
+                <hr>
+                <p id="booking_alert_info" class="text-center"></p>
+                <button class="btn btn-success btn-block hide" id="keep_booking_button"> Afficher ma réservation en
+                    cours</button>
+                <button class="btn btn-warning btn-block hide" id="new_booking_button"> Effectuer une réservation sur cette
+                    station !</button>
+                <a href="#map_section_title"><button class="btn btn-info btn-block hide" id="alert_return_map_button">
+                        Retour à la carte</button></a>
+            </div>   
+        </div>        
     </section>
     <section id="user_booking_form" class="col card hide user_booking_form">
         <form class="form-row ">
@@ -229,10 +235,12 @@
             </div>
         </div>
     </section>
-    <footer class="row">
-        <div class="col footer">
-            <p class="footer_content">Site réalisé dans le cadre d'un formation</p>
-        </div>
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col footer">
+                <p class="footer_content">Site réalisé dans le cadre d'un formation</p>
+            </div>
+        </div>        
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="./scripts/slider.js"></script>
