@@ -27,20 +27,20 @@ class Slider {
   }
 
   sliderChange(direction) {
-    let $allSlides = $(".slide_img");
-    let $currentSlide = $(".active_slide");
-    let $slidePosition = $(".slide_img").index($currentSlide);
-    $($allSlides[$slidePosition]).removeClass("active_slide");
+    let $allSlides = $(".slider-slide_img");
+    let $currentSlide = $(".slider-active_slide");
+    let $slidePosition = $(".slider-slide_img").index($currentSlide);
+    $($allSlides[$slidePosition]).removeClass("slider-active_slide");
     $slidePosition += direction;
-    $($allSlides[$slidePosition]).addClass("active_slide");
+    $($allSlides[$slidePosition]).addClass("slider-active_slide");
     if ($slidePosition >= $allSlides.length) {
-      $($allSlides[$slidePosition]).removeClass("active_slide");
+      $($allSlides[$slidePosition]).removeClass("slider-active_slide");
       $slidePosition = 0;
-      $($allSlides[$slidePosition]).addClass("active_slide");
+      $($allSlides[$slidePosition]).addClass("slider-active_slide");
     } else if ($slidePosition < 0) {
-      $($allSlides[$slidePosition]).removeClass("active_slide");
+      $($allSlides[$slidePosition]).removeClass("slider-active_slide");
       $slidePosition = $allSlides.length - 1;
-      $($allSlides[$slidePosition]).addClass("active_slide");
+      $($allSlides[$slidePosition]).addClass("slider-active_slide");
     }
   }
 
