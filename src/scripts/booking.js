@@ -70,10 +70,10 @@ class Booking {
         console.log("displayBookingSummary");
         $("#user_booking_summary").toggleClass("hide", false);
         $("#user_booking_summary_text").html("Un vélo vous est réservé sur la station <span id=booking_station_name_summary></span> !");
-        $("#user_booking_summary_timer").html("Temps restants : <span id=booking_timer></span>");
+        $("#user_booking_summary_timer").html("Temps restants : <span id=booking_timer class=booking_timer> 00 : 30 </span>");
         $("#booking_station_name_summary").text(sessionStorage.stationBookingName);
         $("#booking_access_button").removeAttr("disabled");
-        // $("#booking_alert").toggleClass("hide", true);
+        // $("#booking_alert").toggleClass("hide", true); 
         $("#booking_link").toggleClass("hide", false).removeClass("text-danger").addClass("text-success").html("Votre Réservation");
     }
 
