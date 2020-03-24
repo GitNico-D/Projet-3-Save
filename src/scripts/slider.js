@@ -27,9 +27,9 @@ class Slider {
   }
 
   sliderChange(direction) {
-    let $allSlides = $(".slider-slide_img");
+    let $allSlides = $(".slider-slide");
     let $currentSlide = $(".slider-active_slide");
-    let $slidePosition = $(".slider-slide_img").index($currentSlide);
+    let $slidePosition = $(".slider-slide").index($currentSlide);
     $($allSlides[$slidePosition]).removeClass("slider-active_slide");
     $slidePosition += direction;
     $($allSlides[$slidePosition]).addClass("slider-active_slide");
