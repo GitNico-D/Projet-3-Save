@@ -138,7 +138,7 @@ a:hover
     background-color: whitesmoke;  
     padding: 85px 0 20px 0;
     margin-bottom: 2em;
-    // overflow: hidden;
+    overflow: hidden;
     position: relative;
     &-title {
         font-family: 'roboto_black';
@@ -146,10 +146,11 @@ a:hover
         padding-top: 7px;
         padding-bottom: 1.5rem;
     }
-    &-slide_img {
+    &-slide {
         display: none;
         width: 100%;
-        margin: 0; 
+        border-top: 2px solid black;
+        border-bottom: 2px solid black; 
     }
     &-active_slide{
         display: block!important;
@@ -158,40 +159,62 @@ a:hover
         margin-top: 15px;
         z-index: 2;
     }
+    &-container {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.slide {
+    &-text_color{
+        color: $grey;
+    }
+    &-img {
+        width: 100%;
+    }
 }
 
 .slide_one {
     position: relative;
     font-size: 1em;
-    &-img{
-        width: 100%;
-        // border: 5px double #138496;
+    &-content {
+        position: absolute;        
+        left: 50%;
+        top: 50%;
+        transform: translate(-75%, -75%);
+        width: 45%;
+        color: black;
+        overflow: hidden;
     }
-    &-title {
-        position: absolute;
-        left: 5%;
-        top: 10%;
-        width: 60%;
-        font-size: 1.5em;
+    &-title {       
+        font-size: 2.2em;
         padding-top: 20px;
-        font-family: 'roboto_medium';
+        font-family: 'roboto_black';        
         margin: auto;
-        color: white;
+        
         span {
             font-weight: bold;
-            color: #138496;
+            color: #40a3bd;
         }
     }
-    &-content {
+    &-text {
+        font-family: 'roboto_bold';
+        font-size: 2em;
+        line-height: 1.5em;
+    } 
+    &-text_plus {
+        font-size: 1.4em;
+        font-family: 'roboto_medium';
+    }   
+    &-extra_content {
         position: absolute;
-        bottom: 10%;
-        left: 0;
-        color: white;
-        line-height: 2em;
-        // color: rgba(93, 93, 93, 1);
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        line-height: 1.5em;
         font-family: 'roboto_regular';
-        // font-size: 1em;
         width: 50%;
+        overflow: hidden;
     }
     &-marker_title {
         margin-left: 1rem;
@@ -201,9 +224,123 @@ a:hover
     }
 }
 
-.slide{
-    &-text_color{
-        color: $grey;
+.slide_two {
+    position: relative;
+    font-size: 1em;
+    &-content {
+        position: absolute;        
+        left: 50%;
+        top: 50%;
+        transform: translate(-25%, -50%);
+        width: 45%;
+        color: black;
+        overflow: hidden;
+    }
+    &-title {       
+        font-size: 2.2em;
+        padding-top: 20px;
+        font-family: 'roboto_black';        
+        margin: auto;        
+        span {
+            font-weight: bold;
+            color: #40a3bd;
+        }
+    }
+    &-text {
+        font-family: 'roboto_bold';
+        font-size: 2em;
+        line-height: 1.5em;
+    } 
+    &-text_plus {
+        font-size: 1.4em;
+        font-family: 'roboto_medium';
+        span {
+            font-style: italic;
+            color: #40a3bd;
+        }
+    }
+    span {
+        font-weight: bold;
+    }
+}
+
+.slide_three {
+    position: relative;
+    font-size: 1em;
+    &-content {
+        position: absolute;        
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 45%;
+        color: black;
+        overflow: hidden;
+    }
+    &-title {       
+        font-size: 2.2em;
+        padding-top: 20px;
+        font-family: 'roboto_black';        
+        margin: auto;        
+        span {
+            font-weight: bold;
+            color: #40a3bd;
+        }
+    }
+    &-text {
+        font-family: 'roboto_bold';
+        font-size: 2em;
+        line-height: 1.5em;
+    } 
+    &-text_plus {
+        font-size: 1.4em;
+        font-family: 'roboto_medium';
+        span {
+            font-style: italic;
+            color: #40a3bd;
+        }
+    }
+    span {
+        font-weight: bold;
+    }
+}
+
+.slide_four {
+    position: relative;
+    font-size: 1em;
+    &-content {
+        position: absolute;        
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 45%;
+        color: black;
+        overflow: hidden;
+    }
+    &-title {       
+        font-size: 2.2em;
+        padding-top: 20px;
+        font-family: 'roboto_black';        
+        margin: auto;        
+        span {
+            font-weight: bold;
+            color: #40a3bd;
+        }
+    }
+    &-text {
+        font-family: 'roboto_bold';
+        font-size: 2em;
+        line-height: 1.5em;
+    } 
+    &-text_plus {
+        font-size: 1.4em;
+        font-family: 'roboto_medium';
+        span {
+            font-style: italic;
+            color: #40a3bd;
+        }
+    }
+    span {
+        font-weight: bold;
     }
 }
 
@@ -214,101 +351,6 @@ a:hover
     margin-left: 5px;;
 }
 
-// .slider_buttons
-// {
-//     z-index: 2;
-// }
-// #slider
-// {  
-//     background-color: whitesmoke;  
-//     padding: 85px 0 20px 0;
-//     margin-bottom: 2rem;
-// }
-
-// .title_section
-// {
-//     font-family: 'roboto_black';
-//     text-transform: uppercase;
-//     padding-top: 7px;
-//     padding-bottom: 30px;
-// }
-
-
-// .active_slide
-// {
-//     display: block!important;    
-// }
-
-// .slide_img 
-// {
-//     display: none;
-//     width: 90%;
-//     margin: auto;
-//     height: 400px;
-//     border: 5px double #D6D6D6;
-//     background-color: white;
-// }
-
-.slide_one_img
-{
-    
-    width: 100%;
-}
-
-.slide_one_title, .slide_two_title, .slide_three_title, .slide_four_title
-{
-    font-size: 1.1rem;
-    padding-top: 20px;
-    line-height: 25px;
-    font-family: 'roboto_medium';
-    color: $grey;
-}
-
-.slide_one_title
-{   
-    margin: auto;
-    width: 80%;
-}
-
-// .slide_one_content, .slide_two_content, .slide_three_content, .slide_four_content
-// {
-//     color: $grey;
-// }
-
-// .slide_one_content
-// {
-//     font-family: 'roboto_regular';
-//     margin-top: 25px;
-//     padding-left: 25px;
-// }
-
-// .slide_one_content span
-// {
-//     font-weight: bold;
-// }
-
-.slide_two_title span
-{
-    text-transform: uppercase;
-}
-
-.slide_four_content span
-{
-    font-family: 'roboto_regular';
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.slide_one_content ul
-{
-    padding: 0;
-}
-
-.slide_one_marker_description
-{
-    
-    list-style: none;
-}
 /*---- FIN SLIDER -----*/
 
 /*----- DÉBUT MAP -----*/
@@ -327,9 +369,9 @@ a:hover
     &-map_section{
         height: 600px;
     }
-    &-station_section{
+    // &-station_section{
         // max-width: 35%;
-    }
+    // }
     &-map_button{
         z-index: 410;
         margin-top: 10px;
