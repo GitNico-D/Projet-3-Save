@@ -79,11 +79,20 @@ a:hover
 
 .navbar{
     box-shadow: 10px 10px 10px -9px rgba(0,0,0,0.75);
-    height: 80px;
     overflow: hidden;
     border-bottom: 3px solid rgba(19, 132, 150, 0.8);
-    // &-border{
-    //     height: 2px;
+    &-nav {
+        display: inline-block;
+    }
+    li {
+        display: inline-block;        
+        padding: 0 1em 0 1em;
+    }
+    // &-nav {
+    //     display: inline-block;
+    // }
+    // &-link {
+    //     display: inline-block;
     // }
 }
 
