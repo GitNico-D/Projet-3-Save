@@ -32,8 +32,8 @@ class Map {
 
   generateStationMarker(stationData, stationMarker) {
     let popup = L.popup()
-      .setContent(`<p class=popup_infos_station> Station sélectionné : </p>
-                                            <p class=popup_infos_station_name>${stationData.name}</p>`);
+      .setContent(`<p class=popup-infos_station> Station sélectionné : </p>
+                                            <p class=popup-infos_station_name>${stationData.name}</p>`);
     return L.marker(
       [stationData.position.latitude, stationData.position.longitude],
       { icon: stationMarker }
