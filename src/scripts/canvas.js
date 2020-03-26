@@ -1,109 +1,123 @@
 class Canvas {
-    constructor(canvasId) {
-        this.canvasId = canvasId;
-        this.context = this.canvasId.getContext("2d");
-        this.context.lineWidth = "1";
-        this.context.lineJoin = "round";
-        this.context.strokeStyle = "black";
-        this.startSignature = false;
-        this.signaturePoints = 0;
-        // this.width = this.canvasId.width;
-        // this.height = this.cancasId.height;
-        // console.log(this.canvasId.width);
-        // this.canvasId.width;
-        this.canvasDimensions();
-        $("#signature_canvas").mousedown(this.mouseDown.bind(this));
-        $("#signature_canvas").mousemove(this.mouseMove.bind(this));
-        $("#signature_canvas").mouseup(this.mouseUp.bind(this));
-        $("#signature_canvas").on("touchstart", this.touchStart.bind(this));
-        $("#signature_canvas").on("touchmove", this.touchMove.bind(this));
-        $("#signature_canvas").on("touchend", this.touchEnd.bind(this));
-        $("#clear_canvas").click(this.clearCanvas.bind(this));
-        $("#confirm_canvas").click(this.clearCanvas.bind(this));
-    }
-    // }
+  constructor(canvasId) {
+    this.canvasId = canvasId;
+    this.context = this.canvasId.getContext("2d");
+    this.context.lineWidth = "1";
+    this.context.lineJoin = "round";
+    this.context.strokeStyle = "black";
+    this.startSignature = false;
+    this.signaturePoints = 0;
+    this.canvasDimensions();
+    $("#signature_canvas").mousedown(this.mouseDown.bind(this));
+    $("#signature_canvas").mousemove(this.mouseMove.bind(this));
+    $("#signature_canvas").mouseup(this.mouseUp.bind(this));
+    $("#signature_canvas").on("touchstart", this.touchStart.bind(this));
+    $("#signature_canvas").on("touchmove", this.touchMove.bind(this));
+    $("#signature_canvas").on("touchend", this.touchEnd.bind(this));
+    $("#clear_canvas").click(this.clearCanvas.bind(this));
+    $("#confirm_canvas").click(this.clearCanvas.bind(this));
+  }
+  // }
 
-    canvasDimensions() {
-        console.log(window.innerWidth);
-        console.log(this.canvasId.width);
-        if (window.innerWidth < 480) {
-            this.canvasId.width = 250;
-            console.log(this.canvasId.width);
-        //     this.canvasId.height = 200;
-        } else {
-            this.canvasId.width = 500;
-            console.log(this.canvasId.width);
-        //     this.canvasId.height = 400;
-        }
+  canvasDimensions() {
+    console.log(window.innerWidth);
+    console.log(this.canvasId.width);
+    if (window.innerWidth < 480) {
+      this.canvasId.width = 250;
+    } else {
+      this.canvasId.width = 500;
     }
+  }
 
-    signatureValidation() {;
-        $("#confirm_canvas").toggleClass("hide", false);
-        $("#clear_canvas").toggleClass("hide", false);
-        $("#clear_canvas").click(function () {
-            $("#confirm_canvas").toggleClass("hide", true);
-            $("#clear_canvas").toggleClass("hide", true);
-            $("#alert").removeClass("alert-danger").removeClass("alert-warning").addClass("alert-info").html("Pour <span>valider</span> votre réservation, merci d'aposer votre <span>signature</span> dans le cadre ci-dessous :");
-            this.signaturePoints = 0;
-        });
-    }
+  signatureValidation() {
+    $("#confirm_canvas").toggleClass("hide", false);
+    $("#clear_canvas").toggleClass("hide", false);
+    $("#clear_canvas").click(function() {
+      $("#confirm_canvas").toggleClass("hide", true);
+      $("#clear_canvas").toggleClass("hide", true);
+      $("#alert")
+        .removeClass("alert-danger")
+        .removeClass("alert-warning")
+        .addClass("alert-info")
+        .html(
+          "Pour <span>valider</span> votre réservation, merci d'aposer votre <span>signature</span> dans le cadre ci-dessous :"
+        );
+      this.signaturePoints = 0;
+    });
+  }
 
-    mouseDown() {
-        this.startSignature = true;
-        this.context.moveTo(event.offsetX, event.offsetY);
-        this.context.beginPath();
-    }
+  mouseDown() {
+    this.startSignature = true;
+    this.context.moveTo(event.offsetX, event.offsetY);
+    this.context.beginPath();
+  }
 
-    mouseMove() {
-        if (this.startSignature === true) {
-            this.context.lineTo(event.offsetX, event.offsetY);
-            this.context.stroke();
-            this.signaturePoints++;
-        }
+  mouseMove() {
+    if (this.startSignature === true) {
+      this.context.lineTo(event.offsetX, event.offsetY);
+      this.context.stroke();
+      this.signaturePoints++;
     }
+  }
 
-    mouseUp() {
-        this.startSignature = false;
-        if (this.signaturePoints > 100) {
-            this.signatureValidation();
-        } else {
-            $("#alert").removeClass("alert-info").addClass("alert-warning").html("Désolé mais votre <span>signature</span> est trop <span>courte</span>, merci de recommencer.");
-        }
+  mouseUp() {
+    this.startSignature = false;
+    if (this.signaturePoints > 100) {
+      this.signatureValidation();
+    } else {
+      $("#alert")
+        .removeClass("alert-info")
+        .addClass("alert-warning")
+        .html(
+          "Désolé mais votre <span>signature</span> est trop <span>courte</span>, merci de recommencer."
+        );
     }
+  }
 
-    touchStart() {
-        event.preventDefault();
-        let rect = this.canvasId.getBoundingClientRect();
-        this.startSignature = true;
-        this.context.moveTo((event.touches[0].clientX - rect.left), (event.touches[0].clientX - rect.top));
-        this.signaturePoints++;
-        this.context.beginPath();
-    }
+  touchStart() {
+    event.preventDefault();
+    let rect = this.canvasId.getBoundingClientRect();
+    this.startSignature = true;
+    this.context.moveTo(
+      event.touches[0].clientX - rect.left,
+      event.touches[0].clientX - rect.top
+    );
+    this.signaturePoints++;
+    this.context.beginPath();
+  }
 
-    touchMove() {
-        event.preventDefault();
-        let rect = this.canvasId.getBoundingClientRect();
-        if (this.startSignature === true) {
-            this.context.lineTo((event.touches[0].clientX - rect.left), (event.touches[0].clientY - rect.top));
-            this.context.stroke();
-            this.signaturePoints++;
-        }
+  touchMove() {
+    event.preventDefault();
+    let rect = this.canvasId.getBoundingClientRect();
+    if (this.startSignature === true) {
+      this.context.lineTo(
+        event.touches[0].clientX - rect.left,
+        event.touches[0].clientY - rect.top
+      );
+      this.context.stroke();
+      this.signaturePoints++;
     }
+  }
 
-    touchEnd() {
-        event.preventDefault();
-        this.startSignature = false;
-        if (this.signaturePoints > 100) {
-            this.signatureValidation();
-        } else {
-            $("#alert").removeClass("alert-info").addClass("alert-warning").html("Désolé mais votre <span>signature</span> est trop <span>courte</span>, merci de recommencer.");
-        }
+  touchEnd() {
+    event.preventDefault();
+    this.startSignature = false;
+    if (this.signaturePoints > 100) {
+      this.signatureValidation();
+    } else {
+      $("#alert")
+        .removeClass("alert-info")
+        .addClass("alert-warning")
+        .html(
+          "Désolé mais votre <span>signature</span> est trop <span>courte</span>, merci de recommencer."
+        );
     }
+  }
 
-    clearCanvas() {
-        this.context.clearRect(0, 0, this.canvasId.width, this.canvasId.height);
-        $("#confirm_canvas").toggleClass("hide", true);
-        $("#clear_canvas").toggleClass("hide", true);
-        this.signaturePoints = 0;
-    }
+  clearCanvas() {
+    this.context.clearRect(0, 0, this.canvasId.width, this.canvasId.height);
+    $("#confirm_canvas").toggleClass("hide", true);
+    $("#clear_canvas").toggleClass("hide", true);
+    this.signaturePoints = 0;
+  }
 }
