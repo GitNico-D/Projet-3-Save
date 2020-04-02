@@ -64,7 +64,6 @@ class Map {
   }
 
   resetMapView() {
-    console.log("click");
     this.bikeStationMap.setView(
       [this.coordinateX, this.coordinateY],
       this.zoom
