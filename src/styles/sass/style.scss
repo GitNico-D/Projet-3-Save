@@ -1,42 +1,5 @@
 @import "variables";
 
-// #region [rgba (0 ,255, 30, 0.1)]
-// FONTFACE
-@font-face {
-  font-family: "roboto_black";
-  src: url("../assets/fonts/Roboto-Black.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "roboto_blackitalic";
-  src: url("../assets/fonts/Roboto-BlackItalic.ttf") format("truetype");
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "roboto_bold";
-  src: url("../assets/fonts/Roboto-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "roboto_regular";
-  src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "roboto_medium";
-  src: url("../assets/fonts/Roboto-Medium.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-}
-//#endregion
-
 body {
   margin: 0;
   text-decoration: none;
@@ -50,11 +13,7 @@ a:hover {
   text-decoration: none;
 }
 
-// [class*="col"] {
-//   margin-bottom: 20px;
-// }
-
-.booking_link {
+.booking-link {
   font-weight: bold;
 }
 
@@ -86,7 +45,8 @@ a:hover {
   h1 {
     text-align: center;
     color: $darkgray;
-    font-family: "roboto_black";
+    font-family: "Roboto";
+    font-weight: 900;
     font-size: 3rem;
     text-transform: uppercase;
     margin-bottom: 25px;
@@ -100,7 +60,8 @@ a:hover {
   overflow: hidden;
   position: relative;
   &-title {
-    font-family: "roboto_black";
+    font-family: "Roboto";
+    font-weight: 900;
     text-transform: uppercase;
     padding-top: 7px;
     padding-bottom: 1.5rem;
@@ -109,6 +70,8 @@ a:hover {
     display: none;
     width: 100%;
     border-bottom: 2px solid #40a3bd;
+    position: relative;
+    font-size: 1em;
   }
   &-active_slide {
     display: block !important;
@@ -124,173 +87,173 @@ a:hover {
 }
 
 .slide {
-  &-text_color {
+  &-textcolor {
     color: $grey;
   }
   &-img {
     width: 100%;
   }
-}
-
-.slide_one {
-  position: relative;
-  font-size: 1em;
-  &-content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-75%, -50%);
-    width: 55%;
-    color: black;
-    overflow: hidden;
-  }
-  &-title {
-    font-size: 2.2em;
-    padding-top: 20px;
-    font-family: "roboto_black";
-    margin: auto;
+  &-one {
+    &-content {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-75%, -50%);
+      width: 55%;
+      color: black;
+      overflow: hidden;
+    }
+    &-title {
+      font-size: 2.2em;
+      padding-top: 20px;
+      font-family: "Roboto";
+    font-weight: 900;
+      margin: auto;
+      span {
+        font-weight: bold;
+        color: $redfont;
+      }
+    }
+    &-text {
+      margin: 1em 0 1em 0;
+      font-family: "Roboto";
+      font-weight: 700;
+      font-size: 1.8em;
+      line-height: 1.5em;
+    }
+    &-textplus {
+      font-size: 1.3em;
+      font-family: "Roboto";
+      font-weight: 400;
+    }
     span {
       font-weight: bold;
-      color: #d76754;
+      color: $redfont;
     }
   }
-  &-text {
-    margin: 1em 0 1em 0;
-    font-family: "roboto_bold";
-    font-size: 1.8em;
-    line-height: 1.5em;
-  }
-  &-text_plus {
-    font-size: 1.3em;
-    font-family: "roboto_medium";
-  }
-  span {
-    font-weight: bold;
-    color: #d76754;
-  }
-}
-
-.slide_two {
-  position: relative;
-  font-size: 1em;
-  &-content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-25%, -50%);
-    width: 55%;
-    color: black;
-    overflow: hidden;
-  }
-  &-title {
-    font-size: 2.2em;
-    padding-top: 20px;
-    font-family: "roboto_black";
-    margin: auto;
+  &-two {
+    &-content {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-25%, -50%);
+      width: 55%;
+      color: black;
+      overflow: hidden;
+    }
+    &-title {
+      font-size: 2.2em;
+      padding-top: 20px;
+      font-family: "Roboto";
+      font-weight: 900;
+      margin: auto;
+      span {
+        font-weight: bold;
+        color: $redfont;
+      }
+    }
+    &-text {
+      margin: 1em 0 1em 0;
+      font-family: "Roboto";
+      font-weight: 700;
+      font-size: 1.8em;
+      line-height: 1.5em;
+    }
+    &-text_plus {
+      font-size: 1.3em;
+      font-family: "Roboto";
+      font-weight: 500;
+      span {
+        font-style: italic;
+        color: $redfont;
+      }
+    }
     span {
       font-weight: bold;
-      color: #d76754;
     }
   }
-  &-text {
-    margin: 1em 0 1em 0;
-    font-family: "roboto_bold";
-    font-size: 1.8em;
-    line-height: 1.5em;
-  }
-  &-text_plus {
-    font-size: 1.3em;
-    font-family: "roboto_medium";
-    span {
-      font-style: italic;
-      color: #d76754;
+  &-three {
+    &-content {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-65%, -50%);
+      width: 55%;
+      color: black;
+      overflow: hidden;
     }
-  }
-  span {
-    font-weight: bold;
-  }
-}
-
-.slide_three {
-  position: relative;
-  font-size: 1em;
-  &-content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-65%, -50%);
-    width: 55%;
-    color: black;
-    overflow: hidden;
-  }
-  &-title {
-    font-size: 2.2em;
-    padding-top: 20px;
-    font-family: "roboto_black";
-    margin: auto;
-    span {
-      font-weight: bold;
-      color: #d76754;
+    &-title {
+      font-size: 2.2em;
+      padding-top: 20px;
+      font-family: "Roboto";
+      font-weight: 900;
+      margin: auto;
+      span {
+        font-weight: bold;
+        color: $redfont;
+      }
     }
-  }
-  &-text {
-    margin: 1em 0 1em 0;
-    font-family: "roboto_bold";
-    font-size: 1.8em;
-    line-height: 1.5em;
-  }
-  &-text_plus {
-    font-size: 1.3em;
-    font-family: "roboto_medium";
-    span {
-      font-style: italic;
-      color: #d76754;
+    &-text {
+      margin: 1em 0 1em 0;
+      font-family: "Roboto";
+      font-weight: 700;
+      font-size: 1.8em;
+      line-height: 1.5em;
     }
-  }
-  span {
-    font-weight: bold;
-  }
-}
-
-.slide_four {
-  position: relative;
-  font-size: 1em;
-  &-content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-25%, -50%);
-    width: 55%;
-    color: black;
-    overflow: hidden;
-  }
-  &-title {
-    font-size: 2.2em;
-    padding-top: 20px;
-    font-family: "roboto_black";
-    margin: auto;
+    &-textplus {
+      font-size: 1.3em;
+      font-family: "Roboto";
+      font-weight: 500;
+      span {
+        font-style: italic;
+        color: $redfont;
+      }
+    }
     span {
       font-weight: bold;
-      color: #d76754;
     }
   }
-  &-text {
-    margin: 1em 0 1em 0;
-    font-family: "roboto_bold";
-    font-size: 1.7em;
-    line-height: 1.5em;
-  }
-  &-text_plus,
-  &-extra_content {
-    font-size: 1.1em;
-    font-family: "roboto_medium";
+  &-four {
+    &-content {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-25%, -50%);
+      width: 55%;
+      color: black;
+      overflow: hidden;
+    }
+    &-title {
+      font-size: 2.2em;
+      padding-top: 20px;
+      font-family: "Roboto";
+      font-weight: 900;
+      margin: auto;
+      span {
+        font-weight: bold;
+        color: $redfont;
+      }
+    }
+    &-text {
+      margin: 1em 0 1em 0;
+      font-family: "Roboto";
+      font-weight: 700;
+      font-size: 1.7em;
+      line-height: 1.5em;
+    }
+    &-textplus,
+    &-extracontent {
+      font-size: 1.1em;
+      font-family: "Roboto";
+      font-weight: 500;
+      span {
+        font-style: italic;
+        color: $redfont;
+      }
+    }
     span {
-      font-style: italic;
-      color: #d76754;
+      font-weight: bold;
     }
-  }
-  span {
-    font-weight: bold;
   }
 }
 
@@ -307,35 +270,26 @@ a:hover {
     max-width: 90%;
     display: inline-block;
   }
-  &-title_section {
-    font-family: "roboto_black";
+  &-titlesection {
+    font-family: "Roboto";
+    font-weight: 900;
     text-transform: uppercase;
     padding-top: 7px;
     padding-bottom: 1.5rem;
   }
-  &-map_section {
-    display: inline-block;
+  &-mapdiv {
     height: 600px;
+    max-height: 600px;
   }
-  &-station_section{
-    display: inline-block;
-    margin-top: 1rem;
+  &-stationdiv{
+    max-height: 600px;
+    &-title {
+      margin-top: 1rem;
+    }
   }
   &-button {
     z-index: 410;
     margin-top: 10px;
-  }
-}
-
-.card {
-  &-header {
-    margin-bottom: 12px;
-  }
-  &-textstation {
-    margin-top: 20px;
-    span {
-      font-weight: bold;
-    }
   }
 }
 
@@ -346,6 +300,9 @@ a:hover {
 }
 
 .table {
+  td {
+    vertical-align: middle;
+  }
   &-bold {
     font-weight: bold;
   }
@@ -359,16 +316,9 @@ a:hover {
   width: 30%;
   margin: auto;
   height: 2px;
-  margin-top: 1rem;
   margin-bottom: 1rem;
   text-align: center;
   background-color: $darkgray;
-}
-
-.button {
-  &-margin {
-    margin-top: 10px;
-  }
 }
 
 .popup {
@@ -382,23 +332,47 @@ a:hover {
   }
 }
 
-.alert_position,
-.booking_alert_position {
-  margin: auto;
-  margin-top: 20px;
-  padding-bottom: 10px;
+.alert {
+  margin-top: 5px;
+  &-position {
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+  }
+}
+.booking-alert { 
+  margin-top: 5px;
+  &-position {
+    width: 80%;
+    margin: auto;  
+    padding-bottom: 10px;
+  }
+  &-button {
+    margin-top: 5px;
+  }
 }
 
-.user_booking_form {
+.user-bookingform {
   max-width: 90%;
   margin: auto;
   margin-top: 15px;
   form {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
     margin-top: 20px;
+  }
+  &-lastname {
+    margin-left: 5px;
   }
   &-button {
     margin: auto;
     margin-bottom: 10px;
+    margin-top: 5px;
+  }
+  &-cancelbutton {
+    margin-top: 5px;
   }
 }
 
@@ -406,10 +380,14 @@ a:hover {
   &-position {
     margin: auto;
   }
-  &-confirm_button {
+  &-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  &-confirm-button {
     margin-left: 10px;
   }
-  &-cancel_button {
+  &-cancel-button {
     margin-left: 10px;
   }
   &-border {
@@ -428,7 +406,8 @@ a:hover {
   margin-top: 50px;
   &-content {
     color: white;
-    font-family: "roboto-regular";
+    font-family: "Roboto";
+    font-weight: 400;
     position: absolute;
     transform: translateX(-50%);
     left: 50%;
@@ -436,10 +415,15 @@ a:hover {
   }
 }
 
-.user_booking_summary {
-  margin-top: 15px;
+.user-booking-summary {
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
   &-timer {
     font-weight: bold;
+  }
+  &-button {
+    margin-top: 10px;
   }
 }
 
@@ -455,37 +439,90 @@ a:hover {
   font-weight: bold;
 }
 
-// ------ MEDIA QUERIES ------
+// ------ MEDIA QUERIES ------ //
+
+@media (max-width: 1200px) {
+  .map {
+    &-stationdiv {
+      &-cardbody {
+        padding: 0.75em;
+      }
+      &-cardheader {
+        padding: 0.25rem 0.5rem;
+      }
+      &-cardtextstation{
+        margin-top: 10px;  
+      }
+    }
+  }
+    
+  .table {
+    &-responsive {
+      overflow-x: unset;
+    }
+  }
+
+  .map {
+      &-stationdiv {
+        &-cardtextstation {
+          font-size: 0.9rem;
+        }
+      }
+    }
+}
 
 @media (max-width: 1024px) {
-  .slide_one,
-  .slide_two,
-  .slide_three {
+  .slide-one,
+  .slide-two,
+  .slide-three {
     &-title {
       font-size: 1.5em;
     }
     &-text {
       font-size: 1.2em;
     }
-    &-text_plus {
+    &-textplus {
       font-size: 0.9em;
     }
   }
 
-  .slide_four {
+  .slide-four {
     &-title {
       font-size: 1.2em;
     }
     &-text {
       font-size: 1em;
     }
-    &-text_plus {
+    &-textplus {
       font-size: 0.7em;
     }
-    &-extra_content {
+    &-extracontent {
       font-size: 0.7em;
     }
   }
+
+  .table {
+    &-responsive {
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .map {
+     &-stationdiv {
+       margin-top: 10px;
+       &-cardbody {
+         padding: 1.25rem;
+       }
+       &-cardheader {
+         padding: 0.75rem 1.25rem;
+       }
+       &-cardtextstation{
+         margin-top: 20px;  
+       }
+     }    
+   }
 }
 
 @media (max-width: 640px) {
@@ -493,32 +530,32 @@ a:hover {
     font-size: 2rem;
   }
 
-  .slide_one,
-  .slide_two,
-  .slide_three {
+  .slide-one,
+  .slide-two,
+  .slide-three {
     &-title {
       font-size: 0.8em;
     }
     &-text {
       font-size: 0.6em;
     }
-    &-text_plus {
+    &-textplus {
       font-size: 0.4em;
     }
   }
 
-  .slide_four {
+  .slide-four {
     &-title {
       font-size: 0.7em;
     }
     &-text {
       font-size: 0.4em;
     }
-    &-text_plus {
+    &-textplus {
       font-size: 0.3em;
       margin-bottom: 1em;
     }
-    &-extra_content {
+    &-extracontent {
       font-size: 0.3em;
     }
   }
@@ -540,16 +577,6 @@ a:hover {
     }
   }
 
-  .map {
-    padding-top: 150px;
-    &-title_section {
-      font-size: 1.5rem;
-    }
-    &-map_section {
-      height: 450px;
-    }
-  }
-
   .navbar {
     overflow: hidden;
     &-nav {
@@ -564,6 +591,28 @@ a:hover {
       text-align: center;
       margin: auto;
       padding: 0 1em 0 1em;
+    }
+  }
+
+  .user-bookingform {
+    max-width: 90%;
+    margin: auto;
+    margin-top: 15px;
+    form {
+      display: flex;
+      flex-direction: column;
+      align-content: space-between;
+      margin-top: 20px;
+    }
+    &-lastname {
+      margin-left: 0;
+      margin-top: 5px;
+    }
+  }
+
+  .alert {
+    &-heading {
+      font-size: 1.25rem;
     }
   }
 }
