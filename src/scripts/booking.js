@@ -8,7 +8,6 @@ class Booking {
     this.stationAvailableBikes;
     this.startBookingTime;
     if (sessionStorage.startBookingTime) {
-      console.log("Booking YES");
       sessionStorage.removeItem("currentClickedStationName");
       $("#booking_link")
         .removeClass("text-danger")
@@ -21,7 +20,6 @@ class Booking {
       this.displayBookingSummary();
       this.bookingTimeLeft();
     } else {
-      console.log("Booking NO");
       $("#booking_link")
         .removeClass("text-success")
         .addClass("text-danger")
@@ -60,7 +58,6 @@ class Booking {
   }
 
   displayBookingForm() {
-    console.log("displayBookingForm");
     $("#booking_access_button").attr("disabled", "disabled");
     $("#booking_canvas_access_button").toggleClass("hide", false);
     $("#booking_return_to_map_button").toggleClass("hide", false);
@@ -77,8 +74,7 @@ class Booking {
     $("#user_booking_form").toggleClass("hide", false);
   }
 
-  displayBookingSummary() {
-    console.log("displayBookingSummary");
+  displayBookingSummary() {);
     $("#user_booking_summary").toggleClass("hide", false);
     $("#user_booking_summary_text").html(
       "Un vélo vous est réservé sur la station <span id=booking_station_name_summary></span> !"
@@ -97,7 +93,6 @@ class Booking {
   }
 
   formVerification() {
-    console.log("formVerification");
     if (
       $("#form_first_name").val() === "" &&
       $("#form_last_name").val() === ""
@@ -173,7 +168,6 @@ class Booking {
   }
 
   userBookingStorage() {
-    console.log("userBookingStorage");
     event.preventDefault();
     let userIdentity = {
       userFirstName: $("#form_first_name").val(),
@@ -190,11 +184,6 @@ class Booking {
     sessionStorage.setItem("stationAvailableBikes", this.stationAvailableBikes);
     sessionStorage.stationAvailableBikesStands++;
     sessionStorage.stationAvailableBikes--;
-    console.log(
-      "userBookingStorage => ",
-      sessionStorage.stationAvailableBikesStands,
-      sessionStorage.stationAvailableBikes
-    );
     $("#infos_station_available_bikes_stand").text(
       sessionStorage.stationAvailableBikesStands
     );
@@ -226,7 +215,6 @@ class Booking {
 
   existingUser() {
     if (localStorage.getItem("UserIdentity")) {
-      console.log("existingUser => User Storage YES");
       let userIdentity = JSON.parse(localStorage.getItem("UserIdentity"));
       $("#form_first_name")
         .val(userIdentity.userFirstName)
@@ -235,7 +223,6 @@ class Booking {
         .val(userIdentity.userLastName)
         .css("background-color", "rgba(0, 255, 84, 0.2)");
     } else {
-      console.log("existingUser => User Storage NO");
       $("#booking_link")
         .toggleClass("hide", true)
         .removeClass("text-success")
@@ -244,12 +231,10 @@ class Booking {
   }
 
   bookingInProgress() {
-    console.log("bookingInProgress");
     if (
       sessionStorage.stationBookingName ===
       sessionStorage.currentClickedStationName
     ) {
-      console.log("Stations identiques !");
       $("#booking_alert")
         .toggleClass("hide", false)
         .removeClass("alert-danger")
@@ -268,7 +253,6 @@ class Booking {
       $("#user_booking_summary").toggleClass("hide", false);
       // }
     } else {
-      console.log("bookingInProgress NO");
       $("#booking_alert")
         .toggleClass("hide", false)
         .removeClass("alert-danger")
@@ -296,7 +280,6 @@ class Booking {
   }
 
   resetDisplayBooking() {
-    console.log("resetDisplayBooking");
     $("#booking_alert").toggleClass("hide", true);
     $("#user_booking_form").toggleClass("hide", true);
     $("#booking_canvas_access_button").toggleClass("hide", true);
@@ -310,7 +293,6 @@ class Booking {
   }
 
   cancelBooking() {
-    console.log("cancelBooking");
     $("#user_booking_summary").toggleClass("hide", true);
     $("#booking_alert")
       .removeClass("alert-info")
@@ -357,7 +339,6 @@ class Booking {
   }
 
   bookingTimeLeft() {
-    console.log("bookingTimeLeft");
     let startBookingTime = new Date(sessionStorage.getItem("startBookingTime"));
     this.intervalTimer = setInterval(e => {
       let dateNow = new Date();
