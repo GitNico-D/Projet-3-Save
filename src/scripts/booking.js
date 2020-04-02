@@ -1,8 +1,7 @@
-let maxBookingTimer = 61;
+let maxBookingTimer = 1201;
 
 class Booking {
-  constructor(canvas) {
-    this.canvas = canvas;
+  constructor() {
     this.intervalTimer = null;
     this.stationBookingName;
     this.stationAvailableBikesStands;
@@ -27,7 +26,6 @@ class Booking {
         .removeClass("text-success")
         .addClass("text-danger")
         .html("Aucune Réservation");
-      // this.resetDisplayBooking();
       $("#booking_access_button").click(() => {
         this.displayBookingForm();
       });
@@ -43,10 +41,8 @@ class Booking {
     $("#confirm_canvas").click(() => {
       this.userBookingStorage();
       this.displayBookingSummary();
-      // this.resetDisplayBooking();
     });
     $("#confirm_canvas").click(this.bookingTimeLeft.bind(this));
-    // $("#keep_booking_button").click(this.displayBookingSummary.bind(this));
     $("#keep_booking_button").click(() => {
       this.displayBookingSummary();
       this.resetDisplayBooking();
@@ -89,7 +85,7 @@ class Booking {
       "Un vélo vous est réservé sur la station <span id=booking_station_name_summary></span> !"
     );
     $("#user_booking_summary_timer").html(
-      "Temps restants : <span id=booking_timer class=user_booking_summary-timer> 00 : 30 </span>"
+      "Temps restants : <span id=booking_timer class=user-booking-summary-timer> 20 : 00 </span>"
     );
     $("#booking_station_name_summary").text(sessionStorage.stationBookingName);
     $("#booking_access_button").removeAttr("disabled");
