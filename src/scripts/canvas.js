@@ -19,8 +19,6 @@ class Canvas {
   }
 
   canvasDimensions() {
-    console.log(window.innerWidth);
-    console.log(this.canvasId.width);
     if (window.innerWidth < 480) {
       this.canvasId.width = 250;
     } else {
