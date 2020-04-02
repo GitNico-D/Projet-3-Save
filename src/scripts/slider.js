@@ -1,8 +1,5 @@
 class Slider {
-  constructor(slideId, color, position) {
-    this.slideId = slideId;
-    this.color = color;
-    this.position = position;
+  constructor() {
     $("#next_slide").click(this.sliderChange.bind(this, 1));
     $("#previous_slide").click(this.sliderChange.bind(this, -1));
     this.start = false;
@@ -45,7 +42,6 @@ class Slider {
   }
 
   sliderKeyboardChange() {
-    // event.stopPropagation();
     if (event.keyCode === 39) {
       event.preventDefault();
       console.log(event.keyCode + " => Right Slider Change !");
