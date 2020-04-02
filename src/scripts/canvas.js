@@ -17,7 +17,6 @@ class Canvas {
     $("#clear_canvas").click(this.clearCanvas.bind(this));
     $("#confirm_canvas").click(this.clearCanvas.bind(this));
   }
-  // }
 
   canvasDimensions() {
     console.log(window.innerWidth);

@@ -52,7 +52,6 @@ class Booking {
     );
     $("#alert_return_map_button").click(() => {
       this.resetDisplayBooking();
-      // this.displayBookingSummary();
     });
     $("#new_booking_button").click(() => {
       clearInterval(this.intervalTimer);
@@ -343,6 +342,10 @@ class Booking {
     $("#booking_access_button").toggleClass("hide", false);
     $("#booking_in_progress_button").toggleClass("hide", true);
     $("#booking_description").html("");
+    $("#booking_link")
+      .removeClass("text-success")
+      .removeClass("text-danger")
+      .html("");
   }
 
   timerConversion(timeLeft) {
