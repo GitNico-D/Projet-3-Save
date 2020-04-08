@@ -80,6 +80,7 @@ class Station {
       $("#booking_access_button").toggleClass("hide", false);
       if (sessionStorage.startBookingTime) {
         $("#booking_access_button").toggleClass("hide", true);
+        $("#booking_in_progress_button").toggleClass("hide", false);
       }
       $("#booking_button_description").toggleClass("hide", false);
       $("#button_split").toggleClass("hide", false);
@@ -87,7 +88,7 @@ class Station {
     }
     if (stationData.status === "CLOSED") {
       $("#station_status")
-        .text("FERMÉ")
+        .text("FERMÉE")
         .removeClass("text-success")
         .removeClass("text-warning")
         .addClass("text-danger");
@@ -98,6 +99,7 @@ class Station {
         .removeClass("table-success")
         .addClass("table-danger");
       $("#booking_access_button").toggleClass("hide", true);
+      $("#booking_in_progress_button").toggleClass("hide", true);
       $("#booking_button_description").toggleClass("hide", true);
       $("#button_split").toggleClass("hide", true);
     }
@@ -111,10 +113,11 @@ class Station {
         .removeClass("text-danger")
         .addClass("text-warning");
       $("#infos_station_description_status").html(
-        "<span>Aucun</span> vélos n'est actuellement disponibles à la location. Merci de vous rapprocher d'une autre station de location."
+        "<span>Aucun</span> vélo n'est actuellement disponible à la location. Merci de vous rapprocher d'une autre station de location."
       );
       $("#available_bikes").addClass("table-danger");
       $("#booking_access_button").toggleClass("hide", true);
+      $("#booking_in_progress_button").toggleClass("hide", true);
       $("#booking_button_description").toggleClass("hide", true);
       $("#button_split").toggleClass("hide", true);
     }
