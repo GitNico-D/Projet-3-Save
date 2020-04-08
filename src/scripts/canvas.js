@@ -37,7 +37,7 @@ class Canvas {
         .removeClass("alert-warning")
         .addClass("alert-info")
         .html(
-          "Pour <span>valider</span> votre réservation, merci d'aposer votre <span>signature</span> dans le cadre ci-dessous :"
+          "Pour <span class=font-bold>valider</span> votre réservation, merci d'aposer votre <span class=font-bold>signature</span> dans le cadre ci-dessous :"
         );
       this.signaturePoints = 0;
     });
@@ -66,7 +66,7 @@ class Canvas {
         .removeClass("alert-info")
         .addClass("alert-warning")
         .html(
-          "Désolé mais votre <span>signature</span> est trop <span>courte</span>, merci de recommencer."
+          "Désolé mais votre <span>signature</span> est trop <span class=font-bold>courte</span>, merci de recommencer."
         );
     }
   }
