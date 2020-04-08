@@ -10,21 +10,35 @@ body {
 }
 
 a:hover {
+  color: white;
   text-decoration: none;
+}
+
+a:not([href]):hover {
+  color: white;
+}
+
+a:not([href]) {
+  color:white!important;
 }
 
 .booking-link {
   font-weight: bold;
 }
 
+.isDisabled {
+  color: white;
+  cursor: not-allowed;
+}
+
 .navbar {
   box-shadow: 10px 10px 10px -9px rgba(0, 0, 0, 0.75);
   overflow: hidden;
-  border-bottom: 3px solid rgba(19, 132, 150, 0.8);
+  border-bottom: 3px solid $blue;
   &-nav {
       display: inline-block;
   }
-  li {
+  span {
     display: inline-block;
     padding: 0 1em 0 1em;
   }
@@ -69,7 +83,7 @@ a:hover {
   &-slide {
     display: none;
     width: 100%;
-    border-bottom: 2px solid #40a3bd;
+    border-bottom: 2px solid $blue;
     position: relative;
     font-size: 1em;
   }
@@ -99,7 +113,7 @@ a:hover {
       left: 50%;
       top: 50%;
       transform: translate(-75%, -50%);
-      width: 55%;
+      width: 50%;
       color: black;
       overflow: hidden;
     }
@@ -158,8 +172,11 @@ a:hover {
       font-weight: 700;
       font-size: 1.8em;
       line-height: 1.5em;
+      span {
+        color: $redfont;
+      }
     }
-    &-text_plus {
+    &-textplus {
       font-size: 1.3em;
       font-family: "Roboto";
       font-weight: 500;
@@ -199,6 +216,9 @@ a:hover {
       font-weight: 700;
       font-size: 1.8em;
       line-height: 1.5em;
+      span {
+        color: $redfont;
+      }
     }
     &-textplus {
       font-size: 1.3em;
@@ -240,6 +260,9 @@ a:hover {
       font-weight: 700;
       font-size: 1.7em;
       line-height: 1.5em;
+      span {
+        color: $redfont;
+      }        
     }
     &-textplus,
     &-extracontent {
@@ -302,6 +325,7 @@ a:hover {
 .table {
   td {
     vertical-align: middle;
+    padding: 0.65rem;
   }
   &-bold {
     font-weight: bold;
@@ -341,14 +365,14 @@ a:hover {
   }
 }
 .booking-alert { 
-  margin-top: 5px;
+  margin-top: 25px;
   &-position {
     width: 80%;
     margin: auto;  
     padding-bottom: 10px;
   }
   &-button {
-    margin-top: 5px;
+    margin-top: 8px;
   }
 }
 
@@ -356,6 +380,9 @@ a:hover {
   max-width: 90%;
   margin: auto;
   margin-top: 15px;
+  &-title {
+    background-color: white;
+  }
   form {
     width: 80%;
     margin: auto;
@@ -427,16 +454,31 @@ a:hover {
   }
 }
 
-#booking_description span {
-  font-size: 1.2em;
+.font-bold {
   font-weight: bold;
 }
 
-#booking_station_name,
-#current_clicked_station_name,
-#booking_station_name_storage,
-#booking_station_name_summary {
-  font-weight: bold;
+.loader {
+  z-index: 1;
+  margin: auto;
+  border: 5px solid $blue;
+  border-radius: 50%;
+  border-top: 5px solid $redfont;
+  border-bottom: 5px solid $redfont;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 // ------ MEDIA QUERIES ------ //
@@ -472,38 +514,48 @@ a:hover {
 }
 
 @media (max-width: 1024px) {
-  .slide-one,
-  .slide-two,
-  .slide-three {
-    &-title {
+  .slide {
+    &-one, &-two, &-three {
+      &-title {
       font-size: 1.5em;
+      }
+      &-text {
+        font-size: 1.2em;
+      }
+      &-textplus {
+        font-size: 0.9em;
+      }
     }
-    &-text {
+    &-four {
+      &-title {
       font-size: 1.2em;
-    }
-    &-textplus {
-      font-size: 0.9em;
-    }
-  }
-
-  .slide-four {
-    &-title {
-      font-size: 1.2em;
-    }
-    &-text {
-      font-size: 1em;
-    }
-    &-textplus {
-      font-size: 0.7em;
-    }
-    &-extracontent {
-      font-size: 0.7em;
+      }
+      &-text {
+        font-size: 1em;
+      }
+      &-textplus {
+        font-size: 0.7em;
+      }
+      &-extracontent {
+        font-size: 0.7em;
+      }
     }
   }
 
   .table {
     &-responsive {
       margin: 0;
+    }
+  }
+}
+
+@media (max-width: 998px) {
+  .navbar {
+    &-brand {
+      margin: auto;
+    }
+    &-nav {
+      margin: auto;
     }
   }
 }
@@ -530,33 +582,32 @@ a:hover {
     font-size: 2rem;
   }
 
-  .slide-one,
-  .slide-two,
-  .slide-three {
-    &-title {
-      font-size: 0.8em;
+  .slide {
+    &-one, &-two, &-three {
+      &-title {
+        font-size: 0.8em;
+      }
+      &-text {
+        font-size: 0.6em;
+      }
+      &-textplus {
+        font-size: 0.4em;
+      }
     }
-    &-text {
-      font-size: 0.6em;
-    }
-    &-textplus {
-      font-size: 0.4em;
-    }
-  }
-
-  .slide-four {
-    &-title {
+    &-four {
+      &-title {
       font-size: 0.7em;
-    }
-    &-text {
-      font-size: 0.4em;
-    }
-    &-textplus {
-      font-size: 0.3em;
-      margin-bottom: 1em;
-    }
-    &-extracontent {
-      font-size: 0.3em;
+      }
+      &-text {
+        font-size: 0.4em;
+      }
+      &-textplus {
+        font-size: 0.3em;
+        margin-bottom: 1em;
+      }
+      &-extracontent {
+        font-size: 0.3em;
+      }
     }
   }
 
@@ -586,7 +637,7 @@ a:hover {
     &-brand {
       margin: auto;
     }
-    li {
+    span {
       display: block;
       text-align: center;
       margin: auto;
@@ -613,6 +664,18 @@ a:hover {
   .alert {
     &-heading {
       font-size: 1.25rem;
+    }
+  }
+
+  .container-fluid {
+    &-divbuttons {
+      padding: 0;
+    }
+  }
+
+  .alert {
+    &-position {
+      width: 70%;
     }
   }
 }
