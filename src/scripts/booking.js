@@ -13,10 +13,6 @@ class Booking {
         .removeClass("text-danger")
         .addClass("text-success")
         .html("Votre Réservation");
-      $("#booking_description")
-        .html("<span>Réservation en cours</span>")
-        .addClass("text-success");
-      $("#booking_in_progress_button").toggleClass("hide", false);
       this.displayBookingSummary();
       this.bookingTimeLeft();
     } else {
@@ -58,7 +54,7 @@ class Booking {
   }
 
   displayBookingForm() {
-    $("#booking_access_button").attr("disabled", "disabled");
+    $("#booking_access_button").addClass("isDisabled").removeClass("enabled").attr("href", "#booking_alert");
     $("#booking_canvas_access_button").toggleClass("hide", false);
     $("#booking_return_to_map_button").toggleClass("hide", false);
     $("#booking_alert")
@@ -69,7 +65,7 @@ class Booking {
     $("#booking_alert_title").html("Enregistrement d'une réservation !");
     $("#booking_alert_text").html("");
     $("#booking_alert_info").html(
-      "Pour effectuer une réservation, merci de renseigner votre <span>Nom</span> et <span>Prénom</span> dans le formulaire ci-dessous."
+      "Pour effectuer une réservation, merci de renseigner vos <span class=font-bold>Nom</span> et <span class=font-bold>Prénom</span> dans le formulaire ci-dessous."
     );
     $("#user_booking_form").toggleClass("hide", false);
   }
@@ -77,13 +73,19 @@ class Booking {
   displayBookingSummary() {
     $("#user_booking_summary").toggleClass("hide", false);
     $("#user_booking_summary_text").html(
-      "Un vélo vous est réservé sur la station <span id=booking_station_name_summary></span> !"
+      "Un vélo vous est réservé sur la station <span id=booking_station_name_summary class=font-bold></span> !"
     );
     $("#user_booking_summary_timer").html(
-      "Temps restants : <span id=booking_timer class=user-booking-summary-timer> 20 : 00 </span>"
+      "<div id=loader class=loader hide><div>"
     );
+    setTimeout(() => {
+      $("#loader").addClass("hide");
+      $("#user_booking_summary_timer").html(
+        "Temps restant : <span id=booking_timer class=user-booking-summary-timer></span>"
+      );
+    }, 1000);
     $("#booking_station_name_summary").text(sessionStorage.stationBookingName);
-    $("#booking_access_button").removeAttr("disabled");
+    $("#booking_access_button").removeClass("isDisabled").removeAttr("href", "#booking_alert");
     $("#booking_link")
       .toggleClass("hide", false)
       .removeClass("text-danger")
@@ -148,14 +150,10 @@ class Booking {
       $("#booking_return_to_map_button").toggleClass("hide", true);
     }
     $("#form_first_name").focus(function() {
-      $("#alert")
-        .fadeOut("slow")
-        .toggleClass("hide", true);
+      $("#alert").toggleClass("hide", true);
     });
     $("#form_last_name").focus(function() {
-      $("#alert")
-        .fadeOut("slow")
-        .toggleClass("hide", true);
+      $("#alert").toggleClass("hide", true);
     });
   }
 
@@ -197,15 +195,12 @@ class Booking {
     $("#booking_alert_title").html("Réservation effectuée ! ");
     $("#booking_alert_text").html("");
     $("#booking_alert_info").html(
-      "Cette réservation est valable pour une durée de <span>20 minutes</span>, passé ce délai elle sera <span>automatiquement annulé</span>."
+      "Cette réservation est valable pour une durée de <span class=font-bold>20 minutes</span>, passé ce délai elle sera <span class=font-bold>automatiquement annulée</span>."
     );
     $("#user_booking_form").toggleClass("hide", true);
     setTimeout(() => {
       $("#booking_alert").toggleClass("hide", true);
     }, 5000);
-    $("#booking_description")
-      .html("<span>Réservation en cours</span>")
-      .addClass("text-success");
     $("#booking_in_progress_button")
       .toggleClass("hide", false)
       .removeClass("btn-primary")
@@ -250,7 +245,6 @@ class Booking {
       $("user_booking_form").toggleClass("hide", false);
       $("#alert_return_map_button").toggleClass("hide", false);
       $("#user_booking_summary").toggleClass("hide", false);
-      // }
     } else {
       $("#booking_alert")
         .toggleClass("hide", false)
@@ -260,10 +254,10 @@ class Booking {
         .addClass("alert-warning");
       $("#booking_alert_title").html("Réservation en cours !");
       $("#booking_alert_text").html(
-        "Vous avez déjà un vélo réservé sur la station <span id=booking_station_name_storage></span>."
+        "Vous avez déjà un vélo réservé sur la station <span id=booking_station_name_storage class=font-bold></span>."
       );
       $("#booking_alert_info").html(
-        "<span>Attention !</span> Si vous effectué une nouvelle réservation sur la station <span id=current_clicked_station_name></span>, la précédente sera automatiquement <span>ANNULÉ !</span>"
+        "<span class=font-bold>Attention !</span> Si vous effectuez une nouvelle réservation sur la station <span id=current_clicked_station_name class=font-bold></span>, la précédente sera automatiquement <span class=font-bold>ANNULÉE !</span>"
       );
       $("#booking_station_name_storage").text(
         sessionStorage.stationBookingName
@@ -283,7 +277,7 @@ class Booking {
     $("#user_booking_form").toggleClass("hide", true);
     $("#booking_canvas_access_button").toggleClass("hide", true);
     $("#booking_return_to_map_button").toggleClass("hide", true);
-    $("#booking_access_button").removeAttr("disabled");
+    $("#booking_access_button").removeClass("isDisabled").addClass("enabled");
     $("#canvas").toggleClass("hide", true);
     $("#alert").toggleClass("hide", true);
     $("#alert_return_map_button").toggleClass("hide", true);
@@ -322,7 +316,6 @@ class Booking {
     $("#alert_return_map_button").toggleClass("hide", false);
     $("#booking_access_button").toggleClass("hide", false);
     $("#booking_in_progress_button").toggleClass("hide", true);
-    $("#booking_description").html("");
     $("#booking_link")
       .removeClass("text-success")
       .removeClass("text-danger")
